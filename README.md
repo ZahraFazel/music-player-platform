@@ -1,2 +1,2 @@
-# Musik Player Platform
+# Music Player Platform
 
