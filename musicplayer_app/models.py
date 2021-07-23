@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -40,7 +41,7 @@ class MusicPlayList(models.Model):
 
 class ManagerPlayList(models.Model):
     playlist = models.ForeignKey(PlayList, on_delete=models.CASCADE)
-    manager = models.ForeignKey(PlayList, on_delete=models.CASCADE)
+    manager = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (("playlist", "manager"),)
