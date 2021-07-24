@@ -3,5 +3,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url('', views.index),
+    url(r'new_playlist/', views.add_playlist),
+    url(r'musicplayer_app/', views.index),
 ]

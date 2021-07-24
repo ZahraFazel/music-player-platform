@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include,url
+from musicplayer_app import views
+from django.urls import path
 
 
 urlpatterns = [
-    url(r'^musicplayer_app/', include('musicplayer_app.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'', include('musicplayer_app.urls'))
 ]
