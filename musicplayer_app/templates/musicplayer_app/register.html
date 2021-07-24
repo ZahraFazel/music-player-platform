@@ -1,0 +1,41 @@
+{% extends 'musicplayer_app/base.html' %}
+
+{% block content %}
+
+
+{% if error %}
+{{ error }}
+
+<br/>
+<br/>
+{% endif %}
+
+<h1>Register!</h1>
+
+<form method = "POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    Username:
+    <br/>
+    <input type="text" name="username" />
+    <br/>
+{#    Email:#}
+{#    <br/>#}
+{#    <input type="text" name="email" />#}
+{#    <br/>#}
+    Password:
+    <br/>
+    <input type="password" name="password1" />
+    <br/>
+    Confirm Password:
+    <br/>
+    <input type="password" name="password2" />
+    <br/>
+    <input class ="btn btn-primary" type="submit" value= "register" />
+    <br/>
+
+
+
+</form>
+
+
+{% endblock %}
