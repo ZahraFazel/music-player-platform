@@ -21,8 +21,8 @@ def add_playlist(request):
 def create_playlist(request):
     if request.method == 'POST':
         ####
-        u = OurUser()
-        u.save()
+        # u = OurUser()
+        u = OurUser.objects.get(username=request.POST.get('owner_name'))
         ####
         p = PlayList(name=request.POST.get('playlist_name'), owner=u)
         p.save()
