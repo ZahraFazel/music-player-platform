@@ -5,7 +5,8 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Music
 from django.contrib import auth
-from .models import OurUser
+from .models import OurUser, PlayList
+from .forms import AddPlaylist
 
 
 # Create your views here.
@@ -14,7 +15,19 @@ def index(request):
 
 
 def add_playlist(request):
-    return render(request, 'musicplayer_app/add_playlist.html')
+    return render(request, 'musicplayer_app/add_playlist_details.html')
+
+
+def create_playlist(request):
+    if request.method == 'POST':
+        ####
+        u = OurUser()
+        u.save()
+        ####
+        p = PlayList(name=request.POST.get('playlist_name'), owner=u)
+        p.save()
+        return index(request)
+    return add_playlist(request)
 
 
 def add_music(request):
@@ -36,7 +49,8 @@ def register(request):
                 OurUser.objects.get(username=request.POST.get('username'))
                 return render(request, 'musicplayer_app/register.html', {'error': 'Username is already taken!'})
             except OurUser.DoesNotExist:
-                user = OurUser.objects.create_user(username=request.POST.get('username'), password=request.POST.get('password1'))
+                user = OurUser.objects.create_user(username=request.POST.get('username'),
+                                                   password=request.POST.get('password1'))
                 auth.login(request, user)
                 return redirect('home')
         else:

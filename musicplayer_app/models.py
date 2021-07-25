@@ -31,6 +31,7 @@ class Music(models.Model):
 
 class PlayList(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20, default='My Playlist')
 
 
 class MusicPlayList(models.Model):
