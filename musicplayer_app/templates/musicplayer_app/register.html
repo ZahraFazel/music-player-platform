@@ -1,41 +1,69 @@
-{% extends 'musicplayer_app/base.html' %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
+<head>
+    <title>Miraculous - Online Music Platform</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Music">
+    <meta name="keywords" content="">
+    <meta name="author" content="kamleshyadav">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/swiper/css/swiper.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/nice_select/nice-select.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/player/volume.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 
+</head>
 
-{% if error %}
-{{ error }}
+<body>
+    <div class="ms_register_form">
+        <h2>Register</h2>
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" placeholder="Enter Your Username" class="form-control" name="username">
+                <span class="form_icon">
+                    <i class="fa_icon form-envelope" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Enter Your Email" class="form-control" name="email">
+                <span class="form_icon">
+                    <i class="fa_icon form-envelope" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Enter Password" class="form-control"  name="password1">
+                <span class="form_icon">
+                    <i class="fa_icon form-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Confirm Password" class="form-control"  name="password2">
+                <span class="form_icon">
+                    <i class="fa_icon form-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="remember_checkbox">
+                <label>Register as Artist
+                <input type="checkbox" name="is_artist">
+                <span class="checkmark"></span>
+                </label>
+            </div>
+            <input class="ms_btn" type="submit" value= "Register" />
+        </form>
+        <p>Already Have An Account? <a href="{% url 'login' %}" data-toggle="modal" class="ms_modal1 hideCurrentModel">login here</a></p>
+    </div>
+</body>
 
-<br/>
-<br/>
-{% endif %}
-
-<h1>Register!</h1>
-
-<form method = "POST" action="{% url 'register' %}">
-    {% csrf_token %}
-    Username:
-    <br/>
-    <input type="text" name="username" />
-    <br/>
-{#    Email:#}
-{#    <br/>#}
-{#    <input type="text" name="email" />#}
-{#    <br/>#}
-    Password:
-    <br/>
-    <input type="password" name="password1" />
-    <br/>
-    Confirm Password:
-    <br/>
-    <input type="password" name="password2" />
-    <br/>
-    <input class ="btn btn-primary" type="submit" value= "register" />
-    <br/>
-
-
-
-</form>
-
-
-{% endblock %}
+</html>
