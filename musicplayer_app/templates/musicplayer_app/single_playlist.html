@@ -233,7 +233,7 @@
 
                <div class="col-md-4 offset-md-4 mt-5">
                     <br>
-                    <form accept-charset="UTF-8"  action ="/create_new_playlist/" method="post" >
+                    <form accept-charset="UTF-8"  action ="/add_to_playlist/{{ playlist_id }}/" method="post" >
                         {% csrf_token %}
                       <div class="form-group">
                         <label for="song_name">Enter song name to add to playlist</label>

@@ -46,6 +46,16 @@ def add_playlist(request):
 
 
 @login_required(login_url='/login/')
+def add_to_playlist(request, playlist_id):
+    if request.method == 'POST':
+        music = Music.objects.filter(name=request.POST.get('song_name'))
+        playlist = PlayList.objects.get(id=playlist_id)
+        mp = MusicPlayList(music=music, playlist=playlist)
+        mp.save()
+        return single_playlist(request, playlist_id)
+
+
+@login_required(login_url='/login/')
 def single_playlist(request, playlist_id):
     m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
     songs = []
@@ -56,6 +66,7 @@ def single_playlist(request, playlist_id):
     template = loader.get_template('musicplayer_app/single_playlist.html')
     context = {
         'songs': songs,
+        'playlist_id': playlist_id,
     }
     return HttpResponse(template.render(context, request))
 
