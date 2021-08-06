@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 from .forms import *
+from django.template import loader
 
 
 # Create your views here.
@@ -18,8 +19,45 @@ def index(request):
 
 
 @login_required(login_url='/login/')
+def my_playlists(request):
+    m_playlists = ManagerPlayList.objects.filter(manager=request.user)
+    playlists = []
+    for m_playlist in m_playlists:
+        found_playlist = False
+        for p in playlists:
+            if m_playlist.playlist.id == p[0].id:
+                p[1] += 1
+                found_playlist = True
+                break
+        if not found_playlist:
+            playlists.append((m_playlist.playlist, 1))
+    print(playlists)
+    print("Here")
+    template = loader.get_template('musicplayer_app/playlists.html')
+    context = {
+        'playlists': playlists,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='/login/')
 def add_playlist(request):
     return render(request, 'musicplayer_app/add_playlist_details.html')
+
+
+@login_required(login_url='/login/')
+def single_playlist(request, playlist_id):
+    m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
+    songs = []
+    idx = 0
+    for m_song in m_songs:
+        songs.append((idx, m_song.music))
+        idx += 1
+    template = loader.get_template('musicplayer_app/single_playlist.html')
+    context = {
+        'songs': songs,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login/')
@@ -27,10 +65,12 @@ def create_playlist(request):
     if request.method == 'POST':
         ####
         # u = OurUser()
-        u = Listener.objects.get(username=request.POST.get('owner_name'))
+        # u = Listener.objects.get(username=request.POST.get('owner_name'))
         ####
-        p = PlayList(name=request.POST.get('playlist_name'), owner=u)
+        p = PlayList(name=request.POST.get('playlist_name'), owner=Listener.objects.get(user_ptr_id=request.user.id))
         p.save()
+        m = ManagerPlayList(manager=Listener.objects.get(user_ptr_id=request.user.id), playlist=p)
+        m.save()
         return index(request)
     return add_playlist(request)
 
