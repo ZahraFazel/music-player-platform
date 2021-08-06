@@ -60,8 +60,12 @@ def add_to_playlist(request, playlist_id):
             return single_playlist(request, playlist_id)
 
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def single_playlist(request, playlist_id):
+    access = False
+    if request.user.id is not None:
+        if ManagerPlayList.objects.filter(manager=request.user, playlist=PlayList.objects.get(id=playlist_id)).exists():
+            access = True
     m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
     songs = []
     idx = 1
@@ -72,6 +76,7 @@ def single_playlist(request, playlist_id):
     context = {
         'songs': songs,
         'playlist_id': playlist_id,
+        'access': access,
     }
     return HttpResponse(template.render(context, request))
 
