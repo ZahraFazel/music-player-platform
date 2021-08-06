@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http.response import HttpResponse, HttpResponseRedirect
 
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import *
-from .forms import *
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
+
+from .forms import *
 
 
 # Create your views here.
@@ -38,6 +38,21 @@ def my_playlists(request):
         'playlists': playlists,
     }
     return HttpResponse(template.render(context, request))
+
+
+@login_required()
+def share_playlist(request, playlist_id):
+    if request.method == "POST":
+        user_query = Listener.objects.filter(user_ptr_id=User.objects.get(username=request.POST.get('username')).id)
+        user = None
+        for u in user_query:
+            user = u
+            break
+        if user is not None:
+            playlist = PlayList.objects.get(id=playlist_id)
+            mp = ManagerPlayList(manager=user, playlist=playlist)
+            mp.save()
+            return single_playlist(request, playlist_id)
 
 
 @login_required(login_url='/login/')
