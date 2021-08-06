@@ -233,7 +233,7 @@
 
                <div class="col-md-4 offset-md-4 mt-5">
                     <br>
-                    <form accept-charset="UTF-8"  action ="/add_to_playlist/{{ playlist_id }}/" method="post" >
+                    <form accept-charset="UTF-8"  action ="/add_to_playlist/{{ playlist_id }}" method="post" >
                         {% csrf_token %}
                       <div class="form-group">
                         <label for="song_name">Enter song name to add to playlist</label>
@@ -294,7 +294,7 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="#">song.1.music.name</a></h3>
+                                            <h3><a href="#">{{ song.1.name }}</a></h3>
 <!--                                            <p>Ava Cornish</p> todo:add name to artists-->
                                         </div>
                                     </div>

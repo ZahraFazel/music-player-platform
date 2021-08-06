@@ -48,18 +48,23 @@ def add_playlist(request):
 @login_required(login_url='/login/')
 def add_to_playlist(request, playlist_id):
     if request.method == 'POST':
-        music = Music.objects.filter(name=request.POST.get('song_name'))
-        playlist = PlayList.objects.get(id=playlist_id)
-        mp = MusicPlayList(music=music, playlist=playlist)
-        mp.save()
-        return single_playlist(request, playlist_id)
+        music_query = Music.objects.filter(name=request.POST.get('song_name'))
+        music = None
+        for m in music_query:
+            music = m
+            break
+        if music is not None:
+            playlist = PlayList.objects.get(id=playlist_id)
+            mp = MusicPlayList(music=music, playlist=playlist)
+            mp.save()
+            return single_playlist(request, playlist_id)
 
 
 @login_required(login_url='/login/')
 def single_playlist(request, playlist_id):
     m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
     songs = []
-    idx = 0
+    idx = 1
     for m_song in m_songs:
         songs.append((idx, m_song.music))
         idx += 1
