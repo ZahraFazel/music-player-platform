@@ -235,3 +235,20 @@ def play_q(request):
     print(request.POST.get('quality'))
 
     return HttpResponse('Quality changed')
+
+
+def artists_page(request):
+
+    all_artist = Artist.objects.all()
+    return render(request, 'musicplayer_app/artist.html', {'artists': all_artist})
+
+
+
+def follow_artist(request):
+
+    if request.method == 'GET':
+        artistId = request.GET.get('id')
+        print("artistId", artistId)
+
+
+    return artists_page(request)
