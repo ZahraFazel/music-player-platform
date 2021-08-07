@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'logout/', views.logout, name='logout'),
     url(r'^remove_track/$', views.remove_track,name='remove_track'),
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
-    url(r'$', views.index, name="default"),
+    url(r'^$', views.index, name="default"),
 ]
