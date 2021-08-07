@@ -9,6 +9,7 @@ urlpatterns = [
     path('follow/<int:playlist_id>', views.follow, name='follow'),
     path('share_playlist/<int:playlist_id>', views.share_playlist, name="share_playlist"),
     url(r'upload/', views.upload, name='upload'),
+    url(r'play_q/', views.play_q, name='play_q'),
     url(r'artist_profile/', views.artist_profile, name='artist_profile'),
     url(r'create_new_playlist/', views.create_playlist, name='add_music'),
     url(r'add_music/', views.add_music, name='add_music'),

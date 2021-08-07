@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_music_player',
         'USER': 'postgres',
-        'PASSWORD': '7926',
+        'PASSWORD': '2021abc',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -130,3 +130,10 @@ AUTH_USER_MODEL = 'musicplayer_app.User'
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
     )
+
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+

@@ -25,9 +25,12 @@ class Artist(User):
 class Music(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    Album_name = models.CharField(max_length=100)
+    Album_name = models.CharField(max_length=100 , default='album_name')
     release_date = models.DateField()
     num_stars = models.IntegerField()
+    quality = models.IntegerField(default=1)
+    cover = models.ImageField(blank=True,null=True,upload_to='pictures/')
+    file = models.FileField(blank=True,null=True,upload_to='trackes/')
 
 
 class PlayList(models.Model):
