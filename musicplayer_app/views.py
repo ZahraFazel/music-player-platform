@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
@@ -52,7 +52,7 @@ def share_playlist(request, playlist_id):
             playlist = PlayList.objects.get(id=playlist_id)
             mp = ManagerPlayList(manager=user, playlist=playlist)
             mp.save()
-            return single_playlist(request, playlist_id)
+            return redirect('/playlist/' + str(playlist_id))
 
 
 @login_required(login_url='/login/')
@@ -72,15 +72,33 @@ def add_to_playlist(request, playlist_id):
             playlist = PlayList.objects.get(id=playlist_id)
             mp = MusicPlayList(music=music, playlist=playlist)
             mp.save()
-            return single_playlist(request, playlist_id)
+            return redirect('/playlist/' + str(playlist_id))
+
+
+@login_required(login_url='/login/')
+def follow(request, playlist_id):
+    playlist = PlayList.objects.get(id=playlist_id)
+    listener = Listener.objects.get(user_ptr_id=request.user.id)
+    if PlayListFollower.objects.filter(playlist=playlist, follower=listener).exists():
+        PlayListFollower.objects.filter(playlist=playlist, follower=listener).delete()
+    else:
+        pf = PlayListFollower(playlist=playlist, follower=listener)
+        pf.save()
+    return redirect('/playlist/' + str(playlist_id))
 
 
 # @login_required(login_url='/login/')
 def single_playlist(request, playlist_id):
+    follow = False
+    user = False
     access = False
     if request.user.id is not None:
         if ManagerPlayList.objects.filter(manager=request.user, playlist=PlayList.objects.get(id=playlist_id)).exists():
             access = True
+        if PlayListFollower.objects.filter(follower=request.user,
+                                           playlist=PlayList.objects.get(id=playlist_id)).exists():
+            follow = True
+        user = True
     m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
     songs = []
     idx = 1
@@ -94,6 +112,8 @@ def single_playlist(request, playlist_id):
         'playlist_id': playlist_id,
         'access': access,
         'playlist_obj': playlist,
+        'user': user,
+        'follow': follow,
     }
     return HttpResponse(template.render(context, request))
 
@@ -110,7 +130,7 @@ def create_playlist(request):
         m = ManagerPlayList(manager=Listener.objects.get(user_ptr_id=request.user.id), playlist=p)
         m.save()
         return index(request)
-    return add_playlist(request)
+    return redirect('/my_playlists')
 
 
 @login_required(login_url='/login/')

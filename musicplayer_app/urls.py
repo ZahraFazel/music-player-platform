@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('playlist/<int:playlist_id>', views.single_playlist, name='single_playlist'),
     path('add_to_playlist/<int:playlist_id>', views.add_to_playlist, name='add_to_playlist'),
+    path('follow/<int:playlist_id>', views.follow, name='follow'),
     path('share_playlist/<int:playlist_id>', views.share_playlist, name="share_playlist"),
     url(r'upload/', views.upload, name='upload'),
     url(r'artist_profile/', views.artist_profile, name='artist_profile'),

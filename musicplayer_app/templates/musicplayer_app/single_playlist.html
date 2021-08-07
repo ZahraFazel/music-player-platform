@@ -354,7 +354,7 @@
                     <form accept-charset="UTF-8" action="/share_playlist/{{ playlist_id }}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="username">Enter song name to add to playlist</label>
+                            <label for="username">Enter username to access this playlist management</label>
                             <input type="text" name="username" class="form-control" id="username"
                                    placeholder="Username to access him/her this playlist " required="required">
                         </div>
@@ -376,7 +376,36 @@
                     <li>{% post_to_whatsapp "Playlist: {{playlist_obj.name}}" object_or_url "Share" %}</li>
                     <li>{% post_to_twitter "Playlist: {{playlist_obj.name}}" object_or_url "Share" %}</li>
                 </ul>
+                {% if not access %}
+                <div class="col-md-4 offset-md-9 mt-5">
+                    <br>
+                    {% if user %}
+                    <form accept-charset="UTF-8" action="/follow/{{ playlist_id }}" method="post">
+                        {% csrf_token %}
+                        <hr>
+                        {% if follow %}
+                        <button type="submit" class="btn btn-outline-primary btn-lg" name="unfollow"
+                                style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Unfollow
+                        </button>
+                        {% else %}
+                        <button type="submit" class="btn btn-info btn-lg" name="follow"
+                                style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Follow
+                        </button>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <form accept-charset="UTF-8" action="/login" method="post">
+                        {% csrf_token %}
+                        <hr>
+                        <button type="submit" class="btn btn-info btn-lg" name="follow"
+                                style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Follow
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
+
         </div>
         <!----Footer Start---->
         <div class="ms_footer_wrapper">
