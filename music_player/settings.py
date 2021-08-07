@@ -25,7 +25,7 @@ SECRET_KEY = '6%1vwwvir2w-%8l0s^r*mn&+x9&mku3t0)4&eo!qwm((rplj=_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'musicplayer_app',
+    # 'django_social_share',
 ]
 
 MIDDLEWARE = [

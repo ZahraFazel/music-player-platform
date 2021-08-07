@@ -84,6 +84,7 @@ def single_playlist(request, playlist_id):
     m_songs = MusicPlayList.objects.filter(playlist=PlayList.objects.get(id=playlist_id))
     songs = []
     idx = 1
+    playlist = PlayList.objects.get(id=playlist_id)
     for m_song in m_songs:
         songs.append((idx, m_song.music))
         idx += 1
@@ -92,6 +93,7 @@ def single_playlist(request, playlist_id):
         'songs': songs,
         'playlist_id': playlist_id,
         'access': access,
+        'playlist_obj': playlist,
     }
     return HttpResponse(template.render(context, request))
 

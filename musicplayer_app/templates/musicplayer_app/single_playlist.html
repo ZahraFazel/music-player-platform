@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/swiper/css/swiper.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/nice_select/nice-select.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/player/volume.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <!-- Favicon Link -->
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
@@ -26,234 +25,238 @@
 </head>
 
 <body>
-		<!----Loader---->
-	<!--<div class="ms_inner_loader">-->
-		<!--<div class="ms_loader">-->
-			<!--<div class="ms_bars">-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-				<!--<div class="bar"></div>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-    <!----Main Wrapper Start---->
-    <div class="ms_main_wrapper">
-        <!---Side Menu Start--->
-        <div class="ms_sidemenu_wrapper">
-            <div class="ms_nav_close">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </div>
-            <div class="ms_sidemenu_inner">
-                <div class="ms_logo_inner">
-                    <div class="ms_logo">
-                        <a href="index.html">
-                            {% load static %}
-                            <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>
-                    </div>
-                    <div class="ms_logo_open">
-                        <a href="index.html">
-                            {% load static %}
-                            <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>
-                    </div>
+<!----Loader---->
+<!--<div class="ms_inner_loader">-->
+<!--<div class="ms_loader">-->
+<!--<div class="ms_bars">-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--<div class="bar"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!----Main Wrapper Start---->
+<div class="ms_main_wrapper">
+    <!---Side Menu Start--->
+    <div class="ms_sidemenu_wrapper">
+        <div class="ms_nav_close">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </div>
+        <div class="ms_sidemenu_inner">
+            <div class="ms_logo_inner">
+                <div class="ms_logo">
+                    <a href="index.html">
+                        {% load static %}
+                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>
                 </div>
-                <div class="ms_nav_wrapper">
-                    <ul>
-                        <li><a href="index.html" class="active" title="Discover">
+                <div class="ms_logo_open">
+                    <a href="index.html">
+                        {% load static %}
+                        <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>
+                </div>
+            </div>
+            <div class="ms_nav_wrapper">
+                <ul>
+                    <li><a href="index.html" class="active" title="Discover">
 						<span class="nav_icon">
 							<span class="icon icon_discover"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							discover
 						</span>
-						</a>
-                        </li>
-                        <li><a href="album.html" title="Albums">
+                    </a>
+                    </li>
+                    <li><a href="album.html" title="Albums">
 						<span class="nav_icon">
 							<span class="icon icon_albums"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							albums
 						</span>
-						</a>
-                        </li>
-                        <li><a href="artist.html" title="Artists">
+                    </a>
+                    </li>
+                    <li><a href="artist.html" title="Artists">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							artists
 						</span>
-						</a>
-                        </li>
-                        <li><a href="genres" title="Genres">
+                    </a>
+                    </li>
+                    <li><a href="genres" title="Genres">
 						<span class="nav_icon">
 							<span class="icon icon_genres"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							genres
 						</span>
-						</a>
-                        </li>
-                        <li><a href="top_track.html" title="Top Tracks">
+                    </a>
+                    </li>
+                    <li><a href="top_track.html" title="Top Tracks">
 						<span class="nav_icon">
 							<span class="icon icon_tracks"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							top tracks
 						</span>
-						</a>
-                        </li>
-                        <li><a href="free_music.html" title="Free Music">
+                    </a>
+                    </li>
+                    <li><a href="free_music.html" title="Free Music">
 						<span class="nav_icon">
 							<span class="icon icon_music"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							free music
 						</span>
-						</a>
-                        </li>
-                        <li><a href="stations.html" title="Stations">
+                    </a>
+                    </li>
+                    <li><a href="stations.html" title="Stations">
 						<span class="nav_icon">
 							<span class="icon icon_station"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							stations
 						</span>
-						</a>
-                        </li>
-                    </ul>
-                    <ul class="nav_downloads">
-                        <li><a href="download.html" title="Downloads">
+                    </a>
+                    </li>
+                </ul>
+                <ul class="nav_downloads">
+                    <li><a href="download.html" title="Downloads">
 						<span class="nav_icon">
 							<span class="icon icon_download"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							downloads
 						</span>
-						</a>
-                        </li>
-                        <li><a href="purchase.html" title="Purchased">
+                    </a>
+                    </li>
+                    <li><a href="purchase.html" title="Purchased">
 						<span class="nav_icon">
 							<span class="icon icon_purchased"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							purchased
 						</span>
-						</a>
-                        </li>
-                        <li><a href="favourite.html" title="Favourites">
+                    </a>
+                    </li>
+                    <li><a href="favourite.html" title="Favourites">
 						<span class="nav_icon">
 							<span class="icon icon_favourite"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							favourites
 						</span>
-						</a>
-                        </li>
-                        <li><a href="history.html" title="History">
+                    </a>
+                    </li>
+                    <li><a href="history.html" title="History">
 						<span class="nav_icon">
 							<span class="icon icon_history"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							history
 						</span>
-						</a>
-                        </li>
-                    </ul>
-                    <ul class="nav_playlist">
-                        <li><a href="add_music" title="Upload new Musicَ">
+                    </a>
+                    </li>
+                </ul>
+                <ul class="nav_playlist">
+                    <li><a href="add_music" title="Upload new Musicَ">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							Add new music
 						</span>
-						</a>
-                        </li>
+                    </a>
+                    </li>
 
-                        <li><a href="feature_playlist.html" title="Featured Playlist">
+                    <li><a href="feature_playlist.html" title="Featured Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							featured playlist
 						</span>
-						</a>
-                        </li>
-                        <li><a href="add_playlist" title="Create Playlist">
+                    </a>
+                    </li>
+                    <li><a href="add_playlist" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
-						<span class="nav_text">
+                        <span class="nav_text">
 							create playlist
 						</span>
-						</a>
-                        </li>
-                    </ul>
-                </div>
+                    </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <!---Main Content Start--->
-        <div class="ms_content_wrapper padder_top80">
-            <!---Header--->
-            <div class="ms_header">
-                <div class="ms_top_left">
-                    <div class="ms_top_search">
-                        <input type="text" class="form-control" placeholder="Search Music Here..">
-                        <span class="search_icon">
+    </div>
+    <!---Main Content Start--->
+    <div class="ms_content_wrapper padder_top80">
+        <!---Header--->
+        <div class="ms_header">
+            <div class="ms_top_left">
+                <div class="ms_top_search">
+                    <input type="text" class="form-control" placeholder="Search Music Here..">
+                    <span class="search_icon">
                             {% load static %}
 							<img src="{% static 'images/svg/search.svg' %}" alt="">
 						</span>
-                    </div>
-                    <div class="ms_top_trend">
-                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
-                    </div>
                 </div>
-                <div class="ms_top_right">
-                    <div class="ms_top_lang">
-                        <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
-                    </div>
-                    <div class="ms_top_btn">
-                        <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#myModal"><span>register</span></a>
-                        <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#myModal1"><span>login</span></a>
-                    </div>
+                <div class="ms_top_trend">
+                    <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a
+                        href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                 </div>
             </div>
-            <!---Banner--->
-            <div class="ms-banner">
-                 <div>
+            <div class="ms_top_right">
+                <div class="ms_top_lang">
+                    <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+                </div>
+                <div class="ms_top_btn">
+                    <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#myModal"><span>register</span></a>
+                    <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#myModal1"><span>login</span></a>
+                </div>
+            </div>
+        </div>
+        <!---Banner--->
+        <div class="ms-banner">
+            <div>
 
 
-               {% if access %}
-                     <br/>
-                 <div class="col-lg-12">
-                        <div class="ms_heading">
-                            <h1>Add new song</h1>
-                        </div>
+                {% if access %}
+                <br/>
+                <div class="col-lg-12">
+                    <div class="ms_heading">
+                        <h1>Add new song</h1>
                     </div>
-                 <div class="col-md-4 offset-md-4 mt-5">
+                </div>
+                <div class="col-md-4 offset-md-4 mt-5">
                     <br>
-                    <form accept-charset="UTF-8"  action ="/add_to_playlist/{{ playlist_id }}" method="post" >
+                    <form accept-charset="UTF-8" action="/add_to_playlist/{{ playlist_id }}" method="post">
                         {% csrf_token %}
-                      <div class="form-group">
-                        <label for="song_name">Enter song name to add to playlist</label>
-                        <input type="text" name="song_name" class="form-control" id="song_name" placeholder="Song name to add to playlist " required="required">
-<!--                        <label for="owner_name">Playlist Name</label>-->
-<!--                        <input type="text" name="owner_name" class="form-control" id="owner_name" placeholder="Enter your playlist name " required="required">-->
-                      </div>
-                      <hr>
-                      <button type="submit" class="btn btn-info btn-lg" style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Add</button>
+                        <div class="form-group">
+                            <label for="song_name">Enter song name to add to playlist</label>
+                            <input type="text" name="song_name" class="form-control" id="song_name"
+                                   placeholder="Song name to add to playlist " required="required">
+                            <!--                        <label for="owner_name">Playlist Name</label>-->
+                            <!--                        <input type="text" name="owner_name" class="form-control" id="owner_name" placeholder="Enter your playlist name " required="required">-->
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-info btn-lg"
+                                style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Add
+                        </button>
                     </form>
                 </div>
                 {% endif %}
-               </div>
+            </div>
         </div>
         <div class="ms_weekly_wrapper">
             <div class="ms_weekly_inner">
@@ -265,41 +268,46 @@
                     </div>
                     <div class="col-lg-4 col-md-12 padding_right40">
                         {% for song in songs %}
-                            <div class="ms_weekly_box">
-                                <div class="weekly_left">
+                        <div class="ms_weekly_box">
+                            <div class="weekly_left">
                                     <span class="w_top_no">
                                         {{ song.0 }}
                                     </span>
-                                    <div class="w_top_song">
-                                        <div class="w_tp_song_img">
-                                            <img src="images/weekly/song1.jpg" alt="" class="img-fluid">
-                                            <div class="ms_song_overlay">
-                                            </div>
-                                            <div class="ms_play_icon">
-                                                <img src="images/svg/play.svg" alt="">
-                                            </div>
+                                <div class="w_top_song">
+                                    <div class="w_tp_song_img">
+                                        <img src="images/weekly/song1.jpg" alt="" class="img-fluid">
+                                        <div class="ms_song_overlay">
                                         </div>
-                                        <div class="w_tp_song_name">
-                                            <h3><a href="#">{{ song.1.name }}</a></h3>
-<!--                                            <p>Ava Cornish</p> todo:add name to artists-->
+                                        <div class="ms_play_icon">
+                                            <img src="images/svg/play.svg" alt="">
                                         </div>
                                     </div>
+                                    <div class="w_tp_song_name">
+                                        <h3><a href="#">{{ song.1.name }}</a></h3>
+                                        <!--                                            <p>Ava Cornish</p> todo:add name to artists-->
+                                    </div>
                                 </div>
-                                <div class="weekly_right">
-<!--                                    <span class="w_song_time">5:10</span> todo: add song duration-->
-                                    <span class="ms_more_icon" data-other="1">
+                            </div>
+                            <div class="weekly_right">
+                                <!--                                    <span class="w_song_time">5:10</span> todo: add song duration-->
+                                <span class="ms_more_icon" data-other="1">
                                         <img src="images/svg/more.svg" alt="">
                                     </span>
-                                </div>
-                                <ul class="more_option">
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                                </ul>
                             </div>
-                            <div class="ms_divider"></div>
+                            <ul class="more_option">
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
+                                    Favourites</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add
+                                    To Queue</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
+                                    Now</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add
+                                    To Playlist</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ms_divider"></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -317,41 +325,57 @@
 						</span>
                     </div>
                     <div class="ms_top_trend">
-                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+                        <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a
+                            href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                     </div>
                 </div>
                 <div class="ms_top_right">
                     <div class="ms_top_lang">
-                        <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+                        <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg"
+                                                                                           alt=""></span>
                     </div>
                     <div class="ms_top_btn">
                         <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#myModal"><span>register</span></a>
-                        <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#myModal1"><span>login</span></a>
+                        <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal"
+                           data-target="#myModal1"><span>login</span></a>
                     </div>
                 </div>
             </div>
             <!---Banner--->
             <div class="ms-banner">
-               {% if access %}
-                 <div class="col-lg-12">
-                        <div class="ms_heading">
-                            <h1>Add new song</h1>
-                        </div>
-                 </div>
-                 <div class="col-md-4 offset-md-4 mt-5">
+                {% if access %}
+                <div class="col-lg-12">
+                    <div class="ms_heading">
+                        <h1>Add playlist manager</h1>
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-4 mt-5">
                     <br>
-                    <form accept-charset="UTF-8"  action ="/share_playlist/{{ playlist_id }}" method="post" >
+                    <form accept-charset="UTF-8" action="/share_playlist/{{ playlist_id }}" method="post">
                         {% csrf_token %}
-                      <div class="form-group">
-                        <label for="username">Enter song name to add to playlist</label>
-                        <input type="text" name="username" class="form-control" id="username"
-                               placeholder="Username to access him/her this playlist " required="required">
-                      </div>
-                      <hr>
-                      <button type="submit" class="btn btn-info btn-lg" style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Add</button>
+                        <div class="form-group">
+                            <label for="username">Enter song name to add to playlist</label>
+                            <input type="text" name="username" class="form-control" id="username"
+                                   placeholder="Username to access him/her this playlist " required="required">
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-info btn-lg"
+                                style="margin:24px 0px 0px 160px ;width:90px;height:30px;font-size : 12px">Add
+                        </button>
                     </form>
                 </div>
-               {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% load social_share %}
+            <div class="foo_sharing">
+                <div class="share_title">Share this playlist</div>
+                <ul>
+                    <li>{% post_to_telegram "Playlist: {{playlist_obj.name}}" object_or_url "Share" %}</li>
+                    <li>{% post_to_whatsapp "Playlist: {{playlist_obj.name}}" object_or_url "Share" %}</li>
+                    <li>{% post_to_twitter "Playlist: {{playlist_obj.name}}" object_or_url "Share" %}</li>
+                </ul>
             </div>
         </div>
         <!----Footer Start---->
@@ -364,15 +388,20 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer_box">
                             <h1 class="footer_title">miraculous music station</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure
+                                dolor.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="footer_box footer_app">
                             <h1 class="footer_title">Download our App</h1>
-                            <p>Go Mobile with our app.<br> Listen to your favourite songs at just one click. Download Now !</p>
+                            <p>Go Mobile with our app.<br> Listen to your favourite songs at just one click. Download
+                                Now !</p>
                             <a href="#" class="foo_app_btn"><img src="images/google_play.jpg" alt="" class="img-fluid"></a>
-                            <a href="#" class="foo_app_btn"><img src="images/app_store.jpg" alt="" class="img-fluid"></a>
+                            <a href="#" class="foo_app_btn"><img src="images/app_store.jpg" alt=""
+                                                                 class="img-fluid"></a>
                             <a href="#" class="foo_app_btn"><img src="images/windows.jpg" alt="" class="img-fluid"></a>
                         </div>
                     </div>
@@ -442,15 +471,16 @@
             <div class="col-lg-12">
                 <div class="ms_copyright">
                     <div class="footer_border"></div>
-                    <p>Copyright &copy; 2018 <a href="https://www.mellatweb.com/"> Mellatweb.com</a>. All Rights Reserved.</p>
+                    <p>Copyright &copy; 2018 <a href="https://www.mellatweb.com/"> Mellatweb.com</a>. All Rights
+                        Reserved.</p>
                 </div>
             </div>
         </div>
         <!----Audio Player Section---->
         <div class="ms_player_wrapper">
-			<div class="ms_player_close">
-				<i class="fa fa-angle-up" aria-hidden="true"></i>
-			</div>
+            <div class="ms_player_close">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </div>
             <div class="player_mid">
                 <div class="audio-player">
                     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
@@ -468,27 +498,33 @@
                             </div>
                             <div class="play_song_options">
                                 <ul>
-                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_download"></i></span>download now</a></li>
-                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>
-                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
-                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i
+                                            class="ms_icon icon_download"></i></span>download now</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add
+                                        To Favourites</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i
+                                            class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i
+                                            class="ms_icon icon_share"></i></span>Share</a></li>
                                 </ul>
                             </div>
                             <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                         <!----Right Queue---->
                         <div class="jp_queue_wrapper">
-                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
+                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up"
+                                                                           aria-hidden="true"></i> queue</span>
                             <div id="playlist-wrap" class="jp-playlist">
-								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
+                                <div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
                                 <h2>queue</h2>
-								<div class="jp_queue_list_inner">
-									<ul>
-										<li>&nbsp;</li>
-									</ul>
-								</div>
+                                <div class="jp_queue_list_inner">
+                                    <ul>
+                                        <li>&nbsp;</li>
+                                    </ul>
+                                </div>
                                 <div class="jp_queue_btn">
-                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
+                                    <a href="javascript:;" class="ms_clear" data-toggle="modal"
+                                       data-target="#clear_modal">clear</a>
                                     <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>
                                 </div>
                             </div>
@@ -497,14 +533,14 @@
                             <div class="jp-gui jp-interface flex-wrap">
                                 <div class="jp-controls flex-item">
                                     <button class="jp-previous" tabindex="0">
-					<i class="ms_play_control"></i>
-				</button>
+                                        <i class="ms_play_control"></i>
+                                    </button>
                                     <button class="jp-play" tabindex="0">
-					<i class="ms_play_control"></i>
-				</button>
+                                        <i class="ms_play_control"></i>
+                                    </button>
                                     <button class="jp-next" tabindex="0">
-					<i class="ms_play_control"></i>
-				</button>
+                                        <i class="ms_play_control"></i>
+                                    </button>
                                 </div>
                                 <div class="jp-progress-container flex-item">
                                     <div class="jp-time-holder">
@@ -538,17 +574,18 @@
                                 </div>
                                 <div class="jp-toggles flex-item">
                                     <button class="jp-shuffle" tabindex="0" title="Shuffle">
-									<i class="ms_play_control"></i></button>
-									<button class="jp-repeat" tabindex="0" title="Repeat"><i class="ms_play_control"></i></button>
+                                        <i class="ms_play_control"></i></button>
+                                    <button class="jp-repeat" tabindex="0" title="Repeat"><i
+                                            class="ms_play_control"></i></button>
                                 </div>
                                 <div class="jp_quality_optn custom_select">
                                     <select>
-						<option>quality</option>
-						<option value="1">HD</option>
-						<option value="2">High</option>
-						<option value="3">medium</option>
-						<option value="4">low</option>
-					</select>
+                                        <option>quality</option>
+                                        <option value="1">HD</option>
+                                        <option value="2">High</option>
+                                        <option value="3">medium</option>
+                                        <option value="4">low</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -569,11 +606,11 @@
 
 
                     <button type="button" class="close" data-dismiss="modal">
-						<i class="fa_icon form_close"></i>
-					</button>
+                        <i class="fa_icon form_close"></i>
+                    </button>
                     <div class="modal-body">
                         <div class="ms_register_img">
-                            <img src="images/register_img.png" alt="" class="img-fluid" />
+                            <img src="images/register_img.png" alt="" class="img-fluid"/>
                         </div>
                         <div class="ms_register_form">
                             <h2>Register / Sign Up</h2>
@@ -602,7 +639,8 @@
 						</span>
                             </div>
                             <a href="#" class="ms_btn">register now</a>
-                            <p>Already Have An Account? <a href="#myModal1" data-toggle="modal" class="ms_modal hideCurrentModel">login here</a></p>
+                            <p>Already Have An Account? <a href="#myModal1" data-toggle="modal"
+                                                           class="ms_modal hideCurrentModel">login here</a></p>
                         </div>
                     </div>
                 </div>
@@ -614,11 +652,11 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">
-						<i class="fa_icon form_close"></i>
-					</button>
+                        <i class="fa_icon form_close"></i>
+                    </button>
                     <div class="modal-body">
                         <div class="ms_register_img">
-                            <img src="images/register_img.png" alt="" class="img-fluid" />
+                            <img src="images/register_img.png" alt="" class="img-fluid"/>
                         </div>
                         <div class="ms_register_form">
                             <h2>login / Sign in</h2>
@@ -636,15 +674,16 @@
                             </div>
                             <div class="remember_checkbox">
                                 <label>Keep me signed in
-							<input type="checkbox">
-							<span class="checkmark"></span>
-						</label>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <a href="profile.html" class="ms_btn" target="_blank">login now</a>
                             <div class="popup_forgot">
                                 <a href="#">Forgot Password ?</a>
                             </div>
-                            <p>Don't Have An Account? <a href="#myModal" data-toggle="modal" class="ms_modal1 hideCurrentModel">register here</a></p>
+                            <p>Don't Have An Account? <a href="#myModal" data-toggle="modal"
+                                                         class="ms_modal1 hideCurrentModel">register here</a></p>
                         </div>
                     </div>
                 </div>
@@ -658,81 +697,81 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">
-						<i class="fa_icon form_close"></i>
-					</button>
+                        <i class="fa_icon form_close"></i>
+                    </button>
                     <div class="modal-body">
                         <h1>language selection</h1>
                         <p>Please select the language(s) of the music you listen to.</p>
                         <ul class="lang_list">
                             <li>
                                 <label class="lang_check_label">
-							English
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    English
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							hindi
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    hindi
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							punjabi
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    punjabi
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							French
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    French
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							 German
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    German
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							Spanish
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    Spanish
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							Chinese
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    Chinese
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							Japanese
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    Japanese
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							Arabic
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    Arabic
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="lang_check_label">
-							 Italian
-							<input type="checkbox" name="check">
-							<span class="label-text"></span>
-							</label>
+                                    Italian
+                                    <input type="checkbox" name="check">
+                                    <span class="label-text"></span>
+                                </label>
                             </li>
                         </ul>
                         <div class="ms_lang_btn">
@@ -743,60 +782,62 @@
             </div>
         </div>
     </div>
-	<!----Queue Clear Model ---->
-	<div class="ms_clear_modal">
-		<div id="clear_modal" class="modal  centered-modal" role="dialog">
+    <!----Queue Clear Model ---->
+    <div class="ms_clear_modal">
+        <div id="clear_modal" class="modal  centered-modal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">
-						<i class="fa_icon form_close"></i>
-					</button>
+                        <i class="fa_icon form_close"></i>
+                    </button>
                     <div class="modal-body">
-						<h1>Are you sure you want to clear your queue?</h1>
-						<div class="clr_modal_btn">
-							<a href="#">clear all</a>
-							<a href="#">cancel</a>
-						</div>
+                        <h1>Are you sure you want to clear your queue?</h1>
+                        <div class="clr_modal_btn">
+                            <a href="#">clear all</a>
+                            <a href="#">cancel</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-	</div>
-	<!----Queue Save Modal---->
-	<div class="ms_save_modal">
-		<div id="save_modal" class="modal  centered-modal" role="dialog">
+    </div>
+    <!----Queue Save Modal---->
+    <div class="ms_save_modal">
+        <div id="save_modal" class="modal  centered-modal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal">
-						<i class="fa_icon form_close"></i>
-					</button>
+                        <i class="fa_icon form_close"></i>
+                    </button>
                     <div class="modal-body">
-						<h1>Log in to start sharing your music!</h1>
-						<div class="save_modal_btn">
-							<a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i> continue with google </a>
-							<a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> continue with facebook</a>
-						</div>
-						<div class="ms_save_email">
-							<h3>or use your email</h3>
-							<div class="save_input_group">
-								<input type="text" placeholder="Enter Your Name" class="form-control">
-							</div>
-							<div class="save_input_group">
+                        <h1>Log in to start sharing your music!</h1>
+                        <div class="save_modal_btn">
+                            <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i> continue with google
+                            </a>
+                            <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> continue with facebook</a>
+                        </div>
+                        <div class="ms_save_email">
+                            <h3>or use your email</h3>
+                            <div class="save_input_group">
+                                <input type="text" placeholder="Enter Your Name" class="form-control">
+                            </div>
+                            <div class="save_input_group">
                                 <input type="password" placeholder="Enter Password" class="form-control">
                             </div>
-							<button class="save_btn">Log in</button>
-						</div>
-						<div class="ms_dnt_have">
-						    <span>Dont't have an account ?</span>
-							<a href="javascript:;" class="hideCurrentModel" data-toggle="modal" data-target="#myModal">Register Now</a>
-						</div>
+                            <button class="save_btn">Log in</button>
+                        </div>
+                        <div class="ms_dnt_have">
+                            <span>Dont't have an account ?</span>
+                            <a href="javascript:;" class="hideCurrentModel" data-toggle="modal" data-target="#myModal">Register
+                                Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-	</div>
+    </div>
     <!--Main js file Style-->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -806,7 +847,7 @@
     <script type="text/javascript" src="{% static 'js/plugins/player/audio-player.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/player/volume.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/nice_select/jquery.nice-select.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 </body>
 
