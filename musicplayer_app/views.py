@@ -22,6 +22,9 @@ def index(request):
 def my_playlists(request):
     m_playlists = ManagerPlayList.objects.filter(manager=request.user)
     playlists = []
+    followed_playlists = []
+    follow_or_manage = set()
+    other_playlists = []
     for m_playlist in m_playlists:
         found_playlist = False
         for p in playlists:
@@ -30,12 +33,21 @@ def my_playlists(request):
                 found_playlist = True
                 break
         if not found_playlist:
+            follow_or_manage.add(m_playlist.playlist.id)
             playlists.append((m_playlist.playlist, 1))
-    print(playlists)
-    print("Here")
+    playlist_follower = PlayListFollower.objects.filter(follower=request.user)
+    for pf in playlist_follower:
+        followed_playlists.append(pf.playlist)
+        follow_or_manage.add(pf.playlist.id)
+    all_playlists = PlayList.objects.all()
+    for playlist in all_playlists:
+        if not follow_or_manage.__contains__(playlist.id):
+            other_playlists.append(playlist)
     template = loader.get_template('musicplayer_app/playlists.html')
     context = {
         'playlists': playlists,
+        'followed_playlists': followed_playlists,
+        'other_playlists': other_playlists,
     }
     return HttpResponse(template.render(context, request))
 
