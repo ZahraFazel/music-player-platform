@@ -34,15 +34,15 @@ def my_playlists(request):
                 break
         if not found_playlist:
             follow_or_manage.add(m_playlist.playlist.id)
-            playlists.append((m_playlist.playlist, 1))
+            playlists.append((m_playlist.playlist, len(MusicPlayList.objects.filter(playlist=m_playlist.playlist))))
     playlist_follower = PlayListFollower.objects.filter(follower=request.user)
     for pf in playlist_follower:
-        followed_playlists.append(pf.playlist)
+        followed_playlists.append((pf.playlist, len(MusicPlayList.objects.filter(playlist=pf.playlist))))
         follow_or_manage.add(pf.playlist.id)
     all_playlists = PlayList.objects.all()
     for playlist in all_playlists:
         if not follow_or_manage.__contains__(playlist.id):
-            other_playlists.append(playlist)
+            other_playlists.append((playlist, len(MusicPlayList.objects.filter(playlist=playlist))))
     template = loader.get_template('musicplayer_app/playlists.html')
     context = {
         'playlists': playlists,
