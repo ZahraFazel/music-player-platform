@@ -245,7 +245,7 @@ def artists_page(request):
 
 
 def follow_artist(request):
-
+    print("gggg")
     if request.method == 'GET':
         artistId = request.GET.get('id')
         print("artistId", artistId)

@@ -4,7 +4,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'follow_artist/', views.follow_artist, name='follow_artist'),
     url(r'artists/', views.artists_page, name='play_q'),
     path('playlist/<int:playlist_id>', views.single_playlist, name='single_playlist'),
     path('add_to_playlist/<int:playlist_id>', views.add_to_playlist, name='add_to_playlist'),
@@ -21,6 +20,8 @@ urlpatterns = [
     url(r'register/', views.register, name='register'),
     url(r'logout/', views.logout, name='logout'),
     url(r'^remove_track/$', views.remove_track,name='remove_track'),
+    # url(r'^follow_artist/(?P<id>\d{0,50})/$', views.follow_artist, name='follow_artist'),
+    url(r'follow_artist/', views.follow_artist, name='follow_artist'),
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
     url(r'^$', views.index, name="default"),
 ]
