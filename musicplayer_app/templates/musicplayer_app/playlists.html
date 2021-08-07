@@ -54,10 +54,14 @@
         <div class="ms_sidemenu_inner">
             <div class="ms_logo_inner">
                 <div class="ms_logo">
-                    <a href="index.html"><img src="images/logo.png" alt="" class="img-fluid"/></a>
+                    <a href="index.html">
+                        {% load static %}
+                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>
                 </div>
                 <div class="ms_logo_open">
-                    <a href="index.html"><img src="images/open_logo.png" alt="" class="img-fluid"/></a>
+                    <a href="index.html">
+                        {% load static %}
+                        <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>
                 </div>
             </div>
             <div class="ms_nav_wrapper">
@@ -70,7 +74,6 @@
 							discover
 						</span>
                     </a>
-                    </li>
                     <li><a href="album.html">
 						<span class="nav_icon">
 							<span class="icon icon_albums"></span>
@@ -165,16 +168,16 @@
                     </li>
                 </ul>
                 <ul class="nav_playlist">
-                    <li><a href="feature_playlist.html">
+                    <li><a href="/my_playlists">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
                         <span class="nav_text">
-							featured playlist
+							playlists
 						</span>
                     </a>
                     </li>
-                    <li><a href="add_playlist.html" class="active">
+                    <li><a href="/add_playlist" class="active">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
@@ -300,30 +303,30 @@
                      style="transform: translate3d(-1881.83px, 0px, 0px); transition-duration: 0ms;">
                     <br/><br/><br/><br/>
                     {% for playlist in followed_playlists %}
-                        <div class="swiper-slide">
-                            <div class="ms_rcnt_box">
-                                <div class="ms_rcnt_box_img">
-                                    <img src="images/radio/img6.jpg" alt="">
-                                    <div class="ms_main_overlay">
-                                        <div class="ms_box_overlay"></div>
-                                        <div class="ms_more_icon">
-                                            <img src="images/svg/more.svg" alt="">
-                                        </div>
-                                        <ul class="more_option">
-                                            <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
-                                                    class="icon icon_fav"></span></span>Unfollow</a></li>
-                                        </ul>
-                                        <div class="ms_play_icon">
-                                            <img src="images/svg/play.svg" alt="">
-                                        </div>
+                    <div class="swiper-slide">
+                        <div class="ms_rcnt_box">
+                            <div class="ms_rcnt_box_img">
+                                <img src="images/radio/img6.jpg" alt="">
+                                <div class="ms_main_overlay">
+                                    <div class="ms_box_overlay"></div>
+                                    <div class="ms_more_icon">
+                                        <img src="images/svg/more.svg" alt="">
+                                    </div>
+                                    <ul class="more_option">
+                                        <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
+                                                class="icon icon_fav"></span></span>Unfollow</a></li>
+                                    </ul>
+                                    <div class="ms_play_icon">
+                                        <img src="images/svg/play.svg" alt="">
                                     </div>
                                 </div>
-                                <div class="ms_rcnt_box_text">
-                                    <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
-<!--                                    <p>20 songs</p>todo: add number of songs-->
-                                </div>
+                            </div>
+                            <div class="ms_rcnt_box_text">
+                                <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
+                                <!--                                    <p>20 songs</p>todo: add number of songs-->
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
@@ -340,30 +343,30 @@
                      style="transform: translate3d(-1881.83px, 0px, 0px); transition-duration: 0ms;">
                     <br/><br/><br/><br/>
                     {% for playlist in other_playlists %}
-                        <div class="swiper-slide">
-                            <div class="ms_rcnt_box">
-                                <div class="ms_rcnt_box_img">
-                                    <img src="images/radio/img6.jpg" alt="">
-                                    <div class="ms_main_overlay">
-                                        <div class="ms_box_overlay"></div>
-                                        <div class="ms_more_icon">
-                                            <img src="images/svg/more.svg" alt="">
-                                        </div>
-                                        <ul class="more_option">
-                                            <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
-                                                    class="icon icon_fav"></span></span>Unfollow</a></li>
-                                        </ul>
-                                        <div class="ms_play_icon">
-                                            <img src="images/svg/play.svg" alt="">
-                                        </div>
+                    <div class="swiper-slide">
+                        <div class="ms_rcnt_box">
+                            <div class="ms_rcnt_box_img">
+                                <img src="images/radio/img6.jpg" alt="">
+                                <div class="ms_main_overlay">
+                                    <div class="ms_box_overlay"></div>
+                                    <div class="ms_more_icon">
+                                        <img src="images/svg/more.svg" alt="">
+                                    </div>
+                                    <ul class="more_option">
+                                        <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
+                                                class="icon icon_fav"></span></span>Unfollow</a></li>
+                                    </ul>
+                                    <div class="ms_play_icon">
+                                        <img src="images/svg/play.svg" alt="">
                                     </div>
                                 </div>
-                                <div class="ms_rcnt_box_text">
-                                    <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
-<!--                                    <p>20 songs</p>todo: add number of songs-->
-                                </div>
+                            </div>
+                            <div class="ms_rcnt_box_text">
+                                <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
+                                <!--                                    <p>20 songs</p>todo: add number of songs-->
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
