@@ -148,16 +148,18 @@ def create_playlist(request):
 @login_required(login_url='/login/')
 def add_music(request):
     if request.method == "POST":
-        music_name = request.POST.get('musicname')
-        music_artist = request.user
-        music_album = request.POST.get('album')
-        music_release_date = request.POST.get('release_date')
-        print(music_artist)
-        m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
-                  num_stars=0)
-        m.save()
+        if request.user.is_artist:
+            music_name = request.POST.get('musicname')
+            music_artist = request.user
+            music_album = request.POST.get('album')
+            music_release_date = request.POST.get('release_date')
+            print(music_artist)
+            m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
+                      num_stars=0)
+            m.save()
 
-    return render(request, 'musicplayer_app/add_music.html/')
+        return render(request, 'musicplayer_app/add_music.html/')
+    return redirect('/')
 
 
 @csrf_exempt
