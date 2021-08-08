@@ -206,9 +206,8 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def artist_profile(request):
-    all_musics = Music.objects.filter(artist_id=3)
-    # print(all_musics)
-    # print(""""-------------------------------------------------------------------------""")
+
+    all_musics = Music.objects.filter(artist_id=request.user.id)
     return render(request, 'musicplayer_app/artist_profile.html', {'tracks': all_musics})
 
 
@@ -237,8 +236,8 @@ def upload(request):
                       num_stars=0,quality=music_quality,cover=music_cover,file=music_file)
             m.save()
 
-        return render(request, 'musicplayer_app/upload.html/')
-    return redirect('/')
+    return render(request, 'musicplayer_app/upload.html/')
+    # return redirect('/')
 
 
 @login_required(login_url='/login/')
@@ -257,8 +256,29 @@ def artists_page(request):
 def follow_artist(request):
     if request.method == 'GET':
         artistId = request.GET.get('id')
-        print("artistId", artistId)
-    return artists_page(request)
+
+        artist = Artist.objects.get(id=artistId)
+        listener = Listener.objects.get(user_ptr_id=request.user.id)
+
+        if ArtistFollower.objects.filter(artist=artist, follower=listener).exists():
+            # ArtistFollower.objects.filter(artist=artist, follower=listener).delete()
+            print("already followed")
+        else:
+            Af = ArtistFollower(artist=artist, follower=listener)
+            Af.save()
+
+    return redirect('/artist/' + str(artistId))
+
+
+def single_artist(request,artistId):
+
+    artist = Artist.objects.get(id=artistId)
+    musics = Music.objects.filter(artist_id=artistId)
+
+    followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
+
+    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist}
+    return render(request,'musicplayer_app/artist_single.html' ,context)
 
 
 @csrf_exempt
