@@ -22,10 +22,10 @@ urlpatterns = [
     url(r'register/', views.register, name='register'),
     url(r'logout/', views.logout, name='logout'),
     url(r'^remove_track/$', views.remove_track,name='remove_track'),
-    # url(r'^follow_artist/(?P<id>\d{0,50})/$', views.follow_artist, name='follow_artist'),
 
     url(r'^follow_artist/$', views.follow_artist, name='follow_artist'),
     url(r'^unfollow_artist/$', views.unfollow_artist, name='unfollow_artist'),
+    url(r'^artist_single_page/$', views.artist_single_page, name='artist_single_page'),
 
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
     url(r'^$', views.index, name="default"),

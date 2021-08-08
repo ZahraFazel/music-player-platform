@@ -231,7 +231,11 @@
                 {% if user_is_following %}
                 <div>
                 <a href="/unfollow_artist/?id={{artist.id}}" class="ms_btn" style="margin: -10px 0px 0px 35px;"><img src="images/svg/play_all.svg" alt="">Unfollow</a></div>
+                {% else %}
+                <div>
+                <a href="/follow_artist/?id={{artist.id}}" class="ms_btn" style="margin: -10px 0px 0px 35px;"><img src="images/svg/play_all.svg" alt="">Follow</a></div>
                 {% endif%}
+
                 <br>
                 <div class="about_artist" >
                     Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
