@@ -9,18 +9,18 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    name = models.CharField(max_length=100, default="Unknown")
     email = models.EmailField(unique=True, null=False)
     is_artist = models.BooleanField(default=False)
 
 
 class Listener(User):
     vip = models.BooleanField(default=False)
-    charge = models.IntegerField(default=0)
+    vip_end = models.DateField(default='1990-01-01')
 
 
 class Artist(User):
     asset = models.IntegerField(default=0)
-    name = models.CharField(max_length=100, default="Unknown Artist")
 
 
 class Music(models.Model):

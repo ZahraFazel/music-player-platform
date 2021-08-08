@@ -10,7 +10,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', 'is_artist')
+        fields = ('username', 'name', 'email', 'password1', 'password2', 'is_artist')
 
     def save(self, commit=True):
         if self.data.get('is_artist'):
@@ -20,6 +20,7 @@ class RegisterForm(UserCreationForm):
             user = Listener()
             user.is_artist = False
         user.username = self.data['username']
+        user.name = self.data['name']
         user.set_password(self.data['password1'])
         user.email = self.data['email']
         user.save()

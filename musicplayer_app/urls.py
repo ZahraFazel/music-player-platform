@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'play_q/', views.play_q, name='play_q'),
     url(r'artist_profile/', views.artist_profile, name='artist_profile'),
     url(r'create_new_playlist/', views.create_playlist, name='add_music'),
-    url(r'add_music/', views.add_music, name='add_music'),
+    # url(r'add_music/', views.add_music, name='add_music'),
     url(r'add_playlist/', views.add_playlist),
     url(r'musicplayer_app/', views.index, name='index'),
     url(r'login/', views.login, name='login'),
@@ -24,5 +24,8 @@ urlpatterns = [
 
     url(r'follow_artist/(?P<value>\d+)/$', views.follow_artist, name='follow_artist'),
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
-    url(r'^$', views.index, name="default"),
+    # url(r'', views.start),
+    path('profile/', views.profile, name='profile'),
+    path('premium/', views.premium, name='premium'),
+    path('purchase/', views.purchase, name='purchase')
 ]

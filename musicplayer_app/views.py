@@ -10,9 +10,15 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import *
+from datetime import date
+import calendar
 
 
 # Create your views here.
+def start(request):
+    return HttpResponseRedirect('/login/')
+
+
 @login_required(login_url='/login/')
 def index(request):
     return render(request, 'musicplayer_app/index.html')
@@ -192,12 +198,13 @@ def login(request):
 @csrf_exempt
 @login_required(login_url='/login/')
 def logout(request):
-    if request.method == 'POST':
+    if request.method == 'POST' or request.method == 'GET':
         dj_logout(request)
         messages.success(request, 'Logout successfully!')
         return HttpResponseRedirect('/login/')
 
 
+@login_required(login_url='/login/')
 def artist_profile(request):
     all_musics = Music.objects.filter(artist_id=3)
     # print(all_musics)
@@ -205,6 +212,7 @@ def artist_profile(request):
     return render(request, 'musicplayer_app/artist_profile.html', {'tracks': all_musics})
 
 
+@login_required(login_url='/login/')
 def remove_track(request):
     if request.method == 'GET':
         trackId = request.GET.get('id')
@@ -216,7 +224,8 @@ def remove_track(request):
 @login_required(login_url='/login/')
 def upload(request):
     if request.method == "POST":
-        if request.user.is_artist:
+        user = User.objects.get(username=request.user.username)
+        if user.is_artist:
             music_name = request.POST.get('musicname')
             music_artist = Artist.objects.get(user_ptr_id=request.user.id)
             music_album = request.POST.get('album')
@@ -232,26 +241,51 @@ def upload(request):
     return redirect('/')
 
 
-
-
+@login_required(login_url='/login/')
 def play_q(request):
-
     print(request.POST.get('quality'))
     return HttpResponse('Quality changed')
 
 
-
+@login_required(login_url='/login/')
 def artists_page(request):
-
     all_artist = Artist.objects.all()
     return render(request, 'musicplayer_app/artist.html', {'artists': all_artist})
 
 
-
+@login_required(login_url='/login/')
 def follow_artist(request):
     if request.method == 'GET':
         artistId = request.GET.get('id')
         print("artistId", artistId)
-
-
     return artists_page(request)
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def profile(request):
+    user = User.objects.get(username=request.user.username)
+    print(user.is_artist)
+    if user.is_artist:
+        return render(request, 'musicplayer_app/artist_profile.html')
+    else:
+        return render(request, 'musicplayer_app/profile.html')
+
+
+@login_required(login_url='/login/')
+def premium(request):
+    return render(request, 'musicplayer_app/purchase.html')
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def purchase(request):
+    if request.method == 'POST':
+        user = Listener.objects.get(username=request.user.username)
+        user.vip = True
+        source_date = date.today()
+        month = source_date.month - 1 + 1
+        year = source_date.year + month // 12
+        month = month % 12 + 1
+        day = min(source_date.day, calendar.monthrange(year, month)[1])
+        user.vip_end = '{}-{}-{}'.format(year, month, day)
