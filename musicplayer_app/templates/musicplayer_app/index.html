@@ -102,7 +102,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="artist.html" title="Artists">
+                        <li><a href="/artists/" title="Artists">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
 						</span>
@@ -238,7 +238,11 @@
                 <div class="ms_top_right">
 
                     <div class="ms_top_lang">
+
+                        {% if request.user.is_artist %}
                         <span > <a href="/artist_profile/"> Profile</a> <img src="images/svg/lang.svg" alt=""></span>
+                        {% endif%}
+
                     </div>
                      <div class="ms_top_lang">
                         <span data-toggle="modal" data-target="#lang_modal">languages <img src="{%  static 'images/svg/lang.svg' %}" alt=""></span>

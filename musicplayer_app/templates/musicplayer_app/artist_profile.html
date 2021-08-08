@@ -193,7 +193,7 @@
                     <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
                 </div>
                 <div class="ms_top_btn">
-                    <a href="upload" class="ms_btn">upload new music</a>
+                    <a href="/upload/" class="ms_btn">upload new music</a>
                     <a href="javascript:;" class="ms_admin_name">Hello Bella <span class="ms_pro_name">ns</span>
                     </a>
                     <ul class="pro_dropdown_menu">
@@ -267,7 +267,7 @@
                     <!-- for played track use this class -->
                     <!--- class="play_active_song" -->
                     <ul>
-                        <li><a href="#"><span class="play_no">04</span><span class="play_hover"></span></a></li>
+                        <li><a href="#"><span class="play_no">{{forloop.counter}}</span><span class="play_hover"></span></a></li>
                         <li><a href="#">{{x.name}}</a></li>
                         <li><a href="#">{{x.Album_name}}</a></li>
                         <li class="text-center"><a href="#">{{x.release_date}}</a></li>

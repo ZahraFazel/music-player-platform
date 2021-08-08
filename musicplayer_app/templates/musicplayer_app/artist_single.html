@@ -1,19 +1,11 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Miraculous - Online Music Store Html Template
-Version: 1.0.0
-Author: Kamleshyadav
-Website: 
-Purchase: 
--->
+
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]>
 <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html><!--------ملت وب مرجع خرید و فروش قالب و همچنین انتشار رایگان قالب های پولی--------->
-<!--<![endif]-->
-<!-- Begin Head -->
+<html>
 
 <head>
     <title>Miraculous - Online Music Store Html Template</title>
@@ -23,17 +15,18 @@ Purchase:
     <meta name="keywords" content="">
     <meta name="author" content="kamleshyadav">
     <meta name="MobileOptimized" content="320">
-    <!--Start Style -->
-    <link rel="stylesheet" type="text/css" href="css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/swiper/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/nice_select/nice-select.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/player/volume.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/scroll/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+      {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/swiper/css/swiper.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/nice_select/nice-select.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/player/volume.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <!-- Favicon Link -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 <body>
 <!----Loader---->
@@ -229,8 +222,10 @@ Purchase:
                 <img src="images/featured/song1.jpg" alt="" class="img-fluid">
             </div>
             <div class="album_single_text">
-                <h2>Ava Cornish</h2>
+                <h2>{{artist.username}}</h2>
                 <p class="singer_name">Singer, New York</p>
+
+                <p><a href="#">{{followers_count}} Followers </a></p>
                 <div class="about_artist">
                     Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                     dolor in<br> reprehenderit in voluptate velit esse cillum dolor... <a href="#">Read More</a>
@@ -266,10 +261,11 @@ Purchase:
                     <li class="text-center">Add To Favourites</li>
                     <li class="text-center">More</li>
                 </ul>
+                {% for m in musics%}
                 <ul>
-                    <li><a href="#"><span class="play_no">01</span><span class="play_hover"></span></a></li>
-                    <li><a href="#">Bloodlust</a></li>
-                    <li><a href="#">Ava Cornish & Brian Hill</a></li>
+                    <li><a href="#"><span class="play_no">{{forloop.counter}}</span><span class="play_hover"></span></a></li>
+                    <li><a href="#">{{m.name}}</a></li>
+                    <li><a href="#">{{artist.username}}</a></li>
                     <li class="text-center"><a href="#">5:26</a></li>
                     <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
                     <li class="text-center ms_more_icon"><a href="javascript:;"><span
@@ -288,75 +284,10 @@ Purchase:
                         </ul>
                     </li>
                 </ul>
-                <ul>
-                    <li><a href="#"><span class="play_no">02</span><span class="play_hover"></span></a></li>
-                    <li><a href="#">Desired Games</a></li>
-                    <li><a href="#">Ava Cornish & Brian Hill</a></li>
-                    <li class="text-center"><a href="#">5:26</a></li>
-                    <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-                    <li class="text-center ms_more_icon"><a href="javascript:;"><span
-                            class="ms_icon1 ms_active_icon"></span></a>
-                        <ul class="more_option">
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
-                                Favourites</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To
-                                Queue</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
-                                Now</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
-                                Playlist</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li><a href="#"><span class="play_no">03</span><span class="play_hover"></span></a></li>
-                    <li><a href="#">Until I Met You</a></li>
-                    <li><a href="#">Ava Cornish & Brian Hill</a></li>
-                    <li class="text-center"><a href="#">5:26</a></li>
-                    <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-                    <li class="text-center ms_more_icon"><a href="javascript:;"><span
-                            class="ms_icon1 ms_active_icon"></span></a>
-                        <ul class="more_option">
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
-                                Favourites</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To
-                                Queue</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
-                                Now</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
-                                Playlist</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                {% endfor%}
                 <ul class="play_active_song">
                     <li><a href="#"><span class="play_no">04</span><span class="play_hover"></span></a></li>
                     <li><a href="#">Dark Alley Acoustic</a></li>
-                    <li><a href="#">Ava Cornish & Brian Hill</a></li>
-                    <li class="text-center"><a href="#">5:26</a></li>
-                    <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-                    <li class="text-center ms_more_icon"><a href="javascript:;"><span
-                            class="ms_icon1 ms_active_icon"></span></a>
-                        <ul class="more_option">
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
-                                Favourites</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To
-                                Queue</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
-                                Now</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
-                                Playlist</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li><a href="#"><span class="play_no">05</span><span class="play_hover"></span></a></li>
-                    <li><a href="#">Cloud nine</a></li>
                     <li><a href="#">Ava Cornish & Brian Hill</a></li>
                     <li class="text-center"><a href="#">5:26</a></li>
                     <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
@@ -1489,16 +1420,16 @@ Purchase:
         </div>
     </div>
 </div>
-<!--Main js file Style-->
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/plugins/swiper/js/swiper.min.js"></script>
-<script type="text/javascript" src="js/plugins/player/jplayer.playlist.min.js"></script>
-<script type="text/javascript" src="js/plugins/player/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="js/plugins/player/audio-player.js"></script>
-<script type="text/javascript" src="js/plugins/player/volume.js"></script>
-<script type="text/javascript" src="js/plugins/nice_select/jquery.nice-select.min.js"></script>
-<script type="text/javascript" src="js/plugins/scroll/jquery.mCustomScrollbar.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
+    <!--Main js file Style-->
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jplayer.playlist.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jquery.jplayer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/audio-player.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/volume.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/nice_select/jquery.nice-select.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>
