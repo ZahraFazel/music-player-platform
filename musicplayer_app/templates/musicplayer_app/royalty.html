@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Miraculous - Online Music Platform</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Music">
+    <meta name="keywords" content="">
+    <meta name="author" content="kamleshyadav">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/swiper/css/swiper.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/nice_select/nice-select.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/player/volume.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+</head>
+
+<body>
+    <div class="ms_register_form">
+        <h2>Get Royalty</h2>
+        <form method="POST" action="{% url 'royalty' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" placeholder="Enter Your Card Number" class="form-control" name="card_number">
+            </div>
+            <input class="ms_btn" type="submit" value= "Get Royalty" />
+            <button type="button" class="ms_btn" onclick="window.history.back();">Cancel</button>
+        </form>
+    </div>
+</body>
+
+</html>

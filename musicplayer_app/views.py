@@ -252,7 +252,7 @@ def artists_page(request):
     return render(request, 'musicplayer_app/artist.html', {'artists': all_artist})
 
 
-
+@login_required(login_url='/login/')
 def artist_single_page(request):
     if request.method == 'GET':
          artist_ID = request.GET.get('id')
@@ -283,6 +283,7 @@ def follow_artist(request):
             Af.save()
 
     return redirect('/artist/' + str(artistId))
+
 
 @login_required(login_url='/login/')
 def unfollow_artist(request):
@@ -366,7 +367,23 @@ def purchase(request):
         return redirect('/profile/')
 
 
-@csrf_exempt
 @login_required(login_url='/login/')
 def get_assets(request):
+    return render(request, 'musicplayer_app/royalty.html')
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def royalty(request):
+    if request.method == 'POST':
+        user = Artist.objects.get(username=request.user.username)
+        user.asset = 0
+        user.save()
+        return redirect('/profile/')
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def edit_profile(request):
     pass
+

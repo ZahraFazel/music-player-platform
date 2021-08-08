@@ -31,5 +31,8 @@ urlpatterns = [
     # url(r'', views.start),
     path('profile/', views.profile, name='profile'),
     path('premium/', views.premium, name='premium'),
-    path('purchase/', views.purchase, name='purchase')
+    path('purchase/', views.purchase, name='purchase'),
+    path('get_assets/', views.get_assets, name='get_assets'),
+    path('edit_porfile/', views.edit_profile, name='edit_profile'),
+    path('royalty/', views.royalty, name='royalty')
 ]
