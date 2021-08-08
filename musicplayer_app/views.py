@@ -259,9 +259,7 @@ def follow_artist(request):
 
         artist = Artist.objects.get(id=artistId)
         listener = Listener.objects.get(user_ptr_id=request.user.id)
-
         if ArtistFollower.objects.filter(artist=artist, follower=listener).exists():
-            # ArtistFollower.objects.filter(artist=artist, follower=listener).delete()
             print("already followed")
         else:
             Af = ArtistFollower(artist=artist, follower=listener)
@@ -269,15 +267,31 @@ def follow_artist(request):
 
     return redirect('/artist/' + str(artistId))
 
+def unfollow_artist(request):
+    if request.method == 'GET':
+        artistId = request.GET.get('id')
 
-def single_artist(request,artistId):
+        artist = Artist.objects.get(id=artistId)
+        listener = Listener.objects.get(user_ptr_id=request.user.id)
+        if ArtistFollower.objects.filter(artist=artist, follower=listener).exists():
+            ArtistFollower.objects.filter(artist=artist, follower=listener).delete()
+            print("Unfollowed!!!")
+
+    return redirect('/artist/' + str(artistId))
+
+
+def single_artist(request,artistId ):
 
     artist = Artist.objects.get(id=artistId)
     musics = Music.objects.filter(artist_id=artistId)
 
     followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
+    user_is_following =False
 
-    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist}
+    if ArtistFollower.objects.filter(artist=artistId,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
+        user_is_following =True
+
+    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following}
     return render(request,'musicplayer_app/artist_single.html' ,context)
 
 

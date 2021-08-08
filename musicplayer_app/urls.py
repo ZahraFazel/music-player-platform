@@ -25,6 +25,8 @@ urlpatterns = [
     # url(r'^follow_artist/(?P<id>\d{0,50})/$', views.follow_artist, name='follow_artist'),
 
     url(r'^follow_artist/$', views.follow_artist, name='follow_artist'),
+    url(r'^unfollow_artist/$', views.unfollow_artist, name='unfollow_artist'),
+
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
     # url(r'', views.start),
     path('profile/', views.profile, name='profile'),
