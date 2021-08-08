@@ -385,5 +385,17 @@ def royalty(request):
 @csrf_exempt
 @login_required(login_url='/login/')
 def edit_profile(request):
-    pass
-
+    if request.method == 'POST':
+        new_email = request.POST.get('new_email') or None
+        new_password1 = request.POST.get('new_password1') or None
+        new_password2 = request.POST.get('new_password2') or None
+        user = User.objects.get(username=request.user.username)
+        if new_email is not None:
+            user.email = new_email
+        if new_password1 is not None:
+            if new_password1 == new_password2:
+                user.set_password(new_password1)
+            else:
+                return HttpResponse('Password does not match!')
+        user.save()
+        return redirect('/musicplayer_app/')
