@@ -252,6 +252,23 @@ def artists_page(request):
     return render(request, 'musicplayer_app/artist.html', {'artists': all_artist})
 
 
+
+def artist_single_page(request):
+    if request.method == 'GET':
+         artist_ID = request.GET.get('id')
+         artist = Artist.objects.get(id=artist_ID)
+         musics = Music.objects.filter(artist_id=artist_ID)
+
+         followers_of_artist = ArtistFollower.objects.filter(artist_id=artist_ID)
+         user_is_following =False
+
+         if ArtistFollower.objects.filter(artist=artist_ID,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
+            user_is_following =True
+
+    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following}
+    return render(request,'musicplayer_app/artist_single.html' ,context)
+
+
 @login_required(login_url='/login/')
 def follow_artist(request):
     if request.method == 'GET':
@@ -266,7 +283,6 @@ def follow_artist(request):
             Af.save()
 
     return redirect('/artist/' + str(artistId))
-
 
 @login_required(login_url='/login/')
 def unfollow_artist(request):
