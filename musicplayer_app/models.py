@@ -20,6 +20,7 @@ class Listener(User):
 
 class Artist(User):
     asset = models.IntegerField(default=0)
+    name = models.CharField(max_length=100, default="Unknown Artist")
 
 
 class Music(models.Model):

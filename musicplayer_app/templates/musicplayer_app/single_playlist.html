@@ -177,7 +177,7 @@
                     </a>
                     </li>
 
-                    <li><a href="feature_playlist.html" title="Featured Playlist">
+                    <li><a href="/my_playlists" title="Featured Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
@@ -186,7 +186,7 @@
 						</span>
                     </a>
                     </li>
-                    <li><a href="add_playlist" title="Create Playlist">
+                    <li><a href="/add_playlist" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="w_tp_song_name">
                                         <h3><a href="#">{{ song.1.name }}</a></h3>
-                                        <!--                                            <p>Ava Cornish</p> todo:add name to artists-->
+                                        <p> {{ song.1.artist.name }} </p>
                                     </div>
                                 </div>
                             </div>

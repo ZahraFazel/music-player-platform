@@ -274,8 +274,7 @@
                             </div>
                             <div class="ms_rcnt_box_text">
                                 <h3><a href="/playlist/{{ playlist.0.id }}">{{ playlist.0.name }}</a></h3>
-                                <p>{{ playlist.1 }}</p>
-                                <!----todo: replace number of managers with number of songs in playlist---->
+                                <p>{{ playlist.1 }} songs</p>
                             </div>
                         </div>
                     </div>
@@ -313,7 +312,7 @@
                                         <img src="images/svg/more.svg" alt="">
                                     </div>
                                     <ul class="more_option">
-                                        <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
+                                        <li><a href="/follow/{{ playlist.0.id }}"><span class="opt_icon"><span
                                                 class="icon icon_fav"></span></span>Unfollow</a></li>
                                     </ul>
                                     <div class="ms_play_icon">
@@ -322,8 +321,8 @@
                                 </div>
                             </div>
                             <div class="ms_rcnt_box_text">
-                                <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
-                                <!--                                    <p>20 songs</p>todo: add number of songs-->
+                                <h3><a href="/playlist/{{ playlist.0.id }}">{{ playlist.0.name }}</a></h3>
+                                <p>{{ playlist.1 }} songs</p>
                             </div>
                         </div>
                     </div>
@@ -353,7 +352,7 @@
                                         <img src="images/svg/more.svg" alt="">
                                     </div>
                                     <ul class="more_option">
-                                        <li><a href="/follow/{{ playlist.id }}"><span class="opt_icon"><span
+                                        <li><a href="/follow/{{ playlist.0.id }}"><span class="opt_icon"><span
                                                 class="icon icon_fav"></span></span>Unfollow</a></li>
                                     </ul>
                                     <div class="ms_play_icon">
@@ -362,8 +361,8 @@
                                 </div>
                             </div>
                             <div class="ms_rcnt_box_text">
-                                <h3><a href="/playlist/{{ playlist.id }}">{{ playlist.name }}</a></h3>
-                                <!--                                    <p>20 songs</p>todo: add number of songs-->
+                                <h3><a href="/playlist/{{ playlist.0.id }}">{{ playlist.0.name }}</a></h3>
+                                <p> {{ playlist.1 }} songs</p>
                             </div>
                         </div>
                     </div>
