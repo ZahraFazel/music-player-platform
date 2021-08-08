@@ -145,21 +145,20 @@ def create_playlist(request):
     return redirect('/my_playlists')
 
 
-@login_required(login_url='/login/')
-def add_music(request):
-    if request.method == "POST":
-        if request.user.is_artist:
-            music_name = request.POST.get('musicname')
-            music_artist = request.user
-            music_album = request.POST.get('album')
-            music_release_date = request.POST.get('release_date')
-            print(music_artist)
-            m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
-                      num_stars=0)
-            m.save()
-
-        return render(request, 'musicplayer_app/add_music.html/')
-    return redirect('/')
+# def add_music(request):
+#     if request.method == "POST":
+#         if request.user.is_artist:
+#             music_name = request.POST.get('musicname')
+#             music_artist = request.user
+#             music_album = request.POST.get('album')
+#             music_release_date = request.POST.get('release_date')
+#             print(music_artist)
+#             m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
+#                       num_stars=0)
+#             m.save()
+#
+#         return render(request, 'musicplayer_app/add_music.html/')
+#     return redirect('/')
 
 
 @csrf_exempt
@@ -214,15 +213,45 @@ def remove_track(request):
     return artist_profile(request)
 
 
+@login_required(login_url='/login/')
 def upload(request):
     if request.method == "POST":
-        music_name = request.POST.get('musicname')
-        music_artist = request.user
-        music_album = request.POST.get('album')
-        music_release_date = request.POST.get('release_date')
-        print(music_artist)
-        m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
-                  num_stars=0)
-        m.save()
+        if request.user.is_artist:
+            music_name = request.POST.get('musicname')
+            music_artist = Artist.objects.get(user_ptr_id=request.user.id)
+            music_album = request.POST.get('album')
+            music_release_date = request.POST.get('release_date')
+            music_quality = request.POST.get('quality')
+            music_cover = request.FILES.get('cover')
+            music_file = request.FILES.get('music_file')
+            m = Music(artist=music_artist, name=music_name, Album_name=music_album, release_date=music_release_date,
+                      num_stars=0,quality=music_quality,cover=music_cover,file=music_file)
+            m.save()
 
-    return render(request, 'musicplayer_app/upload.html')
+        return render(request, 'musicplayer_app/upload.html/')
+    return redirect('/')
+
+
+
+
+def play_q(request):
+
+    print(request.POST.get('quality'))
+    return HttpResponse('Quality changed')
+
+
+
+def artists_page(request):
+
+    all_artist = Artist.objects.all()
+    return render(request, 'musicplayer_app/artist.html', {'artists': all_artist})
+
+
+
+def follow_artist(request):
+    if request.method == 'GET':
+        artistId = request.GET.get('id')
+        print("artistId", artistId)
+
+
+    return artists_page(request)
