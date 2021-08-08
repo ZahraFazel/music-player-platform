@@ -10,7 +10,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import *
-from datetime import date
+import datetime
 import calendar
 
 
@@ -267,6 +267,8 @@ def follow_artist(request):
 
     return redirect('/artist/' + str(artistId))
 
+
+@login_required(login_url='/login/')
 def unfollow_artist(request):
     if request.method == 'GET':
         artistId = request.GET.get('id')
@@ -280,6 +282,7 @@ def unfollow_artist(request):
     return redirect('/artist/' + str(artistId))
 
 
+@login_required(login_url='/login/')
 def single_artist(request,artistId ):
 
     artist = Artist.objects.get(id=artistId)
@@ -316,10 +319,38 @@ def premium(request):
 def purchase(request):
     if request.method == 'POST':
         user = Listener.objects.get(username=request.user.username)
-        user.vip = True
-        source_date = date.today()
-        month = source_date.month - 1 + 1
+        print(user.username)
+        print(user.vip)
+        num_months = 0
+        if request.POST['plan'] == 'one':
+            num_months = 1
+        elif request.POST['plan'] == 'three':
+            num_months = 3
+        elif request.POST['plan'] == 'six':
+            num_months = 6
+        elif request.POST['plan'] == 'year':
+            num_months = 12
+        if user.vip:
+            year, month, day = map(int, user.vip_end.split('-'))
+            source_date = datetime.date(year, month, day)
+        else:
+            source_date = datetime.date.today()
+        month = source_date.month - 1 + num_months
         year = source_date.year + month // 12
         month = month % 12 + 1
         day = min(source_date.day, calendar.monthrange(year, month)[1])
+        print(year)
+        print(month)
+        print(day)
         user.vip_end = '{}-{}-{}'.format(year, month, day)
+        print(user.vip_end)
+        user.vip = True
+        user.save()
+        messages.success(request, 'Purchased successfully!')
+        return redirect('/profile/')
+
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def get_assets(request):
+    pass

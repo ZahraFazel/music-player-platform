@@ -32,6 +32,13 @@
         <form method="POST" action="{% url 'purchase' %}">
             {% csrf_token %}
             <div class="form-group">
+                Plan:
+                <input type="radio" name="plan" value="one">1 Month
+                <input type="radio" name="plan" value="three">3 Months
+                <input type="radio" name="plan" value="six">6 Months
+                <input type="radio" name="plan" value="year">1 Year
+            </div>
+            <div class="form-group">
                 <input type="text" placeholder="Enter Your Card Number" class="form-control" name="card_number">
             </div>
             <div class="form-group">
