@@ -169,24 +169,51 @@
             </div>
         </div>
     </div>
-    <div>
-                    <div class="ms_top_trend">
-                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
-                    </div>
+    <!---Main Content Start--->
+    <div class="padder_top80">
+        <!---Header--->
+        <div class="ms_header">
+            <div class="ms_top_left">
+                <div class="ms_top_search">
+                    <input type="text" class="form-control" placeholder="Search Music Here..">
+                    <span class="search_icon">
+							<img src="images/svg/search.svg" alt="">
+						</span>
                 </div>
-                <div class="ms_top_right">
+                <div class="ms_top_trend">
+                    <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a
+                        href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+                </div>
+            </div>
+            <div class="ms_top_right" >
+                <!--<div class="ms_top_btn">-->
+                    <!--<a href="/upload/" class="ms_btn" style="width:100%;padding:2px 3px;">upload new music</a>-->
+                <!--</div>-->
                     <div class="ms_top_btn">
-                        <a href="{% url 'premium' %}" class="ms_btn">Premium</a>
+                        <a href="{% url 'premium' %}" class="ms_btn">Get Royalty</a>
                     </div>
                     <div class="ms_top_btn">
                         <a href="{% url 'logout' %}" class="ms_btn">Logout</a>
                     </div>
-                </div>
             </div>
-            <!----Edit Profile Wrapper Start---->
-            <div class="ms_profile_wrapper">
+        </div>
+        <!----Edit Profile Wrapper Start---->
+        <div class="ms_profile_wrapper">
                 <h1>Edit Profile</h1>
+
+
                 <div class="ms_profile_box">
+                     <div class="ms_pro_img">
+                    <img src="{% static 'images/pro_img.jpg' %}" alt="" class="img-fluid">
+                    <div class="pro_img_overlay">
+                        <i class="fa_icon edit_icon"></i>
+                    </div>
+
+
+                </div>
+
+                    <div><a href="followed_artists"><p style="padding:20px; font-size:20px;">Followed Artists</p> </a></div>
+
                     <div class="ms_pro_form">
                         <form method="POST" action="{% url 'edit_profile' %}">
                             {% csrf_token %}
@@ -454,16 +481,16 @@
         </div>
 	</div>
 
-    <!--Main js file Style-->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/plugins/swiper/js/swiper.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/jplayer.playlist.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/jquery.jplayer.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/audio-player.js"></script>
-    <script type="text/javascript" src="js/plugins/player/volume.js"></script>
-    <script type="text/javascript" src="js/plugins/nice_select/jquery.nice-select.min.js"></script>
-	<script type="text/javascript" src="js/plugins/scroll/jquery.mCustomScrollbar.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+     <!--Main js file Style-->
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jplayer.playlist.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jquery.jplayer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/audio-player.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/volume.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/nice_select/jquery.nice-select.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 </body>
 </html>

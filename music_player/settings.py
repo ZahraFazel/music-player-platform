@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'musicplayer_app',
-    # 'django_social_share',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [

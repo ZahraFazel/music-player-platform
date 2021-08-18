@@ -53,6 +53,11 @@
     },
 });
 }
+
+
+
+
+
 </script>
 
 	<!-- --Loader Start-- -->
@@ -225,28 +230,32 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <input type="text" class="form-control" placeholder="Search Music Here..">
+                        <form action="/search/" method="GET">
+
+                        <input type="text" name="search_text" class="form-control" placeholder="Search Music Here..">
                         <span class="search_icon">
                             {% load static %}
-							<img src="{% static 'images/svg/search.svg' %}" alt="">
+                            <input type="image" src="{% static 'images/svg/search.svg' %}" alt="Submit Form" />
+
 						</span>
+                            </form>
                     </div>
                     <div class="ms_top_trend">
                         <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                     </div>
                 </div>
                 <div class="ms_top_right">
-
-{#                    <div class="ms_top_lang">#}
-{##}
-{#                        {% if request.user.is_artist %}#}
-{#                        <span > <a href="/artist_profile/"> Profile</a> <img src="images/svg/lang.svg" alt=""></span>#}
-{#                        {% endif%}#}
-{##}
-{#                    </div>#}
                     <div class="ms_top_btn">
-                    <a href="{% url 'profile' %}" class="ms_btn">Profile</a>
-                </div>
+
+                    {% if request.user.is_artist %}
+
+                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>
+
+                    {% else %}
+                           <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
+                    {% endif%}
+                     </div>
+
                 <div class="ms_top_btn">
                     <a href="{% url 'logout' %}" class="ms_btn">Logout</a>
                 </div>
@@ -2366,8 +2375,8 @@
                                     <button class="jp-previous" tabindex="0">
 					<i class="ms_play_control"></i>
 				</button>
-                                    <button class="jp-play" tabindex="0">
-					<i class="ms_play_control"></i>
+                                    <button class="jp-play" tabindex="0" >
+					<i class="ms_play_control" onclick="/play/"></i>
 				</button>
                                     <button class="jp-next" tabindex="0">
 					<i class="ms_play_control"></i>

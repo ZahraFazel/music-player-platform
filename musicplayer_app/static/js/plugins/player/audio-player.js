@@ -1,52 +1,33 @@
+
+
+function play():
+    console.log("heree!")
+    myPlaylist = ' '
+
 $(function() {
     "use strict";
     if ($('.audio-player').length) {
 		var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
-		
-        var myPlaylist = new jPlayerPlaylist({
-            jPlayer: "#jquery_jplayer_1",
-            cssSelectorAncestor: "#jp_container_1"
-        }, [{
-			image : 'images/weekly/song1.jpg',	
-            title: "Cro Magnon Man",
-            artist: "Mushroom Records",
-            mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-            oga: "http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
-			option : myPlayListOtion
-        }, {
-			image : 'images/weekly/song2.jpg',	
-            title: "Your Face",
-            artist: "Ministry",
-            mp3: "http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
-            oga: "http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
-			option : myPlayListOtion
-        }, {
-			image : 'images/weekly/song3.jpg',	
-            title: "Cyber Sonnet",
-            artist: "You Am I",
-            mp3: "http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
-            oga: "http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg",
-			option : myPlayListOtion
-        },  {
-			image : 'images/weekly/song2.jpg',	
-            title: "Thin Ice",
-            artist: "Screaming Trees",
-            mp3: "http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
-            oga: "http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg",
-			option : myPlayListOtion
-			
-        }], {
-            swfPath: "js/plugins",
-            supplied: "oga, mp3",
-            wmode: "window",
-            useStateClassSkin: true,
-            autoBlur: false,
-            smoothPlayBar: true,
-            keyEnabled: true,
-            playlistOptions: {
-                autoPlay: false
-            }
-        });
+
+
+//        var myPlaylist = new jPlayerPlaylist(
+//
+//
+//        {
+//            jPlayer: "#jquery_jplayer_1",
+//            cssSelectorAncestor: "#jp_container_1"
+//        }, {
+//            swfPath: "js/plugins",
+//            supplied: "oga, mp3",
+//            wmode: "window",
+//            useStateClassSkin: true,
+//            autoBlur: false,
+//            smoothPlayBar: true,
+//            keyEnabled: true,
+//            playlistOptions: {
+//                autoPlay: false
+//            }
+//        });
         $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function(event) {
             var current = myPlaylist.current;
             var playlist = myPlaylist.playlist;
@@ -58,8 +39,8 @@ $(function() {
 			$('.knob-wrapper').mousedown(function() {
                 $(window).mousemove(function(e) {
                     var angle1 = getRotationDegrees($('.knob')),
-					volume = angle1 / 270 					
-					
+					volume = angle1 / 270
+
                     if (volume > 1) {
                         $("#jquery_jplayer_1").jPlayer("volume", 1);
                     } else if (volume <= 0) {
@@ -69,13 +50,13 @@ $(function() {
                         $("#jquery_jplayer_1").jPlayer("unmute");
                     }
                 });
-				
+
                 return false;
             }).mouseup(function() {
                 $(window).unbind("mousemove");
             });
-			
-			
+
+
 			function getRotationDegrees(obj) {
 				var matrix = obj.css("-webkit-transform") ||
 				obj.css("-moz-transform")    ||
@@ -91,15 +72,15 @@ $(function() {
 				return (angle < 0) ? angle + 360 : angle;
 			}
 
-			
-			
-			
-			
+
+
+
+
             var timeDrag = false;
             $('.jp-play-bar').mousedown(function(e) {
                 timeDrag = true;
                 updatebar(e.pageX);
-				
+
             });
             $(document).mouseup(function(e) {
                 if (timeDrag) {
@@ -140,7 +121,7 @@ $(function() {
                 var playlistId = $(this).data('playlist-id');
                 myPlaylist.play(playlistId);
             });
-			
+
         });
     }
 });

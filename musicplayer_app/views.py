@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 import datetime
 import calendar
+from django.db.models import Q
 
 
 # Create your views here.
@@ -208,14 +209,16 @@ def logout(request):
 def artist_profile(request):
 
     all_musics = Music.objects.filter(artist_id=request.user.id)
-    return render(request, 'musicplayer_app/artist_profile.html', {'tracks': all_musics})
+
+    artistId = Artist.objects.get(id=request.user.id)
+    followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
+    return render(request, 'musicplayer_app/artist_profile.html', {'tracks': all_musics ,'count_of_followers':len(followers_of_artist)})
 
 
 @login_required(login_url='/login/')
 def remove_track(request):
     if request.method == 'GET':
         trackId = request.GET.get('id')
-        print("track_id", trackId)
         Music.objects.filter(id=trackId).delete()
     return artist_profile(request)
 
@@ -254,6 +257,7 @@ def artists_page(request):
 
 @login_required(login_url='/login/')
 def artist_single_page(request):
+
     if request.method == 'GET':
          artist_ID = request.GET.get('id')
          artist = Artist.objects.get(id=artist_ID)
@@ -299,6 +303,28 @@ def unfollow_artist(request):
     return redirect('/artist/' + str(artistId))
 
 
+def artist_followers(request):
+
+    artistId = Artist.objects.get(id=request.user.id)
+
+    followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
+    followers =[]
+    for f in followers_of_artist:
+        l = Listener.objects.get(id=f.follower_id)
+        followers.append(l)
+    return render(request,'musicplayer_app/artist_followers.html' , {"followers_of_artist":followers})
+
+def followed_artists(request):
+
+        listenerId = Listener.objects.get(id=request.user.id)
+        followed__artist = ArtistFollower.objects.filter(follower_id=listenerId)
+        followed_artists =[]
+        for f in followed__artist:
+            l = Artist.objects.get(id=f.artist_id)
+            followed_artists.append(l)
+
+        return render(request,'musicplayer_app/followed_artists.html', {"followed_artists":followed_artists})
+
 @login_required(login_url='/login/')
 def single_artist(request,artistId ):
 
@@ -311,7 +337,7 @@ def single_artist(request,artistId ):
     if ArtistFollower.objects.filter(artist=artistId,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
         user_is_following =True
 
-    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following}
+    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) ,  'user_is_following':user_is_following}
     return render(request,'musicplayer_app/artist_single.html' ,context)
 
 
@@ -399,3 +425,42 @@ def edit_profile(request):
                 return HttpResponse('Password does not match!')
         user.save()
         return redirect('/musicplayer_app/')
+
+
+
+
+
+
+
+
+
+
+####music player
+
+def search(request):
+    query = None
+    results =[]
+    if request.method == 'GET':
+
+        query = request.GET.get("search_text")
+        if query:
+            if Artist.objects.filter(username=query).exists():
+                a = Artist.objects.get(username=query)
+                match_id = a.id
+                return redirect('/artist_single_page/?id='+str(match_id))
+
+
+            elif Music.objects.filter(name=query).exists() or Music.objects.filter(Album_name=query).exists():
+                results = Music.objects.filter(Q(name = query) | Q(Album_name = query))
+                for x in results:
+                    x.artist_id  =Artist.objects.get(id=x.artist_id).username
+                return  render(request,'musicplayer_app/search_results.html' , {'results':results})
+
+            else:
+                print("NO match found")
+
+
+
+
+    return HttpResponse(status=204)
+

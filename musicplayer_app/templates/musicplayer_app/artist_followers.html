@@ -1,0 +1,565 @@
+
+
+
+<head>
+    <style>
+        body {
+    background-color: #f9f9fa
+}
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 5rem
+}
+
+.card {
+    background: #fff;
+    border-width: 0;
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    margin-bottom: 1.5rem
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(19, 24, 44, .125);
+    border-radius: .25rem
+}
+
+.list-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word
+}
+
+.list-item.block .media {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.list-item.block .list-content {
+    padding: 1rem
+}
+
+.w-40 {
+    width: 40px !important;
+    height: 40px !important
+}
+
+.avatar {
+    position: relative;
+    line-height: 1;
+    border-radius: 500px;
+    white-space: nowrap;
+    font-weight: 700;
+    border-radius: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-radius: 500px;
+    box-shadow: 0 5px 10px 0 rgba(50, 50, 50, .15)
+}
+
+.avatar img {
+    border-radius: inherit;
+    width: 100%
+}
+
+.gd-primary {
+    color: #fff;
+    border: none;
+    background: #448bff linear-gradient(45deg, #448bff, #44e9ff)
+}
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+.text-color {
+    color: #5e676f
+}
+
+.text-sm {
+    font-size: .825rem
+}
+
+.h-1x {
+    height: 1.25rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical
+}
+
+.no-wrap {
+    white-space: nowrap
+}
+
+.list-row .list-item {
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .75rem .625rem
+}
+
+.list-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word
+}
+
+.list-row .list-item>* {
+    padding-left: .625rem;
+    padding-right: .625rem
+}
+
+.dropdown {
+    position: relative
+}
+
+a:focus,
+a:hover {
+    text-decoration: none
+}
+
+.list-item {
+    background: white
+}
+    </style>
+
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="hhttps://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+
+        <title>Miraculous - Online Music Store Html Template</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Music">
+    <meta name="keywords" content="">
+    <meta name="author" content="kamleshyadav">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/swiper/css/swiper.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/nice_select/nice-select.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/plugins/player/volume.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/Sortable.js"></script>
+<script>
+    $(document).ready(function() {
+                var example2Left = document.getElementById('example2-left');
+                var example2Right = document.getElementById('example2-right');
+                new Sortable(example2Left, {
+                            group: 'shared', // set both lists to same group animation: 150 }); new Sortable(example2Right, { group: 'shared', animation: 150 }); });
+</script>
+
+
+<!----Loader---->
+	<div class="ms_inner_loader">
+		<div class="ms_loader">
+			<div class="ms_bars">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+	</div>
+    <!----Main Wrapper Start---->
+
+
+
+
+        {% if followers_of_artist.0%}
+
+        <div class="album_inner_list" style="margin:50px;">
+            <div class="album_list_wrapper">
+                <ul class="album_list_name">
+                    <li>#</li>
+                    <li>Name</li>
+                    <!--<li class="text-center">Add To Favourites</li>-->
+                    <li class="text-center">More</li>
+                </ul>
+
+                {% for a in followers_of_artist%}
+                <ul>
+                    <li><a href="#"><span >{{forloop.counter}}</span><span></span></a></li>
+                    <li><a href="#">{{a.username}}</a></li>
+                    <!--<li><a href="#">{{artist.username}}</a></li>-->
+                    <!--<li class="text-center"><a href="#">5:26</a></li>-->
+                    <!--<li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>-->
+                    <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
+                        <ul class="more_option">
+                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
+                                Favourites</a></li>
+                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To
+                                Queue</a></li>
+                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
+                                Now</a></li>
+                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                                Playlist</a></li>
+                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endfor %}
+
+                {% else %}
+                  <div class="ms_heading" style="  display: flex;justify-content: center;align-items: center; margin:100px 50px;">
+                            <h1>You haven't any followers yet  :)</h1>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="page-content page-container" id="page-content">-->
+    <!--<div class="padding">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12">-->
+                <!--<div class="container">-->
+                    <!--<div class="list list-row card" id="sortable" data-sortable-id="0" aria-dropeffect="move">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6" id="example2-left">-->
+                                <!---->
+                                <!--<div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">-->
+                                    <!--<div><a href="#" data-abc="true"><span class="w-40 avatar gd-primary">S</span></a></div>-->
+                                    <!--<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Sam idod</a>-->
+                                        <!--<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me to think about business content?</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="no-wrap">-->
+                                        <!--<div class="item-date text-muted text-sm d-none d-md-block">15 weeks ago</div>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">-->
+                                                    <!--<circle cx="12" cy="12" r="1"></circle>-->
+                                                    <!--<circle cx="12" cy="5" r="1"></circle>-->
+                                                    <!--<circle cx="12" cy="19" r="1"></circle>-->
+                                                <!--</svg> </a>-->
+                                            <!--<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>-->
+                                                <!--<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+
+
+
+                                <!--&lt;!&ndash;<div class="list-item" data-id="9" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-info"><img src="https://img.icons8.com/bubbles/24/000000/user.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Sam qpire</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">advisable for me to think about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">12 days ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="17" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-warning">T</span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Tidoh mark</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason for me to think about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">3/1/18</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="8" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-success"><img src="https://img.icons8.com/doodle/24/000000/user-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true"> Telon Maskun</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">12/10/19</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="10" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-danger"><img src="https://img.icons8.com/color/16/000000/administrator-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Clark Handscomb</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">10 day ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="3" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-primary"><img src="https://img.icons8.com/bubbles/16/000000/administrator-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Jordan Stephens</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me to think about business</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">10 hour ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;<div class="col-md-6" id="example2-right">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="13" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-primary">P</span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Patrick Linod</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me to think about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">3 weeks ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="9" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-info"><img src="https://img.icons8.com/bubbles/24/000000/user.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Steven Hmpire</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">Build a progressive web app using jQuery</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">2 days ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="17" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-warning">A</span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Alan musk</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">it be advisable for me to think about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">13/12 18</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="8" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-success"><img src="https://img.icons8.com/doodle/24/000000/user-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Lawrence Telon</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me to think</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">02/11 18</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="10" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false" style="">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-danger"><img src="https://img.icons8.com/color/16/000000/administrator-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Stuart Clark</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would, i think about business content?</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">1 day ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="list-item" data-id="3" data-item-sortable-id="0" draggable="true" role="option" aria-grabbed="false">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div><a href="#" data-abc="true"><span class="w-40 avatar gd-primary"><img src="https://img.icons8.com/bubbles/16/000000/administrator-male.png" alt="."></span></a></div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="flex"> <a href="#" class="item-author text-color" data-abc="true">Jordan Stephens</a>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-except text-muted text-sm h-1x">For what reason would it be advisable for me to think about business</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="no-wrap">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-date text-muted text-sm d-none d-md-block">1 hour ago</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="item-action dropdown"> <a href="#" data-toggle="dropdown" class="text-muted" data-abc="true"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="12" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="5" r="1"></circle>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<circle cx="12" cy="19" r="1"></circle>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</svg> </a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> <a class="dropdown-item" href="#" data-abc="true">See detail </a><a class="dropdown-item download" data-abc="true">Download </a><a class="dropdown-item edit" data-abc="true">Edit</a>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="dropdown-divider"></div> <a class="dropdown-item trash" data-abc="true">Delete item</a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+
+
+  <!--Main js file Style-->
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jplayer.playlist.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/jquery.jplayer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/audio-player.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/player/volume.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/nice_select/jquery.nice-select.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+</body>

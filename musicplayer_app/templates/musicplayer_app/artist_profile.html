@@ -188,9 +188,9 @@
                         href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                 </div>
             </div>
-            <div class="ms_top_right">
+            <div class="ms_top_right" >
                 <div class="ms_top_btn">
-                    <a href="/upload/" class="ms_btn">upload new music</a>
+                    <a href="/upload/" class="ms_btn" style="width:100%;padding:2px 3px;">upload new music</a>
                 </div>
                     <div class="ms_top_btn">
                         <a href="{% url 'get_assets' %}" class="ms_btn">Get Royalty</a>
@@ -203,7 +203,20 @@
         <!----Edit Profile Wrapper Start---->
         <div class="ms_profile_wrapper">
                 <h1>Edit Profile</h1>
+
+
                 <div class="ms_profile_box">
+                     <div class="ms_pro_img">
+                    <img src="{% static 'images/pro_img.jpg' %}" alt="" class="img-fluid">
+                    <div class="pro_img_overlay">
+                        <i class="fa_icon edit_icon"></i>
+                    </div>
+
+
+                </div>
+
+                    <div><a href="/artist_followers/"><p style="padding:20px; font-size:20px;">{{count_of_followers}} Followers</p> </a></div>
+
                     <div class="ms_pro_form">
                         <form method="POST" action="{% url 'edit_profile' %}">
                             {% csrf_token %}
@@ -239,6 +252,7 @@
     <div class="ms_content_wrapper padder_top80">
         <!----Free Download Css Start---->
         <div class="ms_free_download">
+            {% if tracks.0%}
             <div class="ms_heading">
                 <h1>Uploaded Songs </h1>
             </div>
@@ -283,11 +297,17 @@
                     </ul>
 
                     {% endfor %}
+
                 </div>
             </div>
             <div class="ms_view_more padder_bottom20">
                 <a href="#" class="ms_btn">view more</a>
             </div>
+            {%else%}
+             <div class="ms_heading" style="  display: flex;justify-content: center;align-items: center;">
+                            <h1>You have not uploaded any tracks yet!</h1>
+                        </div>
+            {% endif%}
         </div>
     </div>
 
