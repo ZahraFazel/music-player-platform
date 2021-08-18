@@ -71,7 +71,7 @@ def share_playlist(request, playlist_id):
             playlist = PlayList.objects.get(id=playlist_id)
             mp = ManagerPlayList(manager=user, playlist=playlist)
             mp.save()
-            return redirect('/playlist/' + str(playlist_id))
+    return redirect('/playlist/' + str(playlist_id))
 
 
 @login_required(login_url='/login/')
@@ -148,7 +148,7 @@ def create_playlist(request):
         p.save()
         m = ManagerPlayList(manager=Listener.objects.get(user_ptr_id=request.user.id), playlist=p)
         m.save()
-        return index(request)
+        return redirect('/playlist/' + str(p.id))
     return redirect('/my_playlists')
 
 
