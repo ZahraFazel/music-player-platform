@@ -29,36 +29,7 @@
 <body>
 
 
-<script>
 
-    function func(value){
-        console.log(value);
-
-        $.ajax({
-              type: "POST",
-             url: "/play_q/",
-             dataType:"json",
-             data: {
-                  csrfmiddlewaretoken:'{{ csrf_token }}',
-                 quality: value,
-             },
-
-    success: function(data){
-        console.log("success");
-        console.log(data);
-    },
-    failure: function(data){
-        console.log("failure");
-        console.log(data);
-    },
-});
-}
-
-
-
-
-
-</script>
 
 	<!-- --Loader Start-- -->
 	<div class="ms_loader">
@@ -2375,8 +2346,8 @@
                                     <button class="jp-previous" tabindex="0">
 					<i class="ms_play_control"></i>
 				</button>
-                                    <button class="jp-play" tabindex="0" >
-					<i class="ms_play_control" onclick="/play/"></i>
+                                    <button class="jp-play" tabindex="0" onclick="setplaylist()" >
+					<i class="ms_play_control" ></i>
 				</button>
                                     <button class="jp-next" tabindex="0">
 					<i class="ms_play_control"></i>
@@ -2418,11 +2389,11 @@
 									<button class="jp-repeat" tabindex="0" title="Repeat"><i class="ms_play_control"></i></button>
                                 </div>
                                 <div class="jp_quality_optn custom_select">
-                                    <select onchange="func(this.value)">
+                                    <select  id ="Quality"  onchange="changeQuality(this.value)">
 						<option>quality</option>
 						<option value="1">HD</option>
 						<option value="2">High</option>
-						<option value="3">medium</option>
+						<option value="3" selected>medium</option>
 						<option value="4">low</option>
 					</select>
                                 </div>
@@ -2580,6 +2551,60 @@
             </div>
         </div>
 	</div>
+
+
+<script>
+   var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
+
+    var newlist =  {{playlist|safe}} ;
+    var mynewplaylist =[];
+
+
+    for(var i =0; i<newlist.length; i++)
+    {
+      mynewplaylist.push(
+      {
+      'image':newlist[i].image,
+      'title':newlist[i].title,
+      'artist':newlist[i].artist,
+      'mp3':newlist[i].file
+
+      })
+    }
+
+
+function setplaylist(){
+
+
+        $.ajax({
+              type: "POST",
+             url: "/setplaylist_play/",
+             dataType:"json",
+             data: {
+                 csrfmiddlewaretoken:'{{ csrf_token }}',
+                 quality: $('#Quality').val(),
+
+             },
+
+    success: function(data){
+        console.log("success");
+        console.log(data);
+    },
+    failure: function(data){
+        console.log("failure");
+        console.log(data);
+    },
+});
+
+    }
+
+
+
+function changeQuality(value){
+alert("change Q");
+}
+
+</script>
     <!--Main js file Style-->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>

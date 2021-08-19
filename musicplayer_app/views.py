@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from distutils.command import register
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
 from django.contrib.auth.decorators import login_required
@@ -8,21 +10,59 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 from .forms import *
 import datetime
 import calendar
 from django.db.models import Q
-
+from django.core import serializers
+import json
+from django.core import serializers
 
 # Create your views here.
 def start(request):
     return HttpResponseRedirect('/login/')
 
+def json_default(value):
+    if isinstance(value, datetime.date):
+        return dict(year=value.year, month=value.month, day=value.day)
+    else:
+        return value.__dict__
+
 
 @login_required(login_url='/login/')
 def index(request):
-    return render(request, 'musicplayer_app/index.html')
+
+    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+
+        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[4].id
+
+        musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+        playlist=[]
+        for p in musicplaylist:
+            m = Music.objects.get(id=p.music_id)
+
+            playlist.append(
+                {
+                    "title":m.name,
+                    "album":m.Album_name,
+                    "artist":Artist.objects.get(id=m.artist_id).username,
+                    "image":"/media/"+m.cover.name,
+                    "file":"/media/"+m.file.name,
+
+                }
+
+            )
+
+        playlist=json.dumps(playlist,default=json_default)
+        # playlist = serializers.serialize("json", playlist)
+
+        return render(request,'musicplayer_app/index.html' , {"playlist":playlist})
+    else:
+        return render(request, 'musicplayer_app/index.html')
 
 
 @login_required(login_url='/login/')
@@ -243,9 +283,6 @@ def upload(request):
     # return redirect('/')
 
 
-@login_required(login_url='/login/')
-def play_q(request):
-    print(request.POST.get('quality'))
     return HttpResponse('Quality changed')
 
 
@@ -435,7 +472,6 @@ def edit_profile(request):
 
 
 
-####music player
 
 def search(request):
     query = None
@@ -464,3 +500,17 @@ def search(request):
 
     return HttpResponse(status=204)
 
+
+
+
+@login_required(login_url='/login/')
+def setplaylist_play(request):
+    current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+    quality= request.POST.get('quality')
+
+    playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
+
+    playlist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+
+    print("PLAYLIST",playlist)
+    return redirect('musicplayer_app/index.html' , {"playlist":playlist})

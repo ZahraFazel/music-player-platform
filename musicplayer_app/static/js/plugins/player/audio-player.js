@@ -1,39 +1,44 @@
 
-
-function play():
-    console.log("heree!")
-    myPlaylist = ' '
-
 $(function() {
+
     "use strict";
+
     if ($('.audio-player').length) {
 		var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
+        var myPlaylist = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        },
 
 
-//        var myPlaylist = new jPlayerPlaylist(
-//
-//
-//        {
-//            jPlayer: "#jquery_jplayer_1",
-//            cssSelectorAncestor: "#jp_container_1"
-//        }, {
-//            swfPath: "js/plugins",
-//            supplied: "oga, mp3",
-//            wmode: "window",
-//            useStateClassSkin: true,
-//            autoBlur: false,
-//            smoothPlayBar: true,
-//            keyEnabled: true,
-//            playlistOptions: {
-//                autoPlay: false
-//            }
-//        });
-        $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function(event) {
+
+
+
+          mynewplaylist,
+
+
+
+
+         {
+            swfPath: "js/plugins",
+            supplied: "oga, mp3",
+            wmode: "window",
+            useStateClassSkin: true,
+            autoBlur: false,
+            smoothPlayBar: true,
+            keyEnabled: true,
+
+            playlistOptions: {
+                autoPlay: false
+            }
+        });
+
+     $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function(event) {
             var current = myPlaylist.current;
             var playlist = myPlaylist.playlist;
             $.each(playlist, function(index, obj) {
                 if (index == current) {
-                    $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img src='"+obj.image+"'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
+                    $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img style='width:55px;height:55px;' src='"+obj.image+"'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
                 }
             });
 			$('.knob-wrapper').mousedown(function() {
