@@ -38,7 +38,7 @@ def index(request):
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
         current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
 
-        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[4].id
+        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
 
         musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
         playlist=[]
@@ -280,10 +280,8 @@ def upload(request):
             m.save()
 
     return render(request, 'musicplayer_app/upload.html/')
-    # return redirect('/')
 
 
-    return HttpResponse('Quality changed')
 
 
 @login_required(login_url='/login/')
