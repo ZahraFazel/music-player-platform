@@ -34,35 +34,39 @@ def json_default(value):
 
 @login_required(login_url='/login/')
 def index(request):
-
+    musicbar=True
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
         current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        if PlayList.objects.filter(owner_id=current_user_id).exists():
 
-        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
+            playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
 
-        musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-        playlist=[]
-        for p in musicplaylist:
-            m = Music.objects.get(id=p.music_id)
+            musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+            playlist=[]
+            for p in musicplaylist:
+                m = Music.objects.get(id=p.music_id)
 
-            playlist.append(
-                {
-                    "title":m.name,
-                    "album":m.Album_name,
-                    "artist":Artist.objects.get(id=m.artist_id).username,
-                    "image":"/media/"+m.cover.name,
-                    "file":"/media/"+m.file.name,
+                playlist.append(
+                    {
+                        "title":m.name,
+                        "album":m.Album_name,
+                        "artist":Artist.objects.get(id=m.artist_id).username,
+                        "image":"/media/"+m.cover.name,
+                        "file":"/media/"+m.file.name,
 
-                }
+                    }
 
-            )
+                )
 
-        playlist=json.dumps(playlist,default=json_default)
-        # playlist = serializers.serialize("json", playlist)
+            playlist=json.dumps(playlist,default=json_default)
 
-        return render(request,'musicplayer_app/index.html' , {"playlist":playlist})
+            return render(request,'musicplayer_app/index.html' , {"playlist":playlist ,"showmusic":musicbar})
+        musicbar=False
+        return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
+
     else:
-        return render(request, 'musicplayer_app/index.html')
+        musicbar=False
+        return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
 
 
 @login_required(login_url='/login/')
@@ -496,7 +500,7 @@ def search(request):
 
 
 
-    return HttpResponse(status=204)
+    return HttpResponse(status=200)
 
 
 
@@ -504,7 +508,6 @@ def search(request):
 @login_required(login_url='/login/')
 def setplaylist_play(request):
     current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
-    quality= request.POST.get('quality')
 
     playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
 
@@ -512,3 +515,39 @@ def setplaylist_play(request):
 
     print("PLAYLIST",playlist)
     return redirect('musicplayer_app/index.html' , {"playlist":playlist})
+
+
+
+def play_with_quality(request):
+
+    quality= request.POST.get('quality')
+    current_music_name = request.POST.get('current_music')
+    current_playlist = json.loads(request.POST.get('currentplaylist'))
+    playlist=[]
+    if Music.objects.filter(name=current_music_name,quality=quality).exists():
+        for cur in current_playlist:
+            if cur.get('title') == current_music_name:
+                cur['mp3']= '/media/'+Music.objects.get(name=current_music_name,quality=quality).file.name
+                print('dddddd',cur['mp3'])
+        # for p in current_playlist:
+        #     m = Music.objects.get(id=p.music_id)
+        #
+        #     playlist.append(
+        #         {
+        #             "title":m.name,
+        #             "album":m.Album_name,
+        #             "artist":Artist.objects.get(id=m.artist_id).username,
+        #             "image":"/media/"+m.cover.name,
+        #             "file":"/media/"+m.file.name,
+        #
+        #         }
+        #
+        #     )
+        #
+        # playlist=json.dumps(playlist,default=json_default)
+        playlist=current_playlist
+        return redirect('musicplayer_app/index.html' , {"playlist":playlist})
+
+    else:
+        print("this quality doesn't exists")
+    return HttpResponse(status=200)

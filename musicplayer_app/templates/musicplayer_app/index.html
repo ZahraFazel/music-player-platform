@@ -2293,6 +2293,7 @@
                 </div>
             </div>
         </div>
+        {% if showmusic %}
         <!----Audio Player Section---->
         <div id = 'footer_player' class="ms_player_wrapper">
 			<div class="ms_player_close">
@@ -2346,7 +2347,7 @@
                                     <button class="jp-previous" tabindex="0">
 					<i class="ms_play_control"></i>
 				</button>
-                                    <button class="jp-play" tabindex="0" onclick="setplaylist()" >
+                                    <button class="jp-play" tabindex="0"  >
 					<i class="ms_play_control" ></i>
 				</button>
                                     <button class="jp-next" tabindex="0">
@@ -2389,12 +2390,11 @@
 									<button class="jp-repeat" tabindex="0" title="Repeat"><i class="ms_play_control"></i></button>
                                 </div>
                                 <div class="jp_quality_optn custom_select">
-                                    <select  id ="Quality"  onchange="changeQuality(this.value)">
-						<option>quality</option>
-						<option value="1">HD</option>
-						<option value="2">High</option>
-						<option value="3" selected>medium</option>
-						<option value="4">low</option>
+                                    <select  id ="Quality">
+						<option value="1">Low</option>
+						<option value="2" selected>medium</option>
+						<option value="3" >High</option>
+						<option value="4">HD</option>
 					</select>
                                 </div>
                             </div>
@@ -2404,6 +2404,7 @@
             </div>
             <!--main div-->
         </div>
+        {% endif%}
     </div>
     <!----Language Selection Modal---->
     <div class="ms_lang_popup">
@@ -2559,7 +2560,7 @@
     var newlist =  {{playlist|safe}} ;
     var mynewplaylist =[];
 
-
+    console.log("mynewplaylist",mynewplaylist);
     for(var i =0; i<newlist.length; i++)
     {
       mynewplaylist.push(
@@ -2573,38 +2574,46 @@
     }
 
 
-function setplaylist(){
+    var csrf = "{{ csrf_token}}"
+
+<!--function setplaylist(){-->
 
 
-        $.ajax({
-              type: "POST",
-             url: "/setplaylist_play/",
-             dataType:"json",
-             data: {
-                 csrfmiddlewaretoken:'{{ csrf_token }}',
-                 quality: $('#Quality').val(),
+        <!--$.ajax({-->
+              <!--type: "POST",-->
+              <!--url: "/play_with_quality/",-->
+             <!--dataType:"json",-->
+             <!--data: {-->
+                 <!--csrfmiddlewaretoken:'{{ csrf_token }}',-->
+                 <!--quality: $('#Quality').val(),-->
 
-             },
+             <!--},-->
 
-    success: function(data){
-        console.log("success");
-        console.log(data);
-    },
-    failure: function(data){
-        console.log("failure");
-        console.log(data);
-    },
-});
+    <!--success: function(data){-->
+        <!--console.log("success");-->
+        <!--console.log(data);-->
+    <!--},-->
+    <!--failure: function(data){-->
+        <!--console.log("failure");-->
+        <!--console.log(data);-->
+    <!--},-->
+<!--});-->
 
-    }
+    <!--}-->
 
 
 
 function changeQuality(value){
-alert("change Q");
+         alert("change Q");
+         console.log(mynewplaylist.playlist[mynewplaylist.current]);
+
 }
 
 </script>
+
+
+
+
     <!--Main js file Style-->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -2616,6 +2625,7 @@ alert("change Q");
     <script type="text/javascript" src="{% static 'js/plugins/nice_select/jquery.nice-select.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/plugins/scroll/jquery.mCustomScrollbar.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
 </body>
 
 </html>

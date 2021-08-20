@@ -5,6 +5,7 @@ $(function() {
 
     if ($('.audio-player').length) {
 		var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
+        var current_song ="";
         var myPlaylist = new jPlayerPlaylist({
             jPlayer: "#jquery_jplayer_1",
             cssSelectorAncestor: "#jp_container_1"
@@ -40,7 +41,13 @@ $(function() {
                 if (index == current) {
                     $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img style='width:55px;height:55px;' src='"+obj.image+"'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
                 }
-            });
+            }
+
+
+
+                );
+
+
 			$('.knob-wrapper').mousedown(function() {
                 $(window).mousemove(function(e) {
                     var angle1 = getRotationDegrees($('.knob')),
@@ -77,10 +84,49 @@ $(function() {
 				return (angle < 0) ? angle + 360 : angle;
 			}
 
+/////////// new /////////
+//  if($("#jquery_jplayer_1").data().jPlayer.status.paused == false)
+//  {
+//
+//  }
 
 
 
+            $( "#Quality" ).change(function() {
 
+                     $( "#Quality" ).val();
+                          var jsonText = JSON.stringify(mynewplaylist);
+
+                      current_song=$("#jquery_jplayer_1").data().jPlayer.status.media.title;
+                           $.ajax({
+                      type: "POST",
+                          url: "/play_with_quality/",
+                          dataType:"json",
+                      data: {
+                        csrfmiddlewaretoken:csrf,
+                            quality: $( "#Quality" ).val(),
+                            current_music:current_song,
+                            currentplaylist:jsonText,
+
+                              },
+
+                        success: function(data){
+                            console.log("success");
+
+                            console.log(data);
+                        },
+                        failure: function(data){
+                            console.log("failure");
+                            console.log(data);
+                        },
+                    });
+
+
+            });
+
+
+
+/////////////////// end///////
             var timeDrag = false;
             $('.jp-play-bar').mousedown(function(e) {
                 timeDrag = true;
@@ -125,8 +171,11 @@ $(function() {
 
                 var playlistId = $(this).data('playlist-id');
                 myPlaylist.play(playlistId);
+
             });
 
         });
     }
 });
+
+
