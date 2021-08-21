@@ -12,6 +12,8 @@ class User(AbstractUser):
     name = models.CharField(max_length=100, default="Unknown")
     email = models.EmailField(unique=True, null=False)
     is_artist = models.BooleanField(default=False)
+    profile_pic = models.ImageField(blank=True,null=True,upload_to='profiles/')
+
 
 
 class Listener(User):

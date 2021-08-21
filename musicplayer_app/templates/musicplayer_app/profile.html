@@ -204,13 +204,40 @@
 
                 <div class="ms_profile_box">
                      <div class="ms_pro_img">
-                    <img src="{% static 'images/pro_img.jpg' %}" alt="" class="img-fluid">
+
+
+                    <img src="/media/{{user.profile_pic.name}}" alt="" class="img-fluid">
                     <div class="pro_img_overlay">
                         <i class="fa_icon edit_icon"></i>
                     </div>
-
-
                 </div>
+
+
+
+
+
+
+
+
+                    <form accept-charset="UTF-8"  actiton ="#" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                       <input type="file" name="profile_pic" id="profile_pic">
+
+                             <button type="submit" class="ms_btn" style="margin:24px;" >Set Profile</button>
+
+                            </form>
+
+
+
+
+
+
+
+
+
+
+
 
                     <div><a href="followed_artists"><p style="padding:20px; font-size:20px;">Followed Artists</p> </a></div>
 

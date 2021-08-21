@@ -252,11 +252,18 @@ def logout(request):
 @login_required(login_url='/login/')
 def artist_profile(request):
 
+    artistId = Artist.objects.get(id=request.user.id)
     all_musics = Music.objects.filter(artist_id=request.user.id)
 
-    artistId = Artist.objects.get(id=request.user.id)
     followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
-    return render(request, 'musicplayer_app/artist_profile.html', {'tracks': all_musics ,'count_of_followers':len(followers_of_artist)})
+
+    if request.method=='POST':
+        user_profile = request.FILES.get('profile_pic')
+        artistId.profile_pic =  user_profile
+        artistId.save()
+
+
+    return render(request, 'musicplayer_app/artist_profile.html', {'artist':artistId, 'tracks': all_musics ,'count_of_followers':len(followers_of_artist)})
 
 
 @login_required(login_url='/login/')
@@ -412,10 +419,17 @@ def single_artist(request,artistId ):
 def profile(request):
     user = User.objects.get(username=request.user.username)
     print(user.is_artist)
+
+
     if user.is_artist:
         return render(request, 'musicplayer_app/artist_profile.html')
     else:
-        return render(request, 'musicplayer_app/profile.html')
+        if request.method=='POST':
+            user_profile = request.FILES.get('profile_pic')
+            user.profile_pic =  user_profile
+            user.save()
+
+        return render(request, 'musicplayer_app/profile.html' ,{'user':user})
 
 
 @login_required(login_url='/login/')
