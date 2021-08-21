@@ -268,16 +268,18 @@
                     <li>#</li>
                     <li>Song Title</li>
                     <li>Artist</li>
-                    <li class="text-center">Duration</li>
+                    <li class="text-center">Stars</li>
                     <li class="text-center">Add To Favourites</li>
                     <li class="text-center">More</li>
                 </ul>
                 {% for m in musics%}
-                <ul>
-                    <li><a href="#"><span class="play_no">{{forloop.counter}}</span><span class="play_hover"></span></a></li>
+                <ul id="icon+{{m.id}}" >
+                    <li><audio controls hidden="true" id="{{m.id}}"><source src="/media/{{m.file.name}}" type="audio/mpeg" >Your browser does not support the audio element.</audio>
+                    <a href="#" onclick="play_and_pause({{m.id}})"><span class="play_no">{{forloop.counter}}</span><span class="play_hover"></span></a></li>
+
                     <li><a href="#">{{m.name}}</a></li>
                     <li><a href="#">{{artist.username}}</a></li>
-                    <li class="text-center"><a href="#">5:26</a></li>
+                    <li class="text-center"><a href="#">{{m.num_stars}}</a></li>
                     <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
                     <li class="text-center ms_more_icon"><a href="javascript:;"><span
                             class="ms_icon1 ms_active_icon"></span></a>
@@ -296,28 +298,6 @@
                     </li>
                 </ul>
                 {% endfor%}
-                <ul class="play_active_song">
-                    <li><a href="#"><span class="play_no">04</span><span class="play_hover"></span></a></li>
-                    <li><a href="#">Dark Alley Acoustic</a></li>
-                    <li><a href="#">Ava Cornish & Brian Hill</a></li>
-                    <li class="text-center"><a href="#">5:26</a></li>
-                    <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-                    <li class="text-center ms_more_icon"><a href="javascript:;"><span
-                            class="ms_icon1 ms_active_icon"></span></a>
-                        <ul class="more_option">
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
-                                Favourites</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To
-                                Queue</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download
-                                Now</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
-                                Playlist</a></li>
-                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="ms_view_more padder_bottom20">
@@ -1074,123 +1054,118 @@
         </div>
     </div>
     <!----Audio Player Section---->
-    <div class="ms_player_wrapper">
-        <div class="ms_player_close">
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-        </div>
-        <div class="player_mid">
-            <div class="audio-player">
-                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-                <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
-                    <div class="player_left">
-                        <div class="ms_play_song">
-                            <div class="play_song_name">
-                                <a href="javascript:void(0);" id="playlist-text">
-                                    <div class="jp-now-playing flex-item">
-                                        <div class="jp-track-name"></div>
-                                        <div class="jp-artist-name"></div>
-                                    </div>
-                                </a>
+ {% if showmusic %}
+        <!----Audio Player Section---->
+        <div id = 'footer_player' class="ms_player_wrapper">
+			<div class="ms_player_close">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+			</div>
+            <div class="player_mid">
+                <div class="audio-player">
+                    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                    <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+                        <div class="player_left">
+                            <div class="ms_play_song">
+                                <div class="play_song_name">
+                                    <a href="javascript:void(0);" id="playlist-text">
+                                        <div class="jp-now-playing flex-item">
+                                            <div class="jp-track-name"></div>
+                                            <div class="jp-artist-name"></div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="play_song_options">
-                            <ul>
-                                <li><a href="#"><span class="song_optn_icon"><i
-                                        class="ms_icon icon_download"></i></span>download now</a></li>
-                                <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add
-                                    To Favourites</a></li>
-                                <li><a href="#"><span class="song_optn_icon"><i
-                                        class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
-                                <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                    </div>
-                    <!----Right Queue---->
-                    <div class="jp_queue_wrapper">
-                        <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
-                        <div id="playlist-wrap" class="jp-playlist">
-                            <div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
-                            <h2>queue</h2>
-                            <div class="jp_queue_list_inner">
+                            <div class="play_song_options">
                                 <ul>
-                                    <li>&nbsp;</li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_download"></i></span>download now</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a></li>
                                 </ul>
                             </div>
-                            <div class="jp_queue_btn">
-                                <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
-                                <a href="clear_modal" class="ms_save" data-toggle="modal"
-                                   data-target="#save_modal">save</a>
+                            <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                        </div>
+                        <!----Right Queue---->
+                        <div class="jp_queue_wrapper">
+                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
+                            <div id="playlist-wrap" class="jp-playlist">
+								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
+                                <h2>queue</h2>
+								<div class="jp_queue_list_inner">
+									<ul>
+										<li>&nbsp;</li>
+									</ul>
+								</div>
+                                <div class="jp_queue_btn">
+                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
+                                    <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="jp-type-playlist">
-                        <div class="jp-gui jp-interface flex-wrap">
-                            <div class="jp-controls flex-item">
-                                <button class="jp-previous" tabindex="0">
-                                    <i class="ms_play_control"></i>
-                                </button>
-                                <button class="jp-play" tabindex="0">
-                                    <i class="ms_play_control"></i>
-                                </button>
-                                <button class="jp-next" tabindex="0">
-                                    <i class="ms_play_control"></i>
-                                </button>
-                            </div>
-                            <div class="jp-progress-container flex-item">
-                                <div class="jp-time-holder">
-                                    <span class="jp-current-time" role="timer" aria-label="time">&nbsp;</span>
-                                    <span class="jp-duration" role="timer" aria-label="duration">&nbsp;</span>
+                        <div class="jp-type-playlist">
+                            <div class="jp-gui jp-interface flex-wrap">
+                                <div class="jp-controls flex-item">
+                                    <button class="jp-previous" tabindex="0">
+					<i class="ms_play_control"></i>
+				</button>
+                                    <button class="jp-play" tabindex="0"  >
+					<i class="ms_play_control" ></i>
+				</button>
+                                    <button class="jp-next" tabindex="0">
+					<i class="ms_play_control"></i>
+				</button>
                                 </div>
-                                <div class="jp-progress">
-                                    <div class="jp-seek-bar">
-                                        <div class="jp-play-bar">
-                                            <div class="bullet">
-                                            </div>
-                                        </div>
+                                <div class="jp-progress-container flex-item">
+                                    <div class="jp-time-holder">
+                                        <span class="jp-current-time" role="timer" aria-label="time">&nbsp;</span>
+                                        <span class="jp-duration" role="timer" aria-label="duration">&nbsp;</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="jp-volume-controls flex-item">
-                                <div class="widget knob-container">
-                                    <div class="knob-wrapper-outer">
-                                        <div class="knob-wrapper">
-                                            <div class="knob-mask">
-                                                <div class="knob d3"><span></span></div>
-                                                <div class="handle"></div>
-                                                <div class="round">
-                                                    <img src="images/svg/volume.svg" alt="">
+                                    <div class="jp-progress">
+                                        <div class="jp-seek-bar">
+                                            <div class="jp-play-bar">
+                                                <div class="bullet">
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <input></input> -->
                                     </div>
                                 </div>
-                            </div>
-                            <div class="jp-toggles flex-item">
-                                <button class="jp-shuffle" tabindex="0" title="Shuffle">
-                                    <i class="ms_play_control"></i>
-                                    <button class="jp-repeat" tabindex="0" title="Repeat"><i
-                                            class="ms_play_control"></i></button>
-                            </div>
-                            <div class="jp_quality_optn custom_select">
-                                <select>
-                                    <option>quality</option>
-                                    <option value="1">HD</option>
-                                    <option value="2">High</option>
-                                    <option value="3">medium</option>
-                                    <option value="4">low</option>
-                                </select>
+                                <div class="jp-volume-controls flex-item">
+                                    <div class="widget knob-container">
+                                        <div class="knob-wrapper-outer">
+                                            <div class="knob-wrapper">
+                                                <div class="knob-mask">
+                                                    <div class="knob d3"><span></span></div>
+                                                    <div class="handle"></div>
+                                                    <div class="round">
+                                                        <img src="images/svg/volume.svg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <input></input> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jp-toggles flex-item">
+                                    <button class="jp-shuffle" tabindex="0" title="Shuffle">
+									<i class="ms_play_control"></i></button>
+									<button class="jp-repeat" tabindex="0" title="Repeat"><i class="ms_play_control"></i></button>
+                                </div>
+                                <div class="jp_quality_optn custom_select">
+                                    <select  id ="Quality">
+						<option value="1">Low</option>
+						<option value="2" selected>medium</option>
+						<option value="3" >High</option>
+						<option value="4">HD</option>
+					</select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--main div-->
         </div>
-        <!--main div-->
-    </div>
-</div>
+        {% endif%}</div>
 <!----Register Modal Start---->
 <!-- Modal -->
 <div class="ms_register_popup">
@@ -1432,6 +1407,50 @@
     </div>
 </div>
     <!--Main js file Style-->
+
+<script>
+   var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
+
+    var newlist =  {{playlist|safe}} ;
+    var mynewplaylist =[];
+
+    console.log("mynewplaylist", mynewplaylist);
+    for(var i =0; i<newlist.length; i++)
+    {
+      mynewplaylist.push(
+      {
+      'image':newlist[i].image,
+      'title':newlist[i].title,
+      'artist':newlist[i].artist,
+      'mp3':newlist[i].file
+
+      })
+    }
+
+    var csrf = "{{ csrf_token}}"
+
+
+
+    function play_and_pause(id){
+
+
+    var song =  document.getElementById(id);
+    icon = document.getElementById('icon+'+id);
+
+
+    if (icon.className === 'play_active_song'){
+         console.log(icon.className)
+         song.pause();
+     icon.classList.remove('play_active_song');
+    }
+    else{
+    song.play();
+    icon.classList.add('play_active_song');
+}
+    }
+</script>
+
+
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>

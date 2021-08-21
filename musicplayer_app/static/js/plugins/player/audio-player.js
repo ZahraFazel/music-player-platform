@@ -12,13 +12,7 @@ $(function() {
         },
 
 
-
-
-
           mynewplaylist,
-
-
-
 
          {
             swfPath: "js/plugins",
@@ -95,7 +89,7 @@ $(function() {
             $( "#Quality" ).change(function() {
 
                      $( "#Quality" ).val();
-                          var jsonText = JSON.stringify(mynewplaylist);
+                       var jsonText = JSON.stringify(mynewplaylist);
 
                       current_song=$("#jquery_jplayer_1").data().jPlayer.status.media.title;
                            $.ajax({
@@ -112,15 +106,18 @@ $(function() {
 
                         success: function(data){
                             console.log("success");
+                              mynewplaylist=data;
+                              console.log("data", mynewplaylist);
+                               var playlistId = $(this).data('playlist-id');
+                               myPlaylist.play(playlistId);
 
-                            console.log(data);
+
                         },
                         failure: function(data){
                             console.log("failure");
                             console.log(data);
                         },
                     });
-
 
             });
 

@@ -2554,13 +2554,15 @@
 	</div>
 
 
+
+
 <script>
    var myPlayListOtion = '<ul class="more_option"><li><a href="#"><span class="opt_icon" title="Add To Favourites"><span class="icon icon_fav"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Queue"><span class="icon icon_queue"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Download Now"><span class="icon icon_dwn"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Add To Playlist"><span class="icon icon_playlst"></span></span></a></li><li><a href="#"><span class="opt_icon" title="Share"><span class="icon icon_share"></span></span></a></li></ul>';
 
     var newlist =  {{playlist|safe}} ;
     var mynewplaylist =[];
 
-    console.log("mynewplaylist",mynewplaylist);
+    console.log("mynewplaylist", mynewplaylist);
     for(var i =0; i<newlist.length; i++)
     {
       mynewplaylist.push(
@@ -2574,40 +2576,11 @@
     }
 
 
+
     var csrf = "{{ csrf_token}}"
 
-<!--function setplaylist(){-->
 
 
-        <!--$.ajax({-->
-              <!--type: "POST",-->
-              <!--url: "/play_with_quality/",-->
-             <!--dataType:"json",-->
-             <!--data: {-->
-                 <!--csrfmiddlewaretoken:'{{ csrf_token }}',-->
-                 <!--quality: $('#Quality').val(),-->
-
-             <!--},-->
-
-    <!--success: function(data){-->
-        <!--console.log("success");-->
-        <!--console.log(data);-->
-    <!--},-->
-    <!--failure: function(data){-->
-        <!--console.log("failure");-->
-        <!--console.log(data);-->
-    <!--},-->
-<!--});-->
-
-    <!--}-->
-
-
-
-function changeQuality(value){
-         alert("change Q");
-         console.log(mynewplaylist.playlist[mynewplaylist.current]);
-
-}
 
 </script>
 

@@ -296,6 +296,33 @@ def artists_page(request):
 
 @login_required(login_url='/login/')
 def artist_single_page(request):
+    musicbar=False
+    playlist=[]
+
+    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        if PlayList.objects.filter(owner_id=current_user_id).exists():
+            musicbar=True
+            playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
+
+            musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+            for p in musicplaylist:
+                m = Music.objects.get(id=p.music_id)
+
+                playlist.append(
+                    {
+                        "title":m.name,
+                        "album":m.Album_name,
+                        "artist":Artist.objects.get(id=m.artist_id).username,
+                        "image":"/media/"+m.cover.name,
+                        "file":"/media/"+m.file.name,
+
+                    }
+
+                )
+
+            playlist=json.dumps(playlist,default=json_default)
+
 
     if request.method == 'GET':
          artist_ID = request.GET.get('id')
@@ -308,7 +335,7 @@ def artist_single_page(request):
          if ArtistFollower.objects.filter(artist=artist_ID,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
             user_is_following =True
 
-    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following}
+    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following,"showmusic":musicbar,"playlist":playlist}
     return render(request,'musicplayer_app/artist_single.html' ,context)
 
 
@@ -513,7 +540,6 @@ def setplaylist_play(request):
 
     playlist = MusicPlayList.objects.filter(playlist_id=playlist_id)
 
-    print("PLAYLIST",playlist)
     return redirect('musicplayer_app/index.html' , {"playlist":playlist})
 
 
@@ -546,8 +572,20 @@ def play_with_quality(request):
         #
         # playlist=json.dumps(playlist,default=json_default)
         playlist=current_playlist
-        return redirect('musicplayer_app/index.html' , {"playlist":playlist})
+        playlist = json.dumps(playlist)
+        return HttpResponse(playlist, content_type='application/json')
 
     else:
         print("this quality doesn't exists")
     return HttpResponse(status=200)
+
+
+
+
+def play_single_music(request):
+     musicId = request.GET.get('id')
+
+     selected_music = Music.objects.get(id=musicId)
+     file_patth= '/media/'+selected_music.file.name
+     print("oooooooo" , musicId)
+     return HttpResponse(status=204)
