@@ -12,8 +12,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=100, default="Unknown")
     email = models.EmailField(unique=True, null=False)
     is_artist = models.BooleanField(default=False)
-    profile_pic = models.ImageField(blank=True,null=True,upload_to='profiles/')
-
+    profile_pic = models.ImageField(blank=True, null=True, upload_to='profiles/')
 
 
 class Listener(User):
@@ -28,12 +27,12 @@ class Artist(User):
 class Music(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    Album_name = models.CharField(max_length=100 , default='album_name')
+    Album_name = models.CharField(max_length=100, default='album_name')
     release_date = models.DateField()
     num_stars = models.IntegerField()
     quality = models.IntegerField(default=1)
-    cover = models.ImageField(blank=True,null=True,upload_to='pictures/')
-    file = models.FileField(blank=True,null=True,upload_to='trackes/')
+    cover = models.ImageField(blank=True, null=True, upload_to='pictures/')
+    file = models.FileField(blank=True, null=True, upload_to='trackes/')
 
 
 class PlayList(models.Model):
@@ -71,3 +70,11 @@ class PlayListFollower(models.Model):
 
     class Meta:
         unique_together = (("playlist", "follower"),)
+
+
+class MusicGenres(models.Model):
+    music = models.ForeignKey(Music, on_delete=models.CASCADE)
+    genre = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = (("music", "genre"),)
