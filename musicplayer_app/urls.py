@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'artist_followers/', views.artist_followers, name='artist_followers'),
 
     url(r'^artist_single_page/$', views.artist_single_page, name='artist_single_page'),
+    url(r'^music_single_page/$', views.music_single_page, name='music_single_page'),
 
     url(r'^my_playlists/$', views.my_playlists, name='my_playlists'),
     # url(r'', views.start),

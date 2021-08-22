@@ -79,12 +79,6 @@ $(function() {
 			}
 
 /////////// new /////////
-//  if($("#jquery_jplayer_1").data().jPlayer.status.paused == false)
-//  {
-//
-//  }
-
-
 
             $( "#Quality" ).change(function() {
 
@@ -142,6 +136,7 @@ $(function() {
                 }
             });
             var updatebar = function(x) {
+
                 var progress = $('.jp-progress');
                 var position = x - progress.offset().left;
                 var percentage = 100 * position / progress.width();
@@ -151,8 +146,9 @@ $(function() {
                 if (percentage < 0) {
                     percentage = 0;
                 }
+
                 $("#jquery_jplayer_1").jPlayer("playHead", percentage);
-                $('.jp-play-bar').css('width', percentage + '%');
+                $('.bullet').css('width', percentage + '%');
             };
             $('#playlist-toggle, #playlist-text, #playlist-wrap li a').unbind().on('click', function() {
                 $('#playlist-wrap').fadeToggle();
