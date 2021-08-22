@@ -32,18 +32,16 @@ def json_default(value):
         return value.__dict__
 
 
-@login_required(login_url='/login/')
-def index(request):
-    musicbar=True
-    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+
+def audio_player(request):
+
         current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
-        if PlayList.objects.filter(owner_id=current_user_id).exists():
 
-            playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
+        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[4].id
 
-            musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-            playlist=[]
-            for p in musicplaylist:
+        musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+        playlist=[]
+        for p in musicplaylist:
                 m = Music.objects.get(id=p.music_id)
 
                 playlist.append(
@@ -53,13 +51,22 @@ def index(request):
                         "artist":Artist.objects.get(id=m.artist_id).username,
                         "image":"/media/"+m.cover.name,
                         "file":"/media/"+m.file.name,
-
                     }
-
                 )
 
-            playlist=json.dumps(playlist,default=json_default)
+        playlist=json.dumps(playlist,default=json_default)
+        return  playlist
 
+
+@login_required(login_url='/login/')
+def index(request):
+    musicbar=True
+    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        if PlayList.objects.filter(owner_id=current_user_id).exists():
+
+
+            playlist=audio_player(request)
             return render(request,'musicplayer_app/index.html' , {"playlist":playlist ,"showmusic":musicbar})
         musicbar=False
         return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
@@ -339,7 +346,7 @@ def artist_single_page(request):
          followers_of_artist = ArtistFollower.objects.filter(artist_id=artist_ID)
          user_is_following =False
 
-         if ArtistFollower.objects.filter(artist=artist_ID,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
+         if ArtistFollower.objects.filter(artist=artist_ID,follower=User.objects.get(id=request.user.id)).exists():
             user_is_following =True
 
     context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following,"showmusic":musicbar,"playlist":playlist}
