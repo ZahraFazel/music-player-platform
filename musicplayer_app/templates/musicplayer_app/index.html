@@ -202,7 +202,6 @@
                 <div class="ms_top_left">
                     <div class="ms_top_search">
                         <form action="/search/" method="GET">
-
                         <input type="text" name="search_text" class="form-control" placeholder="Search Music Here..">
                         <span class="search_icon">
                             {% load static %}
@@ -2295,7 +2294,7 @@
         </div>
         {% if showmusic %}
         <!----Audio Player Section---->
-        <div id = 'footer_player' class="ms_player_wrapper">
+        <div  class="ms_player_wrapper">
 			<div class="ms_player_close">
 				<i class="fa fa-angle-up" aria-hidden="true"></i>
 			</div>
@@ -2376,7 +2375,7 @@
                                                     <div class="knob d3"><span></span></div>
                                                     <div class="handle"></div>
                                                     <div class="round">
-                                                        <img src="images/svg/volume.svg" alt="">
+                                                        <img src="{% static 'images/svg/volume.svg' %}" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2406,6 +2405,7 @@
         </div>
         {% endif%}
     </div>
+
     <!----Language Selection Modal---->
     <div class="ms_lang_popup">
         <div id="lang_modal" class="modal  centered-modal" role="dialog">
@@ -2567,10 +2567,12 @@
     {
       mynewplaylist.push(
       {
-      'image':newlist[i].image,
-      'title':newlist[i].title,
-      'artist':newlist[i].artist,
-      'mp3':newlist[i].file
+      image:newlist[i].image,
+      title:newlist[i].title,
+      artist:newlist[i].artist,
+      mp3:newlist[i].file,
+      oga:newlist[i].file,
+      option:myPlayListOtion
 
       })
     }

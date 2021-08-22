@@ -21,6 +21,13 @@ from django.core import serializers
 import json
 from django.core import serializers
 
+import sys
+
+import tempfile
+from pydub import AudioSegment
+from urllib.request import urlopen
+
+
 # Create your views here.
 def start(request):
     return HttpResponseRedirect('/login/')
@@ -32,18 +39,16 @@ def json_default(value):
         return value.__dict__
 
 
-@login_required(login_url='/login/')
-def index(request):
-    musicbar=True
-    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+
+def audio_player(request):
+
         current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
-        if PlayList.objects.filter(owner_id=current_user_id).exists():
 
-            playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
+        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[5].id
 
-            musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-            playlist=[]
-            for p in musicplaylist:
+        musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+        playlist=[]
+        for p in musicplaylist:
                 m = Music.objects.get(id=p.music_id)
 
                 playlist.append(
@@ -53,13 +58,22 @@ def index(request):
                         "artist":Artist.objects.get(id=m.artist_id).username,
                         "image":"/media/"+m.cover.name,
                         "file":"/media/"+m.file.name,
-
                     }
-
                 )
 
-            playlist=json.dumps(playlist,default=json_default)
+        playlist=json.dumps(playlist,default=json_default)
+        return  playlist
 
+
+@login_required(login_url='/login/')
+def index(request):
+    musicbar=True
+    if Listener.objects.filter(user_ptr_id=request.user.id).exists():
+        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        if PlayList.objects.filter(owner_id=current_user_id).exists():
+
+
+            playlist=audio_player(request)
             return render(request,'musicplayer_app/index.html' , {"playlist":playlist ,"showmusic":musicbar})
         musicbar=False
         return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
@@ -196,22 +210,6 @@ def create_playlist(request):
     return redirect('/my_playlists')
 
 
-# def add_music(request):
-#     if request.method == "POST":
-#         if request.user.is_artist:
-#             music_name = request.POST.get('musicname')
-#             music_artist = request.user
-#             music_album = request.POST.get('album')
-#             music_release_date = request.POST.get('release_date')
-#             print(music_artist)
-#             m = Music(artist=music_artist, name=music_name, album_name=music_album, release_date=music_release_date,
-#                       num_stars=0)
-#             m.save()
-#
-#         return render(request, 'musicplayer_app/add_music.html/')
-#     return redirect('/')
-
-
 @csrf_exempt
 def register(request):
     if request.method == 'GET':
@@ -271,6 +269,7 @@ def remove_track(request):
     if request.method == 'GET':
         trackId = request.GET.get('id')
         Music.objects.filter(id=trackId).delete()
+
     return artist_profile(request)
 
 
@@ -278,6 +277,7 @@ def remove_track(request):
 def upload(request):
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
+
         if user.is_artist:
             music_name = request.POST.get('musicname')
             music_artist = Artist.objects.get(user_ptr_id=request.user.id)
@@ -286,9 +286,17 @@ def upload(request):
             music_quality = request.POST.get('quality')
             music_cover = request.FILES.get('cover')
             music_file = request.FILES.get('music_file')
+
+
             m = Music(artist=music_artist, name=music_name, Album_name=music_album, release_date=music_release_date,
                       num_stars=0,quality=music_quality,cover=music_cover,file=music_file)
             m.save()
+
+            # if music_file.name.lower().endswith(('.mp3', '.mp4')):
+            #     sys.path.append('/venv/lib/python3.9/site-packages/ffmpeg')
+            #     temp = music_file.name[:len(music_file.name) - 4]
+            #     sound = AudioSegment.from_mp3('media/trackes/'+music_file.name)
+            #     sound.export('media/trackes/'+temp+'.ogg', format="wav")
 
     return render(request, 'musicplayer_app/upload.html/')
 
@@ -309,26 +317,7 @@ def artist_single_page(request):
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
         current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
         if PlayList.objects.filter(owner_id=current_user_id).exists():
-            musicbar=True
-            playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
-
-            musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-            for p in musicplaylist:
-                m = Music.objects.get(id=p.music_id)
-
-                playlist.append(
-                    {
-                        "title":m.name,
-                        "album":m.Album_name,
-                        "artist":Artist.objects.get(id=m.artist_id).username,
-                        "image":"/media/"+m.cover.name,
-                        "file":"/media/"+m.file.name,
-
-                    }
-
-                )
-
-            playlist=json.dumps(playlist,default=json_default)
+            audio_player(request)
 
 
     if request.method == 'GET':
@@ -339,7 +328,7 @@ def artist_single_page(request):
          followers_of_artist = ArtistFollower.objects.filter(artist_id=artist_ID)
          user_is_following =False
 
-         if ArtistFollower.objects.filter(artist=artist_ID,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
+         if ArtistFollower.objects.filter(artist=artist_ID,follower=User.objects.get(id=request.user.id)).exists():
             user_is_following =True
 
     context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following,"showmusic":musicbar,"playlist":playlist}
@@ -508,17 +497,8 @@ def edit_profile(request):
 
 
 
-
-
-
-
-
-
-
-
 def search(request):
-    query = None
-    results =[]
+    print('i am heere')
     if request.method == 'GET':
 
         query = request.GET.get("search_text")
@@ -595,11 +575,16 @@ def play_with_quality(request):
 
 
 
+def music_single_page(request):
 
-def play_single_music(request):
-     musicId = request.GET.get('id')
 
-     selected_music = Music.objects.get(id=musicId)
-     file_patth= '/media/'+selected_music.file.name
-     print("oooooooo" , musicId)
-     return HttpResponse(status=204)
+    if request.method == 'GET':
+         musicId = request.GET.get('id')
+         music = Music.objects.get(id=musicId)
+
+         same_album_musics = Music.objects.filter(Album_name=music.Album_name)
+
+
+    print("fffff",same_album_musics)
+    context = {'music': music , 'same_album_musics':same_album_musics }
+    return render(request,'musicplayer_app/music_single.html' ,context)
