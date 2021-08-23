@@ -32,6 +32,7 @@ from urllib.request import urlopen
 def start(request):
     return HttpResponseRedirect('/login/')
 
+
 def json_default(value):
     if isinstance(value, datetime.date):
         return dict(year=value.year, month=value.month, day=value.day)
@@ -39,48 +40,44 @@ def json_default(value):
         return value.__dict__
 
 
-
 def audio_player(request):
+    current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
 
-        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+    playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
 
-        playlist_id = PlayList.objects.filter(owner_id=current_user_id)[5].id
+    musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+    playlist = []
+    for p in musicplaylist:
+        m = Music.objects.get(id=p.music_id)
 
-        musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-        playlist=[]
-        for p in musicplaylist:
-                m = Music.objects.get(id=p.music_id)
+        playlist.append(
+            {
+                "title": m.name,
+                "album": m.Album_name,
+                "artist": Artist.objects.get(id=m.artist_id).username,
+                "image": "/media/" + m.cover.name,
+                "file": "/media/" + m.file.name,
+            }
+        )
 
-                playlist.append(
-                    {
-                        "title":m.name,
-                        "album":m.Album_name,
-                        "artist":Artist.objects.get(id=m.artist_id).username,
-                        "image":"/media/"+m.cover.name,
-                        "file":"/media/"+m.file.name,
-                    }
-                )
-
-        playlist=json.dumps(playlist,default=json_default)
-        return  playlist
+    playlist = json.dumps(playlist, default=json_default)
+    return playlist
 
 
 @login_required(login_url='/login/')
 def index(request):
-    musicbar=True
+    musicbar = True
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
-        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
         if PlayList.objects.filter(owner_id=current_user_id).exists():
-
-
-            playlist=audio_player(request)
-            return render(request,'musicplayer_app/index.html' , {"playlist":playlist ,"showmusic":musicbar})
-        musicbar=False
-        return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
+            playlist = audio_player(request)
+            return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar})
+        musicbar = False
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar})
 
     else:
-        musicbar=False
-        return render(request, 'musicplayer_app/index.html',{"showmusic":musicbar})
+        musicbar = False
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar})
 
 
 @login_required(login_url='/login/')
@@ -249,19 +246,18 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def artist_profile(request):
-
     artistId = Artist.objects.get(id=request.user.id)
     all_musics = Music.objects.filter(artist_id=request.user.id)
 
     followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
 
-    if request.method=='POST':
+    if request.method == 'POST':
         user_profile = request.FILES.get('profile_pic')
-        artistId.profile_pic =  user_profile
+        artistId.profile_pic = user_profile
         artistId.save()
 
-
-    return render(request, 'musicplayer_app/artist_profile.html', {'artist':artistId, 'tracks': all_musics ,'count_of_followers':len(followers_of_artist)})
+    return render(request, 'musicplayer_app/artist_profile.html',
+                  {'artist': artistId, 'tracks': all_musics, 'count_of_followers': len(followers_of_artist)})
 
 
 @login_required(login_url='/login/')
@@ -287,9 +283,8 @@ def upload(request):
             music_cover = request.FILES.get('cover')
             music_file = request.FILES.get('music_file')
 
-
             m = Music(artist=music_artist, name=music_name, Album_name=music_album, release_date=music_release_date,
-                      num_stars=0,quality=music_quality,cover=music_cover,file=music_file)
+                      num_stars=0, quality=music_quality, cover=music_cover, file=music_file)
             m.save()
 
             # if music_file.name.lower().endswith(('.mp3', '.mp4')):
@@ -301,8 +296,6 @@ def upload(request):
     return render(request, 'musicplayer_app/upload.html/')
 
 
-
-
 @login_required(login_url='/login/')
 def artists_page(request):
     all_artist = Artist.objects.all()
@@ -311,28 +304,29 @@ def artists_page(request):
 
 @login_required(login_url='/login/')
 def artist_single_page(request):
-    musicbar=False
-    playlist=[]
+    musicbar = False
+    playlist = []
 
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
-        current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+        current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
         if PlayList.objects.filter(owner_id=current_user_id).exists():
             audio_player(request)
 
-
     if request.method == 'GET':
-         artist_ID = request.GET.get('id')
-         artist = Artist.objects.get(id=artist_ID)
-         musics = Music.objects.filter(artist_id=artist_ID)
+        artist_ID = request.GET.get('id')
+        artist = Artist.objects.get(id=artist_ID)
+        musics = Music.objects.filter(artist_id=artist_ID)
 
-         followers_of_artist = ArtistFollower.objects.filter(artist_id=artist_ID)
-         user_is_following =False
+        followers_of_artist = ArtistFollower.objects.filter(artist_id=artist_ID)
+        user_is_following = False
 
-         if ArtistFollower.objects.filter(artist=artist_ID,follower=User.objects.get(id=request.user.id)).exists():
-            user_is_following =True
+        if ArtistFollower.objects.filter(artist=artist_ID, follower=User.objects.get(id=request.user.id)).exists():
+            user_is_following = True
 
-    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) , 'followers':followers_of_artist ,  'user_is_following':user_is_following,"showmusic":musicbar,"playlist":playlist}
-    return render(request,'musicplayer_app/artist_single.html' ,context)
+    context = {'artist': artist, 'musics': musics, 'followers_count': len(followers_of_artist),
+               'followers': followers_of_artist, 'user_is_following': user_is_following, "showmusic": musicbar,
+               "playlist": playlist}
+    return render(request, 'musicplayer_app/artist_single.html', context)
 
 
 @login_required(login_url='/login/')
@@ -366,41 +360,42 @@ def unfollow_artist(request):
 
 
 def artist_followers(request):
-
     artistId = Artist.objects.get(id=request.user.id)
 
     followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
-    followers =[]
+    followers = []
     for f in followers_of_artist:
         l = Listener.objects.get(id=f.follower_id)
         followers.append(l)
-    return render(request,'musicplayer_app/artist_followers.html' , {"followers_of_artist":followers})
+    return render(request, 'musicplayer_app/artist_followers.html', {"followers_of_artist": followers})
+
 
 def followed_artists(request):
+    listenerId = Listener.objects.get(id=request.user.id)
+    followed__artist = ArtistFollower.objects.filter(follower_id=listenerId)
+    followed_artists = []
+    for f in followed__artist:
+        l = Artist.objects.get(id=f.artist_id)
+        followed_artists.append(l)
 
-        listenerId = Listener.objects.get(id=request.user.id)
-        followed__artist = ArtistFollower.objects.filter(follower_id=listenerId)
-        followed_artists =[]
-        for f in followed__artist:
-            l = Artist.objects.get(id=f.artist_id)
-            followed_artists.append(l)
+    return render(request, 'musicplayer_app/followed_artists.html', {"followed_artists": followed_artists})
 
-        return render(request,'musicplayer_app/followed_artists.html', {"followed_artists":followed_artists})
 
 @login_required(login_url='/login/')
-def single_artist(request,artistId ):
-
+def single_artist(request, artistId):
     artist = Artist.objects.get(id=artistId)
     musics = Music.objects.filter(artist_id=artistId)
 
     followers_of_artist = ArtistFollower.objects.filter(artist_id=artistId)
-    user_is_following =False
+    user_is_following = False
 
-    if ArtistFollower.objects.filter(artist=artistId,follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
-        user_is_following =True
+    if ArtistFollower.objects.filter(artist=artistId,
+                                     follower=Listener.objects.get(user_ptr_id=request.user.id)).exists():
+        user_is_following = True
 
-    context = {'artist': artist , 'musics':musics , 'followers_count': len(followers_of_artist) ,  'user_is_following':user_is_following}
-    return render(request,'musicplayer_app/artist_single.html' ,context)
+    context = {'artist': artist, 'musics': musics, 'followers_count': len(followers_of_artist),
+               'user_is_following': user_is_following}
+    return render(request, 'musicplayer_app/artist_single.html', context)
 
 
 @csrf_exempt
@@ -409,16 +404,15 @@ def profile(request):
     user = User.objects.get(username=request.user.username)
     print(user.is_artist)
 
-
     if user.is_artist:
         return render(request, 'musicplayer_app/artist_profile.html')
     else:
-        if request.method=='POST':
+        if request.method == 'POST':
             user_profile = request.FILES.get('profile_pic')
-            user.profile_pic =  user_profile
+            user.profile_pic = user_profile
             user.save()
 
-        return render(request, 'musicplayer_app/profile.html' ,{'user':user})
+        return render(request, 'musicplayer_app/profile.html', {'user': user})
 
 
 @login_required(login_url='/login/')
@@ -496,7 +490,6 @@ def edit_profile(request):
         return redirect('/musicplayer_app/')
 
 
-
 def search(request):
     print('i am heere')
     if request.method == 'GET':
@@ -506,49 +499,40 @@ def search(request):
             if Artist.objects.filter(username=query).exists():
                 a = Artist.objects.get(username=query)
                 match_id = a.id
-                return redirect('/artist_single_page/?id='+str(match_id))
-
-
+                return redirect('/artist_single_page/?id=' + str(match_id))
             elif Music.objects.filter(name=query).exists() or Music.objects.filter(Album_name=query).exists():
-                results = Music.objects.filter(Q(name = query) | Q(Album_name = query))
+                results = Music.objects.filter(Q(name=query) | Q(Album_name=query))
                 for x in results:
-                    x.artist_id  =Artist.objects.get(id=x.artist_id).username
-                return  render(request,'musicplayer_app/search_results.html' , {'results':results})
+                    x.artist_id = Artist.objects.get(id=x.artist_id).username
+                return render(request, 'musicplayer_app/search_results.html', {'results': results})
 
             else:
                 print("NO match found")
 
-
-
-
     return HttpResponse(status=200)
-
-
 
 
 @login_required(login_url='/login/')
 def setplaylist_play(request):
-    current_user_id =  Listener.objects.get(user_ptr_id=request.user.id).id
+    current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
 
     playlist_id = PlayList.objects.filter(owner_id=current_user_id)[0].id
 
     playlist = MusicPlayList.objects.filter(playlist_id=playlist_id)
 
-    return redirect('musicplayer_app/index.html' , {"playlist":playlist})
-
+    return redirect('musicplayer_app/index.html', {"playlist": playlist})
 
 
 def play_with_quality(request):
-
-    quality= request.POST.get('quality')
+    quality = request.POST.get('quality')
     current_music_name = request.POST.get('current_music')
     current_playlist = json.loads(request.POST.get('currentplaylist'))
-    playlist=[]
-    if Music.objects.filter(name=current_music_name,quality=quality).exists():
+    playlist = []
+    if Music.objects.filter(name=current_music_name, quality=quality).exists():
         for cur in current_playlist:
             if cur.get('title') == current_music_name:
-                cur['mp3']= '/media/'+Music.objects.get(name=current_music_name,quality=quality).file.name
-                print('dddddd',cur['mp3'])
+                cur['mp3'] = '/media/' + Music.objects.get(name=current_music_name, quality=quality).file.name
+                print('dddddd', cur['mp3'])
         # for p in current_playlist:
         #     m = Music.objects.get(id=p.music_id)
         #
@@ -565,7 +549,7 @@ def play_with_quality(request):
         #     )
         #
         # playlist=json.dumps(playlist,default=json_default)
-        playlist=current_playlist
+        playlist = current_playlist
         playlist = json.dumps(playlist)
         return HttpResponse(playlist, content_type='application/json')
 
@@ -574,17 +558,13 @@ def play_with_quality(request):
     return HttpResponse(status=200)
 
 
-
 def music_single_page(request):
-
-
     if request.method == 'GET':
-         musicId = request.GET.get('id')
-         music = Music.objects.get(id=musicId)
+        musicId = request.GET.get('id')
+        music = Music.objects.get(id=musicId)
 
-         same_album_musics = Music.objects.filter(Album_name=music.Album_name)
+        same_album_musics = Music.objects.filter(Album_name=music.Album_name)
 
-
-    print("fffff",same_album_musics)
-    context = {'music': music , 'same_album_musics':same_album_musics }
-    return render(request,'musicplayer_app/music_single.html' ,context)
+    print("fffff", same_album_musics)
+    context = {'music': music, 'same_album_musics': same_album_musics}
+    return render(request, 'musicplayer_app/music_single.html', context)
