@@ -208,18 +208,10 @@
             </div>
             <div class="ms_top_right">
                 <div class="ms_top_btn">
-
-{#                    {% if request.user.is_artist %}#}
-{##}
-{#                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>#}
-{##}
-{#                    {% else %}#}
-                           <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
-{#                    {% endif%}#}
-                     </div>
-
+                    <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
+                </div>
                 <div class="ms_top_btn">
-                    <a href="{% url 'logout' %}" class="ms_btn">Logout</a>
+                    <span><a href="{% url 'logout' %}" class="ms_btn">Logout</a></span>
                 </div>
             </div>
         </div>
@@ -232,40 +224,6 @@
                             <h1>Your Playlists</h1>
                         </div>
                     </div>
-{#                    <div class="col-lg-2 col-md-6">#}
-{#                        <div class="ms_rcnt_box marger_bottom25">#}
-{#                            <div class="ms_rcnt_box_img">#}
-{#                                <img src="images/radio/img1.jpg" alt="" class="img-fluid">#}
-{#                                <div class="ms_main_overlay">#}
-{#                                    <div class="ms_box_overlay"></div>#}
-{#                                    <div class="ms_play_icon">#}
-{#                                        <img src="images/svg/play.svg" alt="">#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="ms_rcnt_box_text">#}
-{#                                <h3><a href="#">My Favourites</a></h3>#}
-{#                                <p>15 songs</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="col-lg-2 col-md-6">#}
-{#                        <div class="ms_rcnt_box marger_bottom25">#}
-{#                            <div class="ms_rcnt_box_img">#}
-{#                                <img src="images/radio/img2.jpg" alt="" class="img-fluid">#}
-{#                                <div class="ms_main_overlay">#}
-{#                                    <div class="ms_box_overlay"></div>#}
-{#                                    <div class="ms_play_icon">#}
-{#                                        <img src="images/svg/play.svg" alt="">#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="ms_rcnt_box_text">#}
-{#                                <h3><a href="#">My Music</a></h3>#}
-{#                                <p>15 songs</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
                     {% for playlist in playlists %}
                     <div class="col-lg-2 col-md-6">
                         <div class="ms_rcnt_box marger_bottom25">
@@ -616,42 +574,6 @@
         </div>
     </div>
 </div>
-<!----Queue Save Modal---->
-{#<div class="ms_save_modal">#}
-{#    <div id="save_modal" class="modal  centered-modal" role="dialog">#}
-{#        <div class="modal-dialog">#}
-{#            <!-- Modal content-->#}
-{#            <div class="modal-content">#}
-{#                <button type="button" class="close" data-dismiss="modal">#}
-{#                    <i class="fa_icon form_close"></i>#}
-{#                </button>#}
-{#                <div class="modal-body">#}
-{#                    <h1>Log in to start sharing your music!</h1>#}
-{#                    <div class="save_modal_btn">#}
-{#                        <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i> continue with google#}
-{#                        </a>#}
-{#                        <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> continue with facebook</a>#}
-{#                    </div>#}
-{#                    <div class="ms_save_email">#}
-{#                        <h3>or use your email</h3>#}
-{#                        <div class="save_input_group">#}
-{#                            <input type="text" placeholder="Enter Your Name" class="form-control">#}
-{#                        </div>#}
-{#                        <div class="save_input_group">#}
-{#                            <input type="password" placeholder="Enter Password" class="form-control">#}
-{#                        </div>#}
-{#                        <button class="save_btn">Log in</button>#}
-{#                    </div>#}
-{#                    <div class="ms_dnt_have">#}
-{#                        <span>Dont't have an account ?</span>#}
-{#                        <a href="javascript:;" class="hideCurrentModel" data-toggle="modal" data-target="#myModal">Register#}
-{#                            Now</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
 <!--Main js file Style-->
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
