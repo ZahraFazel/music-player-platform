@@ -14,6 +14,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 
 from .forms import *
+from .recommender import *
 import datetime
 import calendar
 from django.db.models import Q
@@ -69,15 +70,16 @@ def index(request):
     musicbar = True
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
         current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
+        recommendations = handle_recommender(request)
         if PlayList.objects.filter(owner_id=current_user_id).exists():
             playlist = audio_player(request)
-            return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar})
+            return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar, 'recommendations': recommendations})
         musicbar = False
-        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar})
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'recommendations': recommendations})
 
     else:
         musicbar = False
-        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar})
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'recommendations': []})
 
 
 @login_required(login_url='/login/')
@@ -568,3 +570,9 @@ def music_single_page(request):
     print("fffff", same_album_musics)
     context = {'music': music, 'same_album_musics': same_album_musics}
     return render(request, 'musicplayer_app/music_single.html', context)
+
+
+def handle_recommender(request):
+    recommender = RecommenderSystem(request.user.username)
+    recommender.recommend()
+    return recommender.recommendations[:4]
