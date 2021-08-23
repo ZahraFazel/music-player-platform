@@ -217,13 +217,13 @@
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
 
-                    {% if request.user.is_artist %}
-
-                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>
-
-                    {% else %}
+{#                    {% if request.user.is_artist %}#}
+{##}
+{#                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>#}
+{##}
+{#                    {% else %}#}
                            <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
-                    {% endif%}
+{#                    {% endif%}#}
                      </div>
 
                 <div class="ms_top_btn">
@@ -254,6 +254,7 @@
                 </div>
             </div>
             <!---Recently Played Music--->
+            {% if is_listener %}
             <div class="ms_rcnt_slider">
                 <div class="ms_heading">
                     <h1>For You</h1>
@@ -265,23 +266,15 @@
                             <div class="ms_rcnt_box">
                                 <div class="ms_rcnt_box_img">
                                     {% load static %}
-                                    <img src="{{MEDIA_URL}}{{recommendation.cover}}" alt="">
+                                    <img src="/media/{{recommendation.cover.name}}" alt="">
                                     <div class="ms_main_overlay">
                                         <div class="ms_box_overlay"></div>
-                                        <div class="ms_more_icon">
-                                            {% load static %}
-                                            <img src="{%  static 'images/svg/more.svg' %}" alt="">
-                                        </div>
-                                        <ul class="more_option">
-                                            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                                            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                                            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                                            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                                            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                                        </ul>
                                         <div class="ms_play_icon">
                                             {% load static %}
-                                            <img src="{% static 'images/svg/play.svg' %}" alt="">
+                                            <img src="{% static 'images/svg/play.svg' %}" onclick="play_and_pause({{recommendation.id}})" alt="">
+                                            <audio controls hidden="true" id="{{recommendation.id}}">
+                                            <source src="/media/{{recommendation.file.name}}" type="audio/mpeg" >
+                                        </audio>
                                         </div>
                                     </div>
                                 </div>
@@ -410,6 +403,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             <!----Main div close---->
         </div>
         <!----Footer Start---->
@@ -710,6 +704,25 @@
 
 
     <!--Main js file Style-->
+    <script>
+
+   function play_and_pause(id){
+
+
+    var song =  document.getElementById(id);
+    icon = document.getElementById('icon+'+id);
+      console.log(icon.src)
+   if (icon.src.includes("play.svg") ){
+         song.play();
+       icon.src='/static/images/svg/pause.svg';
+    }
+    else{
+    song.pause();
+    icon.src = '/static/images/svg/play.svg';
+}
+
+    }
+    </script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>

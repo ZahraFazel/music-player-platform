@@ -213,13 +213,14 @@
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
 
-                    {% if request.user.is_artist %}
 
-                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>
-
-                    {% else %}
+{#                    {% if request.user.is_artist %}#}
+{##}
+{#                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>#}
+{##}
+{#                    {% else %}#}
                            <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
-                    {% endif%}
+{#                    {% endif%}#}
                      </div>
 
                 <div class="ms_top_btn">

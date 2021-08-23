@@ -73,13 +73,13 @@ def index(request):
         recommendations = handle_recommender(request)
         if PlayList.objects.filter(owner_id=current_user_id).exists():
             playlist = audio_player(request)
-            return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar, 'recommendations': recommendations})
+            return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations})
         musicbar = False
-        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'recommendations': recommendations})
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations})
 
     else:
         musicbar = False
-        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'recommendations': []})
+        return render(request, 'musicplayer_app/index.html', {"showmusic": musicbar, 'is_listener': False})
 
 
 @login_required(login_url='/login/')
@@ -289,6 +289,9 @@ def upload(request):
                       num_stars=0, quality=music_quality, cover=music_cover, file=music_file)
             m.save()
 
+            user.__class__ = Artist
+            user.asset += 1000
+            user.save()
             # if music_file.name.lower().endswith(('.mp3', '.mp4')):
             #     sys.path.append('/venv/lib/python3.9/site-packages/ffmpeg')
             #     temp = music_file.name[:len(music_file.name) - 4]
