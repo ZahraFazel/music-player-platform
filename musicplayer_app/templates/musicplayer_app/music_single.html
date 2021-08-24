@@ -246,8 +246,7 @@
                         <span  id="pause"  hidden="true" class="play">
                         <img   src="{% static 'images/svg/pause_all.svg' %}" alt="">Pause </span>
 
-                 <audio id="audio_payer" controls hidden="true" ><source src="/media/{{music.file.name}}" type="audio/mpeg" ></audio>
-
+                    <audio id="audio_payer" controls hidden="true" ><source src="/media/{{music.file.name}}" type="audio/mpeg" ></audio>
 
                             </a>
                     <a href="#" class="ms_btn"><span class="play_all"><img src="{% static 'images/svg/add_q.svg' %}" alt="">Add To Playlist</span>
@@ -455,10 +454,9 @@ function play_and_pause(id){
     var song =  document.getElementById('audio_payer');
     console.log("dd");
 
-    if (document.getElementById("pause").hidden===true)
+    if (song.paused)
       {
 
-   console.log('1');
        song.play();
        document.getElementById("play").hidden=true;
       document.getElementById("pause").hidden=false;
@@ -466,7 +464,6 @@ function play_and_pause(id){
 
     }
     else{
-    console.log('2');
     song.pause();
     document.getElementById("pause").hidden=true;
     document.getElementById("play").hidden=false;

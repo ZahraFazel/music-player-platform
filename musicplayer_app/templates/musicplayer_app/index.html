@@ -216,8 +216,11 @@
                 </div>
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
+
+
+
                            <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
-                     </div>
+                                     </div>
                 <div class="ms_top_btn">
                     <a href="{% url 'logout' %}" class="ms_btn">Logout</a>
                 </div>
@@ -257,21 +260,28 @@
                             <div class="swiper-slide">
                             <div class="ms_rcnt_box">
                                 <div class="ms_rcnt_box_img">
-                                    {% load static %}
                                     <img src="/media/{{recommendation.cover.name}}" alt="">
-                                    <div class="ms_main_overlay">
-                                        <div class="ms_box_overlay"></div>
+                                    <div class="w_tp_song_img">
+
+                                        <div class="ms_box_overlay">
+
+                                        </div>
+
                                         <div class="ms_play_icon">
-                                            {% load static %}
-                                            <img src="{% static 'images/svg/play.svg' %}" onclick="play_and_pause({{recommendation.id}})" alt="">
+                                            <img id="img+{{recommendation.id}}" src="{% static 'images/svg/play.svg' %}"
+                                                 onclick="play_and_pause({{recommendation.id}})" alt="">
+
                                             <audio controls hidden="true" id="{{recommendation.id}}">
                                             <source src="/media/{{recommendation.file.name}}" type="audio/mpeg" >
                                         </audio>
                                         </div>
                                     </div>
+
+
+
                                 </div>
                                 <div class="ms_rcnt_box_text">
-                                    <h3><a href="#">{{ recommendation.name }}</a></h3>
+                                    <h3><a href="/music_single_page/?id={{recommendation.id}}">{{ recommendation.name }}</a></h3>
                                     <p>{{ recommendation.artist }}</p>
                                     <p>{{ recommendation.Album_name }}</p>
                                 </div>
@@ -400,7 +410,7 @@
                             <div class="play_song_options">
                                 <ul>
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_download"></i></span>download now</a></li>
-{#                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>#}
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a></li>
                                 </ul>
@@ -408,22 +418,21 @@
                             <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                         <!----Right Queue---->
-{#                        <div class="jp_queue_wrapper">#}
-{#                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>#}
-{#                            <div id="playlist-wrap" class="jp-playlist">#}
-{#								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>#}
-{#                                <h2>queue</h2>#}
-{#								<div class="jp_queue_list_inner">#}
-{#									<ul>#}
-{#										<li>&nbsp;</li>#}
-{#									</ul>#}
-{#								</div>#}
-{#                                <div class="jp_queue_btn">#}
-{#                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>#}
-{#                                    <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
+                        <div class="jp_queue_wrapper">
+                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
+                            <div id="playlist-wrap" class="jp-playlist">
+								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
+                                <h2>queue</h2>
+							<div class="jp_queue_list_inner">
+									<ul>
+										<li>&nbsp;</li>
+									</ul>
+								</div>
+                                <div class="jp_queue_btn">
+                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
+                                    <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a></div>
+                            </div>
+                        </div>
                         <div class="jp-type-playlist">
                             <div class="jp-gui jp-interface flex-wrap">
                                 <div class="jp-controls flex-item">
@@ -490,6 +499,12 @@
         {% endif%}
     </div>
 
+
+
+
+
+
+
 	<!----Queue Clear Model ---->
 	<div class="ms_clear_modal">
 		<div id="clear_modal" class="modal  centered-modal" role="dialog">
@@ -540,33 +555,27 @@
     var csrf = "{{ csrf_token}}"
 
 
-
-
-</script>
-
-
-
-
-    <!--Main js file Style-->
-    <script>
-
    function play_and_pause(id){
 
 
     var song =  document.getElementById(id);
-    icon = document.getElementById('icon+'+id);
-      console.log(icon.src)
-   if (icon.src.includes("play.svg") ){
+    icon = document.getElementById('img+'+id);
+
+   if (song.paused ){
          song.play();
-       icon.src='/static/images/svg/pause.svg';
+         icon.src='/static/images/svg/pause.svg';
     }
-    else{
+    else
+    {
     song.pause();
     icon.src = '/static/images/svg/play.svg';
 }
 
     }
-    </script>
+
+
+</script>
+
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins/swiper/js/swiper.min.js' %}"></script>

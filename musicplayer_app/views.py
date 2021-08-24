@@ -71,6 +71,7 @@ def index(request):
     if Listener.objects.filter(user_ptr_id=request.user.id).exists():
         current_user_id = Listener.objects.get(user_ptr_id=request.user.id).id
         recommendations = handle_recommender(request)
+
         if PlayList.objects.filter(owner_id=current_user_id).exists():
             playlist = audio_player(request)
             return render(request, 'musicplayer_app/index.html', {"playlist": playlist, "showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations})
@@ -412,7 +413,7 @@ def profile(request):
     print(user.is_artist)
 
     if user.is_artist:
-        return render(request, 'musicplayer_app/artist_profile.html')
+        return artist_profile(request)
     else:
         if request.method == 'POST':
             user_profile = request.FILES.get('profile_pic')
@@ -574,7 +575,6 @@ def music_single_page(request):
 
         same_album_musics = Music.objects.filter(Album_name=music.Album_name)
 
-    print("fffff", same_album_musics)
     context = {'music': music, 'same_album_musics': same_album_musics}
     return render(request, 'musicplayer_app/music_single.html', context)
 
