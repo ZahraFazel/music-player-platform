@@ -44,6 +44,7 @@ urlpatterns = [
     path('search/',views.search,name = 'search'),
     url(r'setplaylist_play/', views.setplaylist_play, name='setplaylist_play'),
     url(r'play_with_quality/', views.play_with_quality, name='play_with_quality'),
+    url(r'play_single_with_quality/', views.play_single_with_quality, name='play_single_with_quality'),
 
 
 
