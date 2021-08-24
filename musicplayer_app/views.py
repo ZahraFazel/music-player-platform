@@ -70,6 +70,27 @@ def audio_player(request):
     return playlist
 
 
+
+def player_for_single_playlist(playlist_id):
+
+    musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
+    playlist = []
+    for p in musicplaylist:
+        m = Music.objects.get(id=p.music_id)
+
+        playlist.append(
+            {
+                "title": m.name,
+                "album": m.Album_name,
+                "artist": Artist.objects.get(id=m.artist_id).username,
+                "image": "/media/" + m.cover.name,
+                "file": "/media/" + m.file.name,
+            }
+        )
+
+    playlist = json.dumps(playlist, default=json_default)
+    return playlist
+
 @login_required(login_url='/login/')
 def index(request):
     musicbar = True
@@ -81,10 +102,10 @@ def index(request):
             playlist = audio_player(request)
             return render(request, 'musicplayer_app/index.html',
                           {"playlist": playlist, "showmusic": musicbar, 'is_listener': True,
-                           'recommendations': recommendations})
+                           'recommendations': recommendations[1:], 'trend': recommendations[0]})
         musicbar = False
         return render(request, 'musicplayer_app/index.html',
-                      {"showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations})
+                      {"showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations[1:], 'trend': recommendations[0]})
 
     else:
         musicbar = False
@@ -199,6 +220,8 @@ def single_playlist(request, playlist_id):
     disable_add = False
     if not is_premium and len(songs) >= 5:
         disable_add = True
+
+    player_playlist=player_for_single_playlist(playlist_id)
     context = {
         'songs': songs,
         'playlist_id': playlist_id,
@@ -207,7 +230,8 @@ def single_playlist(request, playlist_id):
         'user': user,
         'follow': follow,
         'is_listener': not request.user.is_artist,
-        'disable_add': disable_add
+        'disable_add': disable_add,
+        'player_playlist':player_playlist
     }
     return HttpResponse(template.render(context, request))
 
@@ -636,7 +660,7 @@ def music_single_page(request):
 def handle_recommender(request):
     recommender = RecommenderSystem(request.user.username)
     recommender.recommend()
-    return recommender.recommendations[:4]
+    return recommender.recommendations[:5]
 
 
 @login_required(login_url='/login/')
