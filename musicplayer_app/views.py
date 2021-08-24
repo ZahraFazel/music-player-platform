@@ -193,6 +193,12 @@ def single_playlist(request, playlist_id):
         songs.append((idx, m_song.music))
         idx += 1
     template = loader.get_template('musicplayer_app/single_playlist.html')
+    is_premium = False
+    if not request.user.is_artist and Listener.objects.get(user_ptr_id=request.user.id).vip:
+        is_premium = True
+    disable_add = False
+    if not is_premium and len(songs) >= 5:
+        disable_add = True
     context = {
         'songs': songs,
         'playlist_id': playlist_id,
@@ -201,6 +207,7 @@ def single_playlist(request, playlist_id):
         'user': user,
         'follow': follow,
         'is_listener': not request.user.is_artist,
+        'disable_add': disable_add
     }
     return HttpResponse(template.render(context, request))
 
