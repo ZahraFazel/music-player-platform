@@ -210,22 +210,14 @@
 						</span>
                             </form>
                     </div>
-                    <div class="ms_top_trend">
-                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
-                    </div>
+{#                    <div class="ms_top_trend">#}
+{#                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>#}
+{#                    </div>#}
                 </div>
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
-
-{#                    {% if request.user.is_artist %}#}
-{##}
-{#                        <span > <a href="/artist_profile/"  class="ms_btn"> Profile</a> </span>#}
-{##}
-{#                    {% else %}#}
                            <span><a href="{% url 'profile' %}" class="ms_btn">Profile</a></span>
-{#                    {% endif%}#}
                      </div>
-
                 <div class="ms_top_btn">
                     <a href="{% url 'logout' %}" class="ms_btn">Logout</a>
                 </div>
@@ -408,7 +400,7 @@
                             <div class="play_song_options">
                                 <ul>
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_download"></i></span>download now</a></li>
-                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>
+{#                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>#}
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>
                                     <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a></li>
                                 </ul>
@@ -416,22 +408,22 @@
                             <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                         <!----Right Queue---->
-                        <div class="jp_queue_wrapper">
-                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
-                            <div id="playlist-wrap" class="jp-playlist">
-								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
-                                <h2>queue</h2>
-								<div class="jp_queue_list_inner">
-									<ul>
-										<li>&nbsp;</li>
-									</ul>
-								</div>
-                                <div class="jp_queue_btn">
-                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
-                                    <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>
-                                </div>
-                            </div>
-                        </div>
+{#                        <div class="jp_queue_wrapper">#}
+{#                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>#}
+{#                            <div id="playlist-wrap" class="jp-playlist">#}
+{#								<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>#}
+{#                                <h2>queue</h2>#}
+{#								<div class="jp_queue_list_inner">#}
+{#									<ul>#}
+{#										<li>&nbsp;</li>#}
+{#									</ul>#}
+{#								</div>#}
+{#                                <div class="jp_queue_btn">#}
+{#                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>#}
+{#                                    <a href="clear_modal" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="jp-type-playlist">
                             <div class="jp-gui jp-interface flex-wrap">
                                 <div class="jp-controls flex-item">
@@ -515,40 +507,6 @@
 						</div>
                     </div>
                 </div>
-            </div>
-        </div>
-	</div>
-	<!----Queue Save Modal---->
-	<div class="ms_save_modal">
-		<div id="save_modal" class="modal  centered-modal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-{#                <div class="modal-content">#}
-{#                    <button type="button" class="close" data-dismiss="modal">#}
-{#						<i class="fa_icon form_close"></i>#}
-{#					</button>#}
-{#                    <div class="modal-body">#}
-{#						<h1>Log in to start sharing your music!</h1>#}
-{#						<div class="save_modal_btn">#}
-{#							<a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i> continue with google </a>#}
-{#							<a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> continue with facebook</a>#}
-{#						</div>#}
-{#						<div class="ms_save_email">#}
-{#							<h3>or use your email</h3>#}
-{#							<div class="save_input_group">#}
-{#								<input type="text" placeholder="Enter Your Name" class="form-control">#}
-{#							</div>#}
-{#							<div class="save_input_group">#}
-{#                                <input type="password" placeholder="Enter Password" class="form-control">#}
-{#                            </div>#}
-{#							<button class="save_btn">Log in</button>#}
-{#						</div>#}
-{#						<div class="ms_dnt_have">#}
-{#						    <span>Dont't have an account ?</span>#}
-{#							<a href="javascript:;" class="hideCurrentModel" data-toggle="modal" data-target="#myModal">Register Now</a>#}
-{#						</div>#}
-{#                    </div>#}
-{#                </div>#}
             </div>
         </div>
 	</div>

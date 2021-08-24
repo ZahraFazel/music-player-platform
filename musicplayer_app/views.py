@@ -289,7 +289,7 @@ def upload(request):
                       num_stars=0, quality=music_quality, cover=music_cover, file=music_file)
             m.save()
 
-            user.__class__ = Artist
+            user = Artist.objects.get(username=request.user.username)
             user.asset += 1000
             user.save()
             # if music_file.name.lower().endswith(('.mp3', '.mp4')):
@@ -583,3 +583,8 @@ def handle_recommender(request):
     recommender = RecommenderSystem(request.user.username)
     recommender.recommend()
     return recommender.recommendations[:4]
+
+
+@login_required(login_url='/login/')
+def download(request):
+    pass
