@@ -27,168 +27,168 @@
 </head>
 
 <body>
-<div class="ms_main_wrapper">
-    <!---Side Menu Start--->
-    <div class="ms_sidemenu_wrapper">
-        <div class="ms_nav_close">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-        </div>
-        <div class="ms_sidemenu_inner">
-            <div class="ms_logo_inner">
-                <div class="ms_logo">
-                    <a href="/musicplayer_app">
-                        {% load static %}
-                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>
-                </div>
-                <div class="ms_logo_open">
-                    <a href="/musicplayer_app">
-                        {% load static %}
-                        <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>
-                </div>
-            </div>
-            <div class="ms_nav_wrapper">
-                <ul>
-                    <li><a href="/musicplayer_app" title="Home">
-						<span class="nav_icon">
-							<span class="icon icon_discover"></span>
-						</span>
-                        <span class="nav_text">
-							home
-						</span>
-                    </a>
-                    </li>
-<!--                    <li><a href="album.html" title="Albums">-->
+<!--<div class="ms_main_wrapper">-->
+<!--    &lt;!&ndash;-Side Menu Start-&ndash;&gt;-->
+<!--    <div class="ms_sidemenu_wrapper">-->
+<!--        <div class="ms_nav_close">-->
+<!--            <i class="fa fa-angle-right" aria-hidden="true"></i>-->
+<!--        </div>-->
+<!--        <div class="ms_sidemenu_inner">-->
+<!--            <div class="ms_logo_inner">-->
+<!--                <div class="ms_logo">-->
+<!--                    <a href="/musicplayer_app">-->
+<!--                        {% load static %}-->
+<!--                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>-->
+<!--                </div>-->
+<!--                <div class="ms_logo_open">-->
+<!--                    <a href="/musicplayer_app">-->
+<!--                        {% load static %}-->
+<!--                        <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="ms_nav_wrapper">-->
+<!--                <ul>-->
+<!--                    <li><a href="/musicplayer_app" title="Home">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_albums"></span>-->
+<!--							<span class="icon icon_discover"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							albums-->
+<!--							home-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-                    <li><a href="/artists" class="active" title="Artists">
-						<span class="nav_icon">
-							<span class="icon icon_artists"></span>
-						</span>
-                        <span class="nav_text">
-							artists
-						</span>
-                    </a>
-                    </li>
-                    <li><a href="/genres" title="Genres">
-						<span class="nav_icon">
-							<span class="icon icon_genres"></span>
-						</span>
-                        <span class="nav_text">
-							genres
-						</span>
-                    </a>
-                    </li>
-<!--                    <li><a href="top_track.html" title="Top Track">-->
+<!--&lt;!&ndash;                    <li><a href="album.html" title="Albums">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_albums"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							albums&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                    <li><a href="/artists" class="active" title="Artists">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_tracks"></span>-->
+<!--							<span class="icon icon_artists"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							top tracks-->
+<!--							artists-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-<!--                    <li><a href="free_music.html" title="Free Music">-->
+<!--                    <li><a href="/genres" title="Genres">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_music"></span>-->
+<!--							<span class="icon icon_genres"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							free music-->
+<!--							genres-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-<!--                    <li><a href="stations.html" title="Stations">-->
+<!--&lt;!&ndash;                    <li><a href="top_track.html" title="Top Track">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_tracks"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							top tracks&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a href="free_music.html" title="Free Music">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_music"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							free music&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a href="stations.html" title="Stations">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_station"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							stations&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                </ul>-->
+<!--                <ul class="nav_downloads">-->
+<!--&lt;!&ndash;                    <li><a href="download.html" title="Downloads">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_download"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							downloads&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                    {% if not is_listener %}-->
+<!--                    <li><a href="/get_assets" title="Get Royalty">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_station"></span>-->
+<!--							<span class="icon icon_purchased"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							stations-->
+<!--							get royalty-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-                </ul>
-                <ul class="nav_downloads">
-<!--                    <li><a href="download.html" title="Downloads">-->
+<!--                    {% endif %}-->
+<!--&lt;!&ndash;                    <li><a href="favourite.html" title="Favourites">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_favourite"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							favourites&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li><a href="history.html" title="History">&ndash;&gt;-->
+<!--&lt;!&ndash;						<span class="nav_icon">&ndash;&gt;-->
+<!--&lt;!&ndash;							<span class="icon icon_history"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="nav_text">&ndash;&gt;-->
+<!--&lt;!&ndash;							history&ndash;&gt;-->
+<!--&lt;!&ndash;						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                </ul>-->
+<!--                <ul class="nav_playlist">-->
+<!--                    {% if not is_listener %}-->
+<!--                    <li><a href="/upload" title="Upload new Musicَ">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_download"></span>-->
+<!--							<span class="icon icon_c_playlist"></span>-->
+<!--						</span>-->
+<!--						<span class="nav_text">-->
+<!--							Add new music-->
+<!--						</span>-->
+<!--						</a>-->
+<!--                    </li>-->
+<!--                    {% endif %}-->
+<!--                    {% if is_listener %}-->
+<!--                    <li><a href="/my_playlists">-->
+<!--						<span class="nav_icon">-->
+<!--							<span class="icon icon_fe_playlist"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							downloads-->
+<!--							playlists-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-                    {% if not is_listener %}
-                    <li><a href="/get_assets" title="Get Royalty">
-						<span class="nav_icon">
-							<span class="icon icon_purchased"></span>
-						</span>
-                        <span class="nav_text">
-							get royalty
-						</span>
-                    </a>
-                    </li>
-                    {% endif %}
-<!--                    <li><a href="favourite.html" title="Favourites">-->
+<!--                    <li><a href="/add_playlist" class="active">-->
 <!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_favourite"></span>-->
+<!--							<span class="icon icon_c_playlist"></span>-->
 <!--						</span>-->
 <!--                        <span class="nav_text">-->
-<!--							favourites-->
+<!--							create playlist-->
 <!--						</span>-->
 <!--                    </a>-->
 <!--                    </li>-->
-<!--                    <li><a href="history.html" title="History">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_history"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							history-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-                </ul>
-                <ul class="nav_playlist">
-                    {% if not is_listener %}
-                    <li><a href="/upload" title="Upload new Musicَ">
-						<span class="nav_icon">
-							<span class="icon icon_c_playlist"></span>
-						</span>
-						<span class="nav_text">
-							Add new music
-						</span>
-						</a>
-                    </li>
-                    {% endif %}
-                    {% if is_listener %}
-                    <li><a href="/my_playlists">
-						<span class="nav_icon">
-							<span class="icon icon_fe_playlist"></span>
-						</span>
-                        <span class="nav_text">
-							playlists
-						</span>
-                    </a>
-                    </li>
-                    <li><a href="/add_playlist" class="active">
-						<span class="nav_icon">
-							<span class="icon icon_c_playlist"></span>
-						</span>
-                        <span class="nav_text">
-							create playlist
-						</span>
-                    </a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<!--                    {% endif %}-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
     <div class="ms_register_form">
         <h2>Purchase</h2>
