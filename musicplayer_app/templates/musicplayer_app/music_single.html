@@ -86,37 +86,33 @@
         <div class="ms_sidemenu_inner">
             <div class="ms_logo_inner">
                 <div class="ms_logo">
-                    <a href="/musicplayer_app">
-                        {% load static %}
-                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid"/></a>
+                    <a href="/musicplayer_app"><img src="images/logo.png" alt="" class="img-fluid"/></a>
                 </div>
                 <div class="ms_logo_open">
-                    <a href="/musicplayer_app">
-                        {% load static %}
-                        <img src="{% static 'images/open_logo.png' %}" alt="" class="img-fluid"/></a>
+                    <a href="/musicplayer_app"><img src="images/open_logo.png" alt="" class="img-fluid"/></a>
                 </div>
             </div>
             <div class="ms_nav_wrapper">
                 <ul>
-                    <li><a href="/musicplayer_app" title="Home">
+                    <li><a href="/musicplayer_app">
 						<span class="nav_icon">
 							<span class="icon icon_discover"></span>
 						</span>
                         <span class="nav_text">
-							home
+							discover
 						</span>
                     </a>
                     </li>
-<!--                    <li><a href="album.html" title="Albums">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_albums"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							albums-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-                    <li><a href="/artists" class="active" title="Artists">
+                    <li><a href="album.html">
+						<span class="nav_icon">
+							<span class="icon icon_albums"></span>
+						</span>
+                        <span class="nav_text">
+							albums
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="artist.html" class="active">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
 						</span>
@@ -125,96 +121,82 @@
 						</span>
                     </a>
                     </li>
-<!--                    <li><a href="genres.html" title="Genres">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_genres"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							genres-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-<!--                    <li><a href="top_track.html" title="Top Track">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_tracks"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							top tracks-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-<!--                    <li><a href="free_music.html" title="Free Music">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_music"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							free music-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-<!--                    <li><a href="stations.html" title="Stations">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_station"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							stations-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
+                    <li><a href="genres.html">
+						<span class="nav_icon">
+							<span class="icon icon_genres"></span>
+						</span>
+                        <span class="nav_text">
+							genres
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="top_track.html">
+						<span class="nav_icon">
+							<span class="icon icon_tracks"></span>
+						</span>
+                        <span class="nav_text">
+							top tracks
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="free_music.html">
+						<span class="nav_icon">
+							<span class="icon icon_music"></span>
+						</span>
+                        <span class="nav_text">
+							free music
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="stations.html">
+						<span class="nav_icon">
+							<span class="icon icon_station"></span>
+						</span>
+                        <span class="nav_text">
+							stations
+						</span>
+                    </a>
+                    </li>
                 </ul>
                 <ul class="nav_downloads">
-<!--                    <li><a href="download.html" title="Downloads">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_download"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							downloads-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-                    {% if not is_listener %}
-                    <li><a href="/get_assets" title="Get Royalty">
+                    <li><a href="download.html">
+						<span class="nav_icon">
+							<span class="icon icon_download"></span>
+						</span>
+                        <span class="nav_text">
+							downloads
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="purchase.html">
 						<span class="nav_icon">
 							<span class="icon icon_purchased"></span>
 						</span>
                         <span class="nav_text">
-							get royalty
+							purchased
 						</span>
                     </a>
                     </li>
-                    {% endif %}
-<!--                    <li><a href="favourite.html" title="Favourites">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_favourite"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							favourites-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
-<!--                    <li><a href="history.html" title="History">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_history"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							history-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
+                    <li><a href="favourite.html">
+						<span class="nav_icon">
+							<span class="icon icon_favourite"></span>
+						</span>
+                        <span class="nav_text">
+							favourites
+						</span>
+                    </a>
+                    </li>
+                    <li><a href="history.html">
+						<span class="nav_icon">
+							<span class="icon icon_history"></span>
+						</span>
+                        <span class="nav_text">
+							history
+						</span>
+                    </a>
+                    </li>
                 </ul>
                 <ul class="nav_playlist">
-                    {% if not is_listener %}
-                    <li><a href="/upload" title="Upload new Musicَ">
-						<span class="nav_icon">
-							<span class="icon icon_c_playlist"></span>
-						</span>
-						<span class="nav_text">
-							Add new music
-						</span>
-						</a>
-                    </li>
-                    {% endif %}
-                    {% if is_listener %}
                     <li><a href="/my_playlists">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
@@ -233,7 +215,6 @@
 						</span>
                     </a>
                     </li>
-                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -254,7 +235,6 @@
 
                     <a href="#">{{music.artist}} </a>
 
-
                 <br>
 
                 <div class="album_btn">
@@ -268,10 +248,22 @@
                     <audio id="audio_payer" controls hidden="true" ><source src="/media/{{music.file.name}}" type="audio/mpeg" ></audio>
 
                             </a>
-                    <a href="#" class="ms_btn"><span class="play_all"><img src="{% static 'images/svg/add_q.svg' %}" alt="">Add To Playlist</span>
+                    <a href="#" class="ms_btn"><span class="play_all"><img src="{% static 'images/svg/add_q.svg' %}" alt="">Add To Playlist</span> </a>
 
-                    </a>
+
+
+
                 </div>
+                <div style="margin:0px 0px -20px 0px;" class="album_btn">
+                  <div class="jp_quality_optn custom_select">
+                         <select onchange="changeQ({{music.id}})" id ="Quality">
+						<option value="1">Low</option>
+						<option value="2" selected>medium</option>
+						<option value="3" >High</option>
+						<option value="4">HD</option>
+					</select>
+                                </div>
+                                </div>
 
 
             </div>
@@ -302,6 +294,7 @@
             <div class="ms_relative_inner">
                 <div class="ms_feature_slider swiper-container">
                     <div class="swiper-wrapper">
+
                         {% for mu in same_album_musics %}
                         <div class="swiper-slide">
                             <div class="ms_rcnt_box">
@@ -324,9 +317,9 @@
                                             <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a>
                                             </li>
                                         </ul>
-<!--                                        <div class="ms_play_icon">-->
-<!--                                            <img src="{% static 'images/svg/play.svg' %}" alt="">-->
-<!--                                        </div>-->
+                                        <div class="ms_play_icon">
+                                            <a href="/music_single_page/?id={{mu.id}}"> <img src="{% static 'images/link.png' %}" alt=""> </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="ms_rcnt_box_text">
@@ -465,7 +458,44 @@
 </div>
     <!--Main js file Style-->
 
+
+
 <script>
+
+
+
+function changeQ(musicId){
+var select = document.getElementById('Quality');
+var value = select.options[select.selectedIndex].value;
+
+
+        $.ajax({
+              type: "POST",
+             url: "/play_single_with_quality/",
+             datatype:"json",
+           data: {
+                  csrfmiddlewaretoken:'{{ csrf_token }}',
+                 "quality": value,
+                 "musicid":musicId
+             },
+
+    success: function(data){
+        console.log("success");
+        console.log("alaki", data);
+        newdata = JSON.parse(data);
+        console.log("alaki22",newdata);
+        path =  newdata["file"];
+        document.getElementById('audio_payer').src="/media/"+path;
+
+
+    },
+    failure: function(data){
+        console.log("failure");
+        console.log(data);
+    },
+});
+
+}
 
 function play_and_pause(id){
 
@@ -491,6 +521,10 @@ function play_and_pause(id){
 }
 
     }
+
+
+
+
 </script>
 
 
