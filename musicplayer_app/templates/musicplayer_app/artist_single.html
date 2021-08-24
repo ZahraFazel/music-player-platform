@@ -274,6 +274,7 @@
                     <li>#</li>
                     <li>Song Title</li>
                     <li>Artist</li>
+                    <li>Album</li>
                     <li class="text-center">Stars</li>
                 </ul>
                 {% for m in musics%}
@@ -281,8 +282,10 @@
                     <li><audio controls hidden="true" id="{{m.id}}"><source src="/media/{{m.file.name}}" type="audio/mpeg" >Your browser does not support the audio element.</audio>
                     <a href="#" onclick="play_and_pause({{m.id}})"><span class="play_no">{{forloop.counter}}</span><span class="play_hover"></span></a></li>
 
-                    <li><a href="#">{{m.name}}</a></li>
+                    <li><a href="/music_single_page/?id={{m.id}}">{{m.name}}</a></li>
                     <li><a href="#">{{artist.username}}</a></li>
+                    <li><a href="#">{{m.Album_name}}</a></li>
+
                     <li class="text-center"><a href="#">{{m.num_stars}}</a></li>
                 </ul>
                 {% endfor%}
