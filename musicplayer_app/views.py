@@ -634,7 +634,12 @@ def handle_recommender(request):
 
 @login_required(login_url='/login/')
 def download(request):
+
+    user = User.objects.get(username=request.user.username)
+
     if request.method == 'GET':
+     if user.is_superuser:
+
         musicId = request.GET.get('id')
         music = Music.objects.get(id=musicId)
 
@@ -647,6 +652,9 @@ def download(request):
         response = HttpResponse(fl, content_type=mime_type)
         response['Content-Disposition'] = "attachment; filename=%s" % filename
         return response
+     else:
+
+         return HttpResponse(status=200)
 
 
 @login_required(login_url='/login/')
