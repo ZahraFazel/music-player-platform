@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 import itertools
+import mimetypes
+import os
 from distutils.command import register
 
 from django.contrib import messages
@@ -618,4 +620,18 @@ def handle_recommender(request):
 
 @login_required(login_url='/login/')
 def download(request):
-    pass
+    if request.method == 'GET':
+        musicId = request.GET.get('id')
+        music = Music.objects.get(id=musicId)
+
+
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+        fl_path = "media/"+music.file.name
+        filename = music.name+'.ogg'
+
+        fl = open(fl_path, 'rb')
+        mime_type, _ = mimetypes.guess_type(fl_path)
+        response = HttpResponse(fl, content_type=mime_type)
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        return response
