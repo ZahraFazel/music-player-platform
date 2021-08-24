@@ -256,15 +256,7 @@ a:hover {
 						</span>
                     </a>
                     </li>
-<!--                    <li><a href="album.html" title="Albums">-->
-<!--						<span class="nav_icon">-->
-<!--							<span class="icon icon_albums"></span>-->
-<!--						</span>-->
-<!--                        <span class="nav_text">-->
-<!--							albums-->
-<!--						</span>-->
-<!--                    </a>-->
-<!--                    </li>-->
+
                     <li><a href="/artists" class="active" title="Artists">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
@@ -390,32 +382,28 @@ a:hover {
 </div>
 
 
-
-
-        <div class="album_inner_list" style="margin:50px;">
+ <div style="margin:90px 0px 0px 200px;" class="album_inner_list">
+<div class="ms_heading">
+                            <h1>Search Results....</h1>
+                        </div>
             <div class="album_list_wrapper">
                 <ul class="album_list_name">
                     <li>#</li>
-                    <li>cover</li>
-                    <li>Name</li>
-                    <li>Album</li>
+                    <li>Song Title</li>
                     <li>Artist</li>
-
-                    <!--<li class="text-center">Add To Favourites</li>-->
+                    <li class="text-center">Stars</li>
                     <li class="text-center">More</li>
                 </ul>
+                {% for m in results%}
+                <ul id="icon+{{m.id}}" >
+                    <li>
+                    <a href="/music_single_page/?id={{m.id}}" ><span> {{forloop.counter}}  </span></a></li>
 
-                {% for a in results%}
-                <ul>
-                    <li><a href="#"><span >{{forloop.counter}}</span><span></span></a></li>
-                    <li><img src="{{ a.cover }}"></li>
-
-                    <li><a href="#">{{a.name}}</a></li>
-                    <li><a href="#">{{a.Album_name}}</a></li>
-
-                    <li><a href="/artist_single_page/?id={{a.artist_id}}">{{a.artist_id}}</a></li>
-                    <!--<li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>-->
-                    <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
+                    <li><a href="#">{{m.name}}</a></li>
+                    <li><a href="#">{{m.artist_id}}</a></li>
+                    <li class="text-center"><a href="#">{{m.num_stars}}</a></li>
+                    <li class="text-center ms_more_icon"><a href="javascript:;"><span
+                            class="ms_icon1 ms_active_icon"></span></a>
                         <ul class="more_option">
                             <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To
                                 Favourites</a></li>
@@ -430,11 +418,9 @@ a:hover {
                         </ul>
                     </li>
                 </ul>
-                {% endfor %}
-
+                {% endfor%}
             </div>
         </div>
-
 
 
 
