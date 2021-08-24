@@ -102,10 +102,10 @@ def index(request):
             playlist = audio_player(request)
             return render(request, 'musicplayer_app/index.html',
                           {"playlist": playlist, "showmusic": musicbar, 'is_listener': True,
-                           'recommendations': recommendations})
+                           'recommendations': recommendations[1:], 'trend': recommendations[0]})
         musicbar = False
         return render(request, 'musicplayer_app/index.html',
-                      {"showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations})
+                      {"showmusic": musicbar, 'is_listener': True, 'recommendations': recommendations[1:], 'trend': recommendations[0]})
 
     else:
         musicbar = False
@@ -660,7 +660,7 @@ def music_single_page(request):
 def handle_recommender(request):
     recommender = RecommenderSystem(request.user.username)
     recommender.recommend()
-    return recommender.recommendations[:4]
+    return recommender.recommendations[:5]
 
 
 @login_required(login_url='/login/')
