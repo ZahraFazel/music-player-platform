@@ -46,7 +46,7 @@ urlpatterns = [
     url(r'play_with_quality/', views.play_with_quality, name='play_with_quality'),
     url(r'play_single_with_quality/', views.play_single_with_quality, name='play_single_with_quality'),
     url(r'^download/$', views.download, name='download'),
-
+    url(r'^genres/$', views.genres, name="genres"),
 
 
 ]
