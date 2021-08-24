@@ -29,4 +29,4 @@ class RecommenderSystem:
         else:
             music_ids = set(MusicGenres.objects.all().values_list('music_id', flat=True))
         selected = music_ids - music_ids.intersection(musics)
-        self.recommendations = Music.objects.filter(id__in=selected)
+        self.recommendations = Music.objects.filter(id__in=selected).order_by('?')

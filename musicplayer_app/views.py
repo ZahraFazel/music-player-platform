@@ -116,7 +116,7 @@ def my_playlists(request):
     return HttpResponse(template.render(context, request))
 
 
-@login_required()
+@login_required(login_url='/login/')
 def share_playlist(request, playlist_id):
     if request.method == "POST":
         user_query = Listener.objects.filter(user_ptr_id=User.objects.get(username=request.POST.get('username')).id)
@@ -163,7 +163,7 @@ def follow(request, playlist_id):
     return redirect('/playlist/' + str(playlist_id))
 
 
-# @login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def single_playlist(request, playlist_id):
     follow = False
     user = False
@@ -364,6 +364,7 @@ def unfollow_artist(request):
     return redirect('/artist/' + str(artistId))
 
 
+@login_required(login_url='/login/')
 def artist_followers(request):
     artistId = Artist.objects.get(id=request.user.id)
 
@@ -375,6 +376,7 @@ def artist_followers(request):
     return render(request, 'musicplayer_app/artist_followers.html', {"followers_of_artist": followers})
 
 
+@login_required(login_url='/login/')
 def followed_artists(request):
     listenerId = Listener.objects.get(id=request.user.id)
     followed__artist = ArtistFollower.objects.filter(follower_id=listenerId)
@@ -495,6 +497,7 @@ def edit_profile(request):
         return redirect('/musicplayer_app/')
 
 
+@login_required(login_url='/login/')
 def search(request):
     print('i am heere')
     if request.method == 'GET':
@@ -563,6 +566,7 @@ def play_with_quality(request):
     return HttpResponse(status=200)
 
 
+@login_required(login_url='/login/')
 def music_single_page(request):
     if request.method == 'GET':
         musicId = request.GET.get('id')
