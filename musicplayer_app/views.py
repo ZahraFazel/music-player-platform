@@ -585,7 +585,7 @@ def music_single_page(request):
 
         same_album_musics = Music.objects.filter(Album_name=music.Album_name)
 
-    context = {'music': music, 'same_album_musics': same_album_musics}
+    context = {'music': music, 'same_album_musics': same_album_musics, 'is_listener': not request.user.is_artist}
     return render(request, 'musicplayer_app/music_single.html', context)
 
 
