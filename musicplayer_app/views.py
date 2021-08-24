@@ -70,27 +70,6 @@ def audio_player(request):
     return playlist
 
 
-
-def player_for_single_playlist(playlist_id):
-
-    musicplaylist = MusicPlayList.objects.filter(playlist_id=playlist_id)
-    playlist = []
-    for p in musicplaylist:
-        m = Music.objects.get(id=p.music_id)
-
-        playlist.append(
-            {
-                "title": m.name,
-                "album": m.Album_name,
-                "artist": Artist.objects.get(id=m.artist_id).username,
-                "image": "/media/" + m.cover.name,
-                "file": "/media/" + m.file.name,
-            }
-        )
-
-    playlist = json.dumps(playlist, default=json_default)
-    return playlist
-
 @login_required(login_url='/login/')
 def index(request):
     musicbar = True
@@ -144,7 +123,7 @@ def my_playlists(request):
         'other_playlists': other_playlists,
         'is_listener': not request.user.is_artist,
     }
-    return render(template.render(context, request))
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login/')
@@ -214,8 +193,12 @@ def single_playlist(request, playlist_id):
         songs.append((idx, m_song.music))
         idx += 1
     template = loader.get_template('musicplayer_app/single_playlist.html')
-    player_playlist =player_for_single_playlist(playlist_id)
-
+    is_premium = False
+    if not request.user.is_artist and Listener.objects.get(user_ptr_id=request.user.id).vip:
+        is_premium = True
+    disable_add = False
+    if not is_premium and len(songs) >= 5:
+        disable_add = True
     context = {
         'songs': songs,
         'playlist_id': playlist_id,
@@ -224,13 +207,9 @@ def single_playlist(request, playlist_id):
         'user': user,
         'follow': follow,
         'is_listener': not request.user.is_artist,
-        'player_playlist':player_playlist
+        'disable_add': disable_add
     }
-
-
-
-    return render(request,'musicplayer_app/single_playlist.html',context)
-    # return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login/')
