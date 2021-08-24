@@ -274,6 +274,55 @@ Purchase:
                 <div class=" marger_top60">
                     <div class="ms_upload_box">
                           <div class="ms_heading">
+                            <h1>Track Genre</h1>
+                        </div>
+                   <div class="col-md-4 offset-md-4 mt-5">
+                    <br>
+
+
+
+                        <div style="margin:0px 0px 0px 60px;" class="form-group">
+                                                    <hr>
+                            {% for genre in Genres%}
+
+                            <label  style="  display: flex;
+            align-items: center;margin:0px 0px 20px 40px;" >
+                                <input  style=" flex: none;width:18px;height:18px;margin:0px 10px 0px 0px;" type="checkbox"  name="genras" value="{{genre}}">
+                                        {{genre}}</label>
+                            {% endfor%}
+
+
+                      </div>
+
+                      <hr>
+
+                      <hr>
+
+
+                </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class=" marger_top60">
+                    <div class="ms_upload_box">
+                          <div class="ms_heading">
                             <h1>Track Information</h1>
                         </div>
                    <div class="col-md-4 offset-md-4 mt-5">
