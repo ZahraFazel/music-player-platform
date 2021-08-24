@@ -137,7 +137,7 @@ def share_playlist(request, playlist_id):
 
 @login_required(login_url='/login/')
 def add_playlist(request):
-    return render(request, 'musicplayer_app/add_playlist_details.html')
+    return render(request, 'musicplayer_app/add_playlist_details.html', {'is_listener': not request.user.is_artist})
 
 
 @login_required(login_url='/login/')
