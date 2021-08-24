@@ -19,9 +19,10 @@ from musicplayer_app import views
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.views.static import serve
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('musicplayer_app.urls'))
+    url(r'', include('musicplayer_app.urls')),
+    # url(r'^download/(?P<path>.*)$' ,serve,{'document_root':settings.MEDIA_ROOT})
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

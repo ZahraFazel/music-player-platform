@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
+from django.forms import CharField
 
 
 class User(AbstractUser):
@@ -33,6 +34,7 @@ class Music(models.Model):
     quality = models.IntegerField(default=1)
     cover = models.ImageField(blank=True, null=True, upload_to='pictures/')
     file = models.FileField(blank=True, null=True, upload_to='trackes/')
+
 
 
 class PlayList(models.Model):

@@ -425,20 +425,6 @@ def single_artist(request, artistId):
     return render(request, 'musicplayer_app/artist_single.html', context)
 
 
-@login_required(login_url='/login/')
-def genres(request):
-    genres = ["Electronic Dance", "Rock Music", "Jazz", "Dubstep", "Rhythm and Blues", "Techno", "Country",
-              "Electro", "Indie Rock", "Pop", "Classic"]
-    d = []
-    for g in genres:
-        arr = list(MusicGenres.objects.filter(genre=g))
-        d.append([g, arr])
-    print("Hey Hey")
-    print(d)
-    context = {'genres': d, 'is_listener': not request.user.is_artist}
-    return render(request, 'musicplayer_app/genres.html', context)
-
-
 @csrf_exempt
 @login_required(login_url='/login/')
 def profile(request):
@@ -534,9 +520,7 @@ def edit_profile(request):
 
 @login_required(login_url='/login/')
 def search(request):
-    print('i am heere')
     if request.method == 'GET':
-
         query = request.GET.get("search_text")
         if query:
             if Artist.objects.filter(username=query).exists():
@@ -644,13 +628,26 @@ def download(request):
         musicId = request.GET.get('id')
         music = Music.objects.get(id=musicId)
 
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-        fl_path = "media/" + music.file.name
-        filename = music.name + '.ogg'
+        fl_path = "media/"+music.file.name
+        filename = music.name+'.ogg'
 
         fl = open(fl_path, 'rb')
         mime_type, _ = mimetypes.guess_type(fl_path)
         response = HttpResponse(fl, content_type=mime_type)
         response['Content-Disposition'] = "attachment; filename=%s" % filename
         return response
+
+
+@login_required(login_url='/login/')
+def genres(request):
+    genres = ["Electronic Dance", "Rock Music", "Jazz", "Dubstep", "Rhythm and Blues", "Techno", "Country",
+              "Electro", "Indie Rock", "Pop", "Classic"]
+    d = []
+    for g in genres:
+        arr = list(MusicGenres.objects.filter(genre=g))
+        d.append([g, arr])
+    print("Hey Hey")
+    print(d)
+    context = {'genres': d, 'is_listener': not request.user.is_artist}
+    return render(request, 'musicplayer_app/genres.html', context)
