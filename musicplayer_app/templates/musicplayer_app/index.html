@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Miraculous - Online Music Store Html Template</title>
+    <title>Miraculous - Online Music Platform</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="description" content="Music">
@@ -215,9 +215,6 @@
 						</span>
                             </form>
                     </div>
-{#                    <div class="ms_top_trend">#}
-{#                        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>#}
-{#                    </div>#}
                 </div>
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
@@ -231,6 +228,7 @@
                 </div>
                 </div>
             </div>
+            {% if is_listener %}
             <!---Banner--->
             <div class="ms-banner">
                 <div class="container-fluid">
@@ -254,7 +252,6 @@
                 </div>
             </div>
             <!---Recently Played Music--->
-            {% if is_listener %}
             <div class="ms_rcnt_slider">
                 <div class="ms_heading">
                     <h1>For You</h1>
