@@ -525,7 +525,7 @@ Purchase:
             <!----Live Radio Section Start---->
             {% for genre in genres %}
             <div class="ms_radio_wrapper">
-                <div class="ms_heading">
+                <div  id="{{ genre.0 }}" class="ms_heading">
                     <h1>{{ genre.0 }}</h1>
                 </div>
                 <div class="ms_radio_slider swiper-container swiper-container-horizontal">

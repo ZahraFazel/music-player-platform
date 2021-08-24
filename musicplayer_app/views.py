@@ -32,6 +32,7 @@ import tempfile
 from pydub import AudioSegment
 from urllib.request import urlopen
 
+Genres = ["Electronic Dance" , "Rock","Jazz","Dubstep","Rhythm and Blues","Techno","Country","Electro","Indie Rock","POP","Classic"]
 
 # Create your views here.
 def start(request):
@@ -284,7 +285,6 @@ def remove_track(request):
 
 @login_required(login_url='/login/')
 def upload(request):
-    Genres = ["Electronic Dance" , "Rock","Jazz","Dubstep","Rhythm and Blues","Techno","Country","Electro","Indie Rock","POP","Classic"]
 
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
@@ -534,6 +534,16 @@ def search(request):
                 return render(request, 'musicplayer_app/search_results.html',
                               {'results': results, 'is_listener': not request.user.is_artist})
 
+            elif query in Genres:
+
+                d = []
+                for g in Genres:
+                    arr = list(MusicGenres.objects.filter(genre=g))
+                    d.append([g, arr])
+                print("Hey Hey")
+                print(d)
+                context = {'genres': d, 'is_listener': not request.user.is_artist}
+                return redirect('/genres/#'+query, context)
             else:
                 print("NO match found")
 
@@ -641,10 +651,9 @@ def download(request):
 
 @login_required(login_url='/login/')
 def genres(request):
-    genres = ["Electronic Dance", "Rock Music", "Jazz", "Dubstep", "Rhythm and Blues", "Techno", "Country",
-              "Electro", "Indie Rock", "Pop", "Classic"]
+
     d = []
-    for g in genres:
+    for g in Genres:
         arr = list(MusicGenres.objects.filter(genre=g))
         d.append([g, arr])
     print("Hey Hey")
