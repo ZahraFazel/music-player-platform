@@ -241,6 +241,23 @@
                             <div class="ms_banner_text">
                                 <h1>Our Suggestion</h1>
                                 <h1 class="ms_color">{{trend.name}}</h1>
+
+                <div class="album_btn">
+                    <a onclick="play_and_pause_trend()" href="#" class="ms_btn play_btn"><span id="play" class="play">
+                        <img   src="{% static 'images/svg/play_all.svg' %}" alt="">Listen Now </span>
+
+
+                        <span  id="pause"  hidden="true" class="play">
+                        <img   src="{% static 'images/svg/pause_all.svg' %}" alt="">Pause </span>
+
+                    <audio id="audio_payer" controls hidden="true" ><source src="/media/{{trend.file.name}}" type="audio/mpeg" ></audio>
+
+                            </a>
+
+
+
+
+                </div>
                                 <p>{{trend.artist}}<br>{{trend.Album_name}}<br>{{trend.release_date}}</p>
 {#                                <div class="ms_banner_btn">#}
 {#                                    <a href="#" class="ms_btn">Listen Now</a>#}
@@ -533,6 +550,31 @@
     {
     song.pause();
     icon.src = '/static/images/svg/play.svg';
+}
+
+    }
+
+function play_and_pause_trend(id){
+
+
+    var song =  document.getElementById('audio_payer');
+    console.log("dd");
+
+    if (song.paused)
+      {
+
+       song.play();
+       document.getElementById("play").hidden=true;
+      document.getElementById("pause").hidden=false;
+
+
+    }
+    else{
+    song.pause();
+    document.getElementById("pause").hidden=true;
+    document.getElementById("play").hidden=false;
+
+
 }
 
     }
