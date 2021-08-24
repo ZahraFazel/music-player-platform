@@ -284,6 +284,8 @@ def remove_track(request):
 
 @login_required(login_url='/login/')
 def upload(request):
+    Genres = ["Electronic Dance" , "Rock","Jazz","Dubstep","Rhythm and Blues","Techno","Country","Electro","Indie Rock","POP","Classic"]
+
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
 
@@ -295,10 +297,15 @@ def upload(request):
             music_quality = request.POST.get('quality')
             music_cover = request.FILES.get('cover')
             music_file = request.FILES.get('music_file')
+            music_genras =request.POST.getlist('genras')
+            print("music_genras",music_genras)
 
             m = Music(artist=music_artist, name=music_name, Album_name=music_album, release_date=music_release_date,
                       num_stars=0, quality=music_quality, cover=music_cover, file=music_file)
             m.save()
+            for g in music_genras:
+
+                  MusicGenres(music=m,genre=g).save()
 
             user = Artist.objects.get(username=request.user.username)
             user.asset += 1000
@@ -308,8 +315,7 @@ def upload(request):
             #     temp = music_file.name[:len(music_file.name) - 4]
             #     sound = AudioSegment.from_mp3('media/trackes/'+music_file.name)
             #     sound.export('media/trackes/'+temp+'.ogg', format="wav")
-
-    return render(request, 'musicplayer_app/upload.html/', {'is_listener': not request.user.is_artist})
+    return render(request, 'musicplayer_app/upload.html/', {'is_listener': not request.user.is_artist , "Genres":Genres})
 
 
 @login_required(login_url='/login/')
